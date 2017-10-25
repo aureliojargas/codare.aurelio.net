@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>JavaScript: Fazer o label do checkbox ser clicável | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='C: Escondendo o conteúdo de structs com tipos incompletos' href='http://codare.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/' />
-<link rel='next' title='Python: Introspeção de atributos e métodos com vars(), locals() e dir()' href='http://codare.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='C: Escondendo o conteúdo de structs com tipos incompletos' href='http://codare.aurelio.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/' />
+<link rel='next' title='Python: Introspeção de atributos e métodos com vars(), locals() e dir()' href='http://codare.aurelio.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-511 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/" rel="prev"><span class="meta-nav">&larr;</span> C: Escondendo o conteúdo de structs com tipos incompletos</a></div>
-					<div class="nav-next"><a href="http://codare.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/" rel="next">Python: Introspeção de atributos e métodos com vars(), locals() e dir() <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/" rel="prev"><span class="meta-nav">&larr;</span> C: Escondendo o conteúdo de structs com tipos incompletos</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/" rel="next">Python: Introspeção de atributos e métodos com vars(), locals() e dir() <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-511" class="post-511 post type-post status-publish format-standard hentry category-javascript tag-checkbox tag-clique tag-javascript tag-label tag-onclick">
 					<h1 class="entry-title">JavaScript: Fazer o label do checkbox ser clicável</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/" title="09:00" rel="bookmark"><span class="entry-date">06/08/2009</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/oreio/" title="View all posts by Aurelio Jargas">Aurelio Jargas</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/" title="09:00" rel="bookmark"><span class="entry-date">06/08/2009</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/oreio/" title="View all posts by Aurelio Jargas">Aurelio Jargas</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>É comum usar checkboxes nas configurações ou na interface de seu site. Ao clicar nela alguma coisa é ligada, ao clicar novamente é desligada. Simples, não?</p>
@@ -95,12 +95,12 @@ Fundo colorido
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/javascript/" rel="category tag">JavaScript</a> and tagged <a href="http://codare.net/tag/checkbox/" rel="tag">checkbox</a>, <a href="http://codare.net/tag/clique/" rel="tag">clique</a>, <a href="http://codare.net/tag/javascript/" rel="tag">JavaScript</a>, <a href="http://codare.net/tag/label/" rel="tag">label</a>, <a href="http://codare.net/tag/onclick/" rel="tag">onClick</a>. Bookmark the <a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/" title="Permalink to JavaScript: Fazer o label do checkbox ser clicável" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/javascript/" rel="category tag">JavaScript</a> and tagged <a href="http://codare.aurelio.net/tag/checkbox/" rel="tag">checkbox</a>, <a href="http://codare.aurelio.net/tag/clique/" rel="tag">clique</a>, <a href="http://codare.aurelio.net/tag/javascript/" rel="tag">JavaScript</a>, <a href="http://codare.aurelio.net/tag/label/" rel="tag">label</a>, <a href="http://codare.aurelio.net/tag/onclick/" rel="tag">onClick</a>. Bookmark the <a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/" title="Permalink to JavaScript: Fazer o label do checkbox ser clicável" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/" rel="prev"><span class="meta-nav">&larr;</span> C: Escondendo o conteúdo de structs com tipos incompletos</a></div>
-					<div class="nav-next"><a href="http://codare.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/" rel="next">Python: Introspeção de atributos e métodos com vars(), locals() e dir() <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2009/08/04/c-escondendo-o-conteudo-de-structs-com-tipos-incompletos/" rel="prev"><span class="meta-nav">&larr;</span> C: Escondendo o conteúdo de structs com tipos incompletos</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2009/09/25/python-introspecao-de-atributos-e-metodos-com-vars-locals-e-dir/" rel="next">Python: Introspeção de atributos e métodos com vars(), locals() e dir() <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -116,7 +116,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/744a81e1d9571ee5abd98630c5d168e2?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/744a81e1d9571ee5abd98630c5d168e2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Chinello</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-556">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-556">
 				06/08/2009 at 09:24</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>A maneira mais correta de fazer a mesma coisa é usar a TAG apropriada para isso, a tag . Da seguinte maneira:<br />
@@ -135,7 +135,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://matheuseduardo.com/blog' rel='external nofollow' class='url'>Matheus Eduardo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-557">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-557">
 				06/08/2009 at 09:25</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Eu acho que a forma mais &#8220;semântica&#8221; no (x)html seria usar a tag &#8220;&#8221;. Ex:</p>
@@ -157,7 +157,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://matheuseduardo.com/blog' rel='external nofollow' class='url'>Matheus Eduardo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-558">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-558">
 				06/08/2009 at 09:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>opss.. o code html não foi no comentário</p>
@@ -173,7 +173,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/4d22421fbdd4a143bd8938e273a8a11b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4d22421fbdd4a143bd8938e273a8a11b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://leandrosan.wordpress.com' rel='external nofollow' class='url'>Leandro Santiago</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-559">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-559">
 				06/08/2009 at 09:33</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Se não me engano há o estilo elemento:hover no css que equivale ao evento do mouse estar em cima do elemento e o elemento:active que corresponde ao onclick. Assim dá pra colocar tudo isso aí no css sem o javascript.</p>
@@ -192,7 +192,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://murilo.wordpress.com' rel='external nofollow' class='url'>Murilo Adriano</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-560">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-560">
 				06/08/2009 at 15:28</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Bom, existe a tag  que funciona para isso.</p>
@@ -208,7 +208,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://murilo.wordpress.com' rel='external nofollow' class='url'>Murilo Adriano</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-561">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-561">
 				06/08/2009 at 15:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>tag label*</p>
@@ -224,7 +224,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/ce11fce876c93ed5d2a72da660496473?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/ce11fce876c93ed5d2a72da660496473?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Daniel Medina</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-562">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-562">
 				06/08/2009 at 16:14</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>ô jumentice! Usem a tag label!!!! pra que inventar!!!</p>
@@ -240,7 +240,7 @@ Fundo colorido
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/b18a68f292525f915432ba6d85e42a9b?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b18a68f292525f915432ba6d85e42a9b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Ramon</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-563">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-563">
 				10/08/2009 at 09:12</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Também acho que a tag label é melhor, Daniel, mas não há necessidade do adjetivo.</p>
@@ -260,7 +260,7 @@ Abs</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/e583bca48acb877efd4a29229bf7927f?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e583bca48acb877efd4a29229bf7927f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://aurelio.wordpress.com/' rel='external nofollow' class='url'>Aurélio</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-564">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-564">
 				20/08/2009 at 15:24</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Não sabia que a tag LABEL recebia cliques também! Vivendo e aprendendo&#8230;</p>
@@ -277,7 +277,7 @@ Abs</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/038604abf29a629068b33fc6aeded4cc?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/038604abf29a629068b33fc6aeded4cc?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://theluxurywatchstore.biz/pulsar/pulsar-womens-crystal-two-tone-watch-pxt696/' rel='external nofollow' class='url'>Pulsar</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-565">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-565">
 				03/09/2009 at 00:53</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>ô jumentice! Usem a tag label!!!! pra que inventar!!!;. All the best!!</p>
@@ -291,9 +291,9 @@ Abs</p>
 	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-18831">
 		<div id="comment-18831">
 			<div class="comment-author vcard">
-				<img alt='' src='http://1.gravatar.com/avatar/195671fb7b02dc4ddfe5f050b4be4420?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/195671fb7b02dc4ddfe5f050b4be4420?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.net' rel='external nofollow' class='url'>bruno oliveira dos santos</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+				<img alt='' src='http://1.gravatar.com/avatar/195671fb7b02dc4ddfe5f050b4be4420?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/195671fb7b02dc4ddfe5f050b4be4420?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.aurelio.net' rel='external nofollow' class='url'>bruno oliveira dos santos</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-18831">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-18831">
 				09/04/2012 at 15:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>em uma lista c/ checkbox gostaria de selecionar uma opção e excluila , como faço isso tanto no bady quanto no script ?</p>
@@ -309,7 +309,7 @@ Abs</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/5e721c8ecceca90b91be3057a59a1c43?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5e721c8ecceca90b91be3057a59a1c43?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://planejasites.com.br' rel='external nofollow' class='url'>Pedro Figueira</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-52077">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-52077">
 				26/10/2013 at 09:24</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Muito obrigado pela tópico&#8230; Eu já tinha feito algumas vezes formulários com este recurso, mas eu usava um script para fazer a caixa marcar e desmarcar&#8230;<br />
@@ -327,7 +327,7 @@ Não sabia que era possível chamar diretamente o evento&#8230;</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/a87ba86409eb173c9ebf06d547fc0ae5?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a87ba86409eb173c9ebf06d547fc0ae5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.clicarmais.com.br' rel='external nofollow' class='url'>Lukas Cardoso</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-154318">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-154318">
 				06/03/2015 at 18:08</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Olá, obrigado pelo post, me ajudou bastante!!</p>
@@ -343,7 +343,7 @@ Não sabia que era possível chamar diretamente o evento&#8230;</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/f0f21fc1169df4617d8b518333bd5355?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f0f21fc1169df4617d8b518333bd5355?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codevivu.com' rel='external nofollow' class='url'>Long Phạm</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-194864">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2009/08/06/javascript-fazer-o-label-do-checkbox-ser-clicavel/#comment-194864">
 				08/06/2017 at 03:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Well, there&#8217;s the tag that works for it.</p>
@@ -381,32 +381,32 @@ Não sabia que era possível chamar diretamente o evento&#8230;</p>
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -423,7 +423,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 

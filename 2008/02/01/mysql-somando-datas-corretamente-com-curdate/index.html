@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>MySQL: Somando datas corretamente com CURDATE | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='Tcl/Tk: Obter chaves e valores de um array set' href='http://codare.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/' />
-<link rel='next' title='Tcl/Tk: Configurar o encoding de scripts' href='http://codare.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='Tcl/Tk: Obter chaves e valores de um array set' href='http://codare.aurelio.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/' />
+<link rel='next' title='Tcl/Tk: Configurar o encoding de scripts' href='http://codare.aurelio.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-180 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/" rel="prev"><span class="meta-nav">&larr;</span> Tcl/Tk: Obter chaves e valores de um array set</a></div>
-					<div class="nav-next"><a href="http://codare.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/" rel="next">Tcl/Tk: Configurar o encoding de scripts <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/" rel="prev"><span class="meta-nav">&larr;</span> Tcl/Tk: Obter chaves e valores de um array set</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/" rel="next">Tcl/Tk: Configurar o encoding de scripts <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-180" class="post-180 post type-post status-publish format-standard hentry category-mysql tag-ano tag-curdate tag-datas tag-dia tag-error tag-mes tag-soma tag-subtracao tag-syntax">
 					<h1 class="entry-title">MySQL: Somando datas corretamente com CURDATE</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/" title="09:26" rel="bookmark"><span class="entry-date">01/02/2008</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/pmichelazzo/" title="View all posts by Paulino Michelazzo">Paulino Michelazzo</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/" title="09:26" rel="bookmark"><span class="entry-date">01/02/2008</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/pmichelazzo/" title="View all posts by Paulino Michelazzo">Paulino Michelazzo</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>A função CURDATE não funciona corretamente para a adição de dias que extrapolam o calendário. Como exemplo, a instrução a seguir retornar uma data inexistente:</p>
@@ -86,12 +86,12 @@
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/mysql/" rel="category tag">MySQL</a> and tagged <a href="http://codare.net/tag/ano/" rel="tag">ano</a>, <a href="http://codare.net/tag/curdate/" rel="tag">curdate</a>, <a href="http://codare.net/tag/datas/" rel="tag">datas</a>, <a href="http://codare.net/tag/dia/" rel="tag">dia</a>, <a href="http://codare.net/tag/error/" rel="tag">error</a>, <a href="http://codare.net/tag/mes/" rel="tag">mês</a>, <a href="http://codare.net/tag/soma/" rel="tag">soma</a>, <a href="http://codare.net/tag/subtracao/" rel="tag">subtração</a>, <a href="http://codare.net/tag/syntax/" rel="tag">syntax</a>. Bookmark the <a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/" title="Permalink to MySQL: Somando datas corretamente com CURDATE" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/mysql/" rel="category tag">MySQL</a> and tagged <a href="http://codare.aurelio.net/tag/ano/" rel="tag">ano</a>, <a href="http://codare.aurelio.net/tag/curdate/" rel="tag">curdate</a>, <a href="http://codare.aurelio.net/tag/datas/" rel="tag">datas</a>, <a href="http://codare.aurelio.net/tag/dia/" rel="tag">dia</a>, <a href="http://codare.aurelio.net/tag/error/" rel="tag">error</a>, <a href="http://codare.aurelio.net/tag/mes/" rel="tag">mês</a>, <a href="http://codare.aurelio.net/tag/soma/" rel="tag">soma</a>, <a href="http://codare.aurelio.net/tag/subtracao/" rel="tag">subtração</a>, <a href="http://codare.aurelio.net/tag/syntax/" rel="tag">syntax</a>. Bookmark the <a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/" title="Permalink to MySQL: Somando datas corretamente com CURDATE" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/" rel="prev"><span class="meta-nav">&larr;</span> Tcl/Tk: Obter chaves e valores de um array set</a></div>
-					<div class="nav-next"><a href="http://codare.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/" rel="next">Tcl/Tk: Configurar o encoding de scripts <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/11/07/tcl-tk-obter-chaves-e-valores-de-um-array-set/" rel="prev"><span class="meta-nav">&larr;</span> Tcl/Tk: Obter chaves e valores de um array set</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2008/02/13/tcl-tk-configurar-o-encoding-de-scripts/" rel="next">Tcl/Tk: Configurar o encoding de scripts <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -107,7 +107,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/8aa6e06b67582f4eb8a7baeb34322004?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/8aa6e06b67582f4eb8a7baeb34322004?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://chinelada.com' rel='external nofollow' class='url'>Júnior</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-440">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-440">
 				25/06/2009 at 10:13</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Vlw, me ajudou bastante essa função!</p>
@@ -123,7 +123,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/aa1684d2a4aa6c1a1d5ef5389a8dc813?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/aa1684d2a4aa6c1a1d5ef5389a8dc813?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fabiano Carboni</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-1724">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-1724">
 				25/02/2011 at 14:51</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Deixo aqui meu agradecimento pela função.</p>
@@ -141,7 +141,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/749a8e7081eb9acee6854dbf7eb4d99e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/749a8e7081eb9acee6854dbf7eb4d99e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Aline</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-4253">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-4253">
 				26/04/2011 at 11:40</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Muito Obrigada pela função, melhor do que fazer via código de programação.<br />
@@ -158,7 +158,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/590371c05fc56adf612fd91ea509cf74?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/590371c05fc56adf612fd91ea509cf74?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.brunopullis.com.br' rel='external nofollow' class='url'>Bruno Pulis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-5943">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-5943">
 				03/06/2011 at 11:58</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Cara simplesmente coisa linda de DEUS!!</p>
@@ -175,7 +175,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/7de6745396a8943a6daf6d6971108a30?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7de6745396a8943a6daf6d6971108a30?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://novact.com.br' rel='external nofollow' class='url'>Erick Basilio</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-11750">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-11750">
 				24/10/2011 at 09:20</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Estava pensando em fazer a soma de datas direto no PHP, mas como era um insert no banco resolvi procurar algo direto para melhorar a performance. Muito útil seu post! Obrigado!</p>
@@ -191,7 +191,7 @@
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/537d74e301aa7f358784c2c2ce15fb09?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/537d74e301aa7f358784c2c2ce15fb09?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.pacotecerto.com.br' rel='external nofollow' class='url'>Josueldo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-13032">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-13032">
 				03/12/2011 at 12:26</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Prezados,<br />
@@ -209,7 +209,7 @@ Estou precisando pegar uma data no banco de dados mysql e comparar com a data at
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/d7b523b9899924ed915e38af51fdc8ae?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d7b523b9899924ed915e38af51fdc8ae?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Anderson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-37708">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-37708">
 				15/03/2013 at 10:19</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Tenho um mês e quero que a partir dele me traga os 11 meses anteriores.<br />
@@ -227,7 +227,7 @@ Obrigado</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.michelazzo.com.br' rel='external nofollow' class='url'>Paulino Michelazzo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-37893">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-37893">
 				18/03/2013 at 11:18</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Assim:<br />
@@ -248,7 +248,7 @@ select * from  where  = NOW() - INTERVAL 11 MONTH;<br />
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/cf26b066cfd6cae6ea3d2d5760c988d0?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/cf26b066cfd6cae6ea3d2d5760c988d0?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">paulo robson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-71417">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-71417">
 				04/07/2014 at 12:45</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>bela dica amigo</p>
@@ -264,7 +264,7 @@ select * from  where  = NOW() - INTERVAL 11 MONTH;<br />
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Marcelo Ribeiro Machado</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83441">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83441">
 				05/10/2014 at 10:08</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Prezado amigo,<br />
@@ -283,7 +283,7 @@ Como posso fazer para adicionar dias a uma data já armazenada em meu banco mysq
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83764">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83764">
 				06/10/2014 at 13:14</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Faça um update no campo da tabela que deseja.</p>
@@ -301,7 +301,7 @@ Como posso fazer para adicionar dias a uma data já armazenada em meu banco mysq
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Marcelo Ribeiro Machado</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83787">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83787">
 				06/10/2014 at 14:44</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Obrigado pela tua pronta resposta, amigo! Acho que não me expressei bem. Quero pegar uma data do meu banco (futura, provavelmente) e adicionar ou subtrair dias , para uma previsão por exemplo. Tipo, faltam tantos dias, atrasou tantos dias &#8230;</p>
@@ -317,7 +317,7 @@ Como posso fazer para adicionar dias a uma data já armazenada em meu banco mysq
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83793">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83793">
 				06/10/2014 at 15:19</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Numa query retornando para um programa?</p>
@@ -336,7 +336,7 @@ Como posso fazer para adicionar dias a uma data já armazenada em meu banco mysq
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/089d4d678eccea8be98545273e2b21ba?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Marcelo Ribeiro Machado</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83801">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2008/02/01/mysql-somando-datas-corretamente-com-curdate/#comment-83801">
 				06/10/2014 at 16:07</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Show, amigo! Vou testar!<br />
@@ -384,32 +384,32 @@ Grande abraço e obrigado !!!</p>
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -426,7 +426,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 

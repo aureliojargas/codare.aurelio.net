@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>Shell: Use &amp;&amp; e &#124;&#124; ao invés de if/then/fi | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='Javascript: Descobrindo o emissor de um evento' href='http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/' />
-<link rel='next' title='Python: Mover arquivo para outro diretório' href='http://codare.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='Javascript: Descobrindo o emissor de um evento' href='http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/' />
+<link rel='next' title='Python: Mover arquivo para outro diretório' href='http://codare.aurelio.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-49 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Descobrindo o emissor de um evento</a></div>
-					<div class="nav-next"><a href="http://codare.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/" rel="next">Python: Mover arquivo para outro diretório <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Descobrindo o emissor de um evento</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/" rel="next">Python: Mover arquivo para outro diretório <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-49" class="post-49 post type-post status-publish format-standard hentry category-shell">
 					<h1 class="entry-title">Shell: Use &amp;&amp; e &#124;&#124; ao invés de if/then/fi</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/" title="17:15" rel="bookmark"><span class="entry-date">03/10/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/oreio/" title="View all posts by Aurelio Jargas">Aurelio Jargas</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/" title="17:15" rel="bookmark"><span class="entry-date">03/10/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/oreio/" title="View all posts by Aurelio Jargas">Aurelio Jargas</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>Palavras-chave: shell, condicional, if, operadores, and, or</p>
@@ -94,12 +94,12 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/shell/" rel="category tag">Shell</a>. Bookmark the <a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/" title="Permalink to Shell: Use &amp;&amp; e &#124;&#124; ao invés de if/then/fi" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/shell/" rel="category tag">Shell</a>. Bookmark the <a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/" title="Permalink to Shell: Use &amp;&amp; e &#124;&#124; ao invés de if/then/fi" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Descobrindo o emissor de um evento</a></div>
-					<div class="nav-next"><a href="http://codare.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/" rel="next">Python: Mover arquivo para outro diretório <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Descobrindo o emissor de um evento</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2006/10/03/python-mover-arquivo-para-outro-diretorio/" rel="next">Python: Mover arquivo para outro diretório <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -115,7 +115,7 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://ehabkost.wordpress.com/' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-68">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-68">
 				04/10/2006 at 09:51</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Eu gosto de usar set -e nos meus scripts. Nesse caso, usar &amp;&amp; e || faz com que o script aborte caso a condição seja falsa.</p>
@@ -133,7 +133,7 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/475d994863abb42359a8479baeba2ba6?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/475d994863abb42359a8479baeba2ba6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://mpran.com.br' rel='external nofollow' class='url'>Rafael Lopes</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-22968">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-22968">
 				17/07/2012 at 13:14</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Aconselho a, ao fazer esse &#8220;if ternário&#8221;, não fazer nada que um if/else não faria. Caso deseje abortar a execução do script, use return ou exit, dependendo do caso!</p>
@@ -151,7 +151,7 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/0b03cede7bde6ae5a8ed310715aeb9e2?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0b03cede7bde6ae5a8ed310715aeb9e2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.pythonologia.org' rel='external nofollow' class='url'>Osvaldo Santana Neto</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-69">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-69">
 				04/10/2006 at 15:00</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Eu não conhecia o &#8216;set -e&#8217;, acho que essa opção deveria se transformar em uma outra dica sobre shell *e* citar que ela impede que essa dica do Aurélio funcione&#8230;</p>
@@ -167,7 +167,7 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.inf.ufsm.br/~eljunior' rel='external nofollow' class='url'>eljunior</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-70">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-70">
 				18/12/2006 at 08:51</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>usando set -e, o shell não aborta se o comando que falhar estiver numa lista de &amp;&amp; e ||.</p>
@@ -184,7 +184,7 @@ test -w $file || { echo "$file não é gravável"; exit 1; }
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://raisama.net' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-71">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-71">
 				18/12/2006 at 17:50</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>É verdade que no caso comum <code>&amp;&amp;</code> e <code>||</code> funcionam. O que aconteceu comigo foi uma pegadinha. Veja o exemplo abaixo:</p>
@@ -214,7 +214,7 @@ $</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://eljunior.wordpress.com/' rel='external nofollow' class='url'>eljunior</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-72">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-72">
 				19/12/2006 at 10:30</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>o &#8220;echo fim&#8221; não executou porque  o faz_teste retornou 1 como exit status (a funcao retorna o último exit status, neste caso, o exit status do &#8220;[ -r /tmp/naoexiste ]&#8221;.</p>
@@ -231,7 +231,7 @@ $</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://ehabkost.wordpress.com/' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-73">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-73">
 				19/12/2006 at 19:25</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Sim, essa a razão a pegadinha. Mas é uma diferença entre o <code>if</code> e o <code>&amp;&amp;</code>, e o que tornou uma &#8220;pegadinha&#8221; para mim.</p>
@@ -248,7 +248,7 @@ $</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/49184e0c656e13aa65c9f28e1350e8fb?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/49184e0c656e13aa65c9f28e1350e8fb?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Lia</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-157016">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/10/03/shell-use-e-e-ou-ao-inves-de-ifthenfi/#comment-157016">
 				17/03/2015 at 17:02</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Preciso fazer uma condição<br />
@@ -296,32 +296,32 @@ não estou conseguindo, depois deste script use o comando grep para pesquisar on
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -338,7 +338,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 

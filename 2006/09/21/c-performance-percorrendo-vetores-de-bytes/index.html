@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>C: Performance: percorrendo vetores de bytes | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='Javascript: Arrays com valores vazios (undefined)' href='http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/' />
-<link rel='next' title='Javascript: Descobrindo o emissor de um evento' href='http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='Javascript: Arrays com valores vazios (undefined)' href='http://codare.aurelio.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/' />
+<link rel='next' title='Javascript: Descobrindo o emissor de um evento' href='http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-41 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
-					<div class="nav-next"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-41" class="post-41 post type-post status-publish format-standard hentry category-c">
 					<h1 class="entry-title">C: Performance: percorrendo vetores de bytes</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="21:04" rel="bookmark"><span class="entry-date">21/09/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/kojima/" title="View all posts by Alfredo Kojima">Alfredo Kojima</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="21:04" rel="bookmark"><span class="entry-date">21/09/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/kojima/" title="View all posts by Alfredo Kojima">Alfredo Kojima</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>Palavras-chave: C, memória, otimização, arrays, vetores, bitmap, pixmap</p>
@@ -121,12 +121,12 @@ int main()
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>. Bookmark the <a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="Permalink to C: Performance: percorrendo vetores de bytes" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/c/" rel="category tag">C</a>. Bookmark the <a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="Permalink to C: Performance: percorrendo vetores de bytes" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
-					<div class="nav-next"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -142,7 +142,7 @@ int main()
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/e777d15516e1cdbd580ded93bc515db3?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e777d15516e1cdbd580ded93bc515db3?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.wordpress.com/' rel='external nofollow' class='url'>aristeu</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-49">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-49">
 				26/09/2006 at 10:05</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Lembrando que para programas que são escritos para serem portáveis (todos deveriam ser) que dependem do tamanho da variável, é recomendado usar os tipos definidos no stdint.h, como por exemplo int32_t, uint32_t: variáveis inteiras de 32 bits, com e sem sinal, respectivamente.</p>
@@ -158,7 +158,7 @@ int main()
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.wordpress.com/' rel='external nofollow' class='url'>Alfredo Kojima</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-50">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-50">
 				27/09/2006 at 11:39</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Bem lembrado!</p>
@@ -174,7 +174,7 @@ int main()
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Adenilson Cavalcanti</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-51">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-51">
 				18/12/2006 at 16:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Eu *provavelmente* devo estar fazendo alguma coisa errada, mas se tento executar este código dá:</p>
@@ -209,7 +209,7 @@ Program terminated with signal 6, Aborted.<br />
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fyy</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-52">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-52">
 				24/12/2006 at 16:23</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>sim, esse programa esta bem errado.</p>
@@ -230,7 +230,7 @@ Cannot access memory at address 0x4</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hostname.org' rel='external nofollow' class='url'>Fyy</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-53">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-53">
 				24/12/2006 at 17:23</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>e porque tem um outro for?  &#8220;for (i= max&gt;&gt;2-1; i&gt;=0; &#8211;i)&#8221;? e que diabos de for é esse? :)</p>
@@ -250,7 +250,7 @@ Cannot access memory at address 0x4</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/2c20a71a46def28506d9b85ee9557977?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2c20a71a46def28506d9b85ee9557977?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://marcuscf.wordpress.com/' rel='external nofollow' class='url'>Marcus</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-54">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-54">
 				21/07/2007 at 00:28</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Muito interessante! Dá um pouco mais de trabalho, mas é bom saber disso! Sempre acabo me esquecendo dessas técnicas, parece que elas não &#8220;grudam&#8221; na minha cabeça, hehehe.</p>
@@ -267,7 +267,7 @@ Cannot access memory at address 0x4</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-55">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-55">
 				27/08/2008 at 17:32</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>pode ser que eu seja louco mas</p>
@@ -292,7 +292,7 @@ for (i=(1000/sizeof(uint64_t))*sizeof(uint64_t); i&lt;1000; i++){<br />
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-56">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-56">
 				27/08/2008 at 18:49</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>além disso, você obviamente esta querendo complicar algo simples</p>
@@ -339,32 +339,32 @@ for (i=(1000/sizeof(uint64_t))*sizeof(uint64_t); i&lt;1000; i++){<br />
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -381,7 +381,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 

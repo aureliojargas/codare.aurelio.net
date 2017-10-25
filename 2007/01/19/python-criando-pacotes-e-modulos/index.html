@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>Python: Criando pacotes e módulos | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='Python: Rastreando chamadas de funções' href='http://codare.net/2007/01/16/python-rastreando-chamadas-de-funcoes/' />
-<link rel='next' title='Ruby: Converter array em hash' href='http://codare.net/2007/01/20/ruby-converter-array-em-hash/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='Python: Rastreando chamadas de funções' href='http://codare.aurelio.net/2007/01/16/python-rastreando-chamadas-de-funcoes/' />
+<link rel='next' title='Ruby: Converter array em hash' href='http://codare.aurelio.net/2007/01/20/ruby-converter-array-em-hash/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-72 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/01/16/python-rastreando-chamadas-de-funcoes/" rel="prev"><span class="meta-nav">&larr;</span> Python: Rastreando chamadas de funções</a></div>
-					<div class="nav-next"><a href="http://codare.net/2007/01/20/ruby-converter-array-em-hash/" rel="next">Ruby: Converter array em hash <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/01/16/python-rastreando-chamadas-de-funcoes/" rel="prev"><span class="meta-nav">&larr;</span> Python: Rastreando chamadas de funções</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2007/01/20/ruby-converter-array-em-hash/" rel="next">Ruby: Converter array em hash <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-72" class="post-72 post type-post status-publish format-standard hentry category-python">
 					<h1 class="entry-title">Python: Criando pacotes e módulos</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/" title="08:51" rel="bookmark"><span class="entry-date">19/01/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/osantana/" title="View all posts by Osvaldo Santana">Osvaldo Santana</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/" title="08:51" rel="bookmark"><span class="entry-date">19/01/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/osantana/" title="View all posts by Osvaldo Santana">Osvaldo Santana</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>Palavras-chave: pacote, módulo, import</p>
@@ -100,12 +100,12 @@ ImportError: No module named meu_pacote.meu_subpacote.modulo
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/python/" rel="category tag">Python</a>. Bookmark the <a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/" title="Permalink to Python: Criando pacotes e módulos" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/python/" rel="category tag">Python</a>. Bookmark the <a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/" title="Permalink to Python: Criando pacotes e módulos" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/01/16/python-rastreando-chamadas-de-funcoes/" rel="prev"><span class="meta-nav">&larr;</span> Python: Rastreando chamadas de funções</a></div>
-					<div class="nav-next"><a href="http://codare.net/2007/01/20/ruby-converter-array-em-hash/" rel="next">Ruby: Converter array em hash <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/01/16/python-rastreando-chamadas-de-funcoes/" rel="prev"><span class="meta-nav">&larr;</span> Python: Rastreando chamadas de funções</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2007/01/20/ruby-converter-array-em-hash/" rel="next">Ruby: Converter array em hash <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -121,7 +121,7 @@ ImportError: No module named meu_pacote.meu_subpacote.modulo
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/1e14b6e7cd531006065897f5e042f1b9?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1e14b6e7cd531006065897f5e042f1b9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://xmlbr.com.br' rel='external nofollow' class='url'>Willian</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-241">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-241">
 				23/01/2007 at 08:16</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Muuuuuito bom!!!<br />
@@ -139,7 +139,7 @@ Já me perguntei uma vez como faria para importar um ou mais módulos dentro de 
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/7bc7a5c586aa15f8a556de6ab90bdf1f?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7bc7a5c586aa15f8a556de6ab90bdf1f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Genos</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-242">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-242">
 				28/01/2008 at 10:09</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Como eu faço para alterar o varlo de sys.path?</p>
@@ -155,7 +155,7 @@ Já me perguntei uma vez como faria para importar um ou mais módulos dentro de 
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/af067972832304a2f11230af453289d7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/af067972832304a2f11230af453289d7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.pythonologia.org/' rel='external nofollow' class='url'>Osvaldo Santana Neto</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-243">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-243">
 				28/01/2008 at 11:29</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>sys.path é uma lista comum, logo, ela possui os mesmos métodos de manipulação de uma lista tais como list.append(), list.insert(), etc.</p>
@@ -171,7 +171,7 @@ Já me perguntei uma vez como faria para importar um ou mais módulos dentro de 
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/ea0fe37691693075cc5f9a0f0d314652?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/ea0fe37691693075cc5f9a0f0d314652?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.google.com.br' rel='external nofollow' class='url'>Vramos</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-244">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-244">
 				06/02/2008 at 10:20</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>ainda não consegui fazer nenhum pacote.<br />
@@ -188,7 +188,7 @@ aparece uma mensagem dizendo que não existe nenhum modulo com o tal nome!</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/af067972832304a2f11230af453289d7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/af067972832304a2f11230af453289d7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.pythonologia.org/' rel='external nofollow' class='url'>Osvaldo Santana Neto</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-245">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-245">
 				06/02/2008 at 10:42</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Olá Vramos,</p>
@@ -206,7 +206,7 @@ aparece uma mensagem dizendo que não existe nenhum modulo com o tal nome!</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/1b56c5e9f1b64aec3ef3842e2936ebd3?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1b56c5e9f1b64aec3ef3842e2936ebd3?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulo Henrique</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-171175">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-171175">
 				17/06/2015 at 15:08</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Osvaldo estou com um problema estou tentando executar um arquivo que se chama anotato.py só que ele me ocorre o seguinte erro:<br />
@@ -228,7 +228,7 @@ ImportError: No module named gcn.lib.varann.vartype.varant</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/9812463ce98b97b17f4cff5171729ed6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9812463ce98b97b17f4cff5171729ed6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eduardo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-186445">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/01/19/python-criando-pacotes-e-modulos/#comment-186445">
 				09/03/2016 at 10:36</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Resumiu lindamente a criação de pacotes.<br />
@@ -268,32 +268,32 @@ Valeu</p>
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -310,7 +310,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 

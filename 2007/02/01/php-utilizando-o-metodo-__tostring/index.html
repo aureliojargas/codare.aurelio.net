@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>PHP: Utilizando o método __toString() | CODARE</title>
-<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
-<link rel='prev' title='Python: Imprimir mensagens de erro (stderr)' href='http://codare.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/' />
-<link rel='next' title='Java: Gerando códigos hash (MD5, SHA)' href='http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/' />
-<link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel='prev' title='Python: Imprimir mensagens de erro (stderr)' href='http://codare.aurelio.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/' />
+<link rel='next' title='Java: Gerando códigos hash (MD5, SHA)' href='http://codare.aurelio.net/2007/02/02/java-gerando-codigos-hash-md5-sha/' />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
 </head>
 
 <body class="post-template-default single single-post postid-121 single-format-standard custom-background">
@@ -16,36 +16,36 @@
 			<div id="branding" role="banner">
 								<div id="site-title">
 					<span>
-						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
 					</span>
 				</div>
 				<div id="site-description">Programadores, uni-vos!</div>
 
-										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
 								</div><!-- #branding -->
 
 			<div id="access" role="navigation">
 			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
-<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
-<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
-<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
-<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
-<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
-<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
-<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
-<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
-<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
-<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
-<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
-<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
-<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
-<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
-<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
-<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
-<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
-<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
-<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-560"><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
 </ul></div>			</div><!-- #access -->
 		</div><!-- #masthead -->
 	</div><!-- #header -->
@@ -58,15 +58,15 @@
 			
 
 				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/" rel="prev"><span class="meta-nav">&larr;</span> Python: Imprimir mensagens de erro (stderr)</a></div>
-					<div class="nav-next"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" rel="next">Java: Gerando códigos hash (MD5, SHA) <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/" rel="prev"><span class="meta-nav">&larr;</span> Python: Imprimir mensagens de erro (stderr)</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" rel="next">Java: Gerando códigos hash (MD5, SHA) <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-above -->
 
 				<div id="post-121" class="post-121 post type-post status-publish format-standard hentry category-php">
 					<h1 class="entry-title">PHP: Utilizando o método __toString()</h1>
 
 					<div class="entry-meta">
-						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/" title="09:40" rel="bookmark"><span class="entry-date">01/02/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/pablodalloglio/" title="View all posts by Pablo DallOglio">Pablo DallOglio</a></span>					</div><!-- .entry-meta -->
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/" title="09:40" rel="bookmark"><span class="entry-date">01/02/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.aurelio.net/author/pablodalloglio/" title="View all posts by Pablo DallOglio">Pablo DallOglio</a></span>					</div><!-- .entry-meta -->
 
 					<div class="entry-content">
 						<p>Palavras-chave: PHP5, Orientação a objetos, classes, unicidade, __toString()</p>
@@ -115,12 +115,12 @@ echo "\\n&lt;br&gt;\\n"; //quebra linha
 
 
 					<div class="entry-utility">
-						This entry was posted in <a href="http://codare.net/category/php/" rel="category tag">PHP</a>. Bookmark the <a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/" title="Permalink to PHP: Utilizando o método __toString()" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+						This entry was posted in <a href="http://codare.aurelio.net/category/php/" rel="category tag">PHP</a>. Bookmark the <a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/" title="Permalink to PHP: Utilizando o método __toString()" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
 
 				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><a href="http://codare.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/" rel="prev"><span class="meta-nav">&larr;</span> Python: Imprimir mensagens de erro (stderr)</a></div>
-					<div class="nav-next"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" rel="next">Java: Gerando códigos hash (MD5, SHA) <span class="meta-nav">&rarr;</span></a></div>
+					<div class="nav-previous"><a href="http://codare.aurelio.net/2007/01/30/python-imprimir-mensagens-de-erro-stderr/" rel="prev"><span class="meta-nav">&larr;</span> Python: Imprimir mensagens de erro (stderr)</a></div>
+					<div class="nav-next"><a href="http://codare.aurelio.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" rel="next">Java: Gerando códigos hash (MD5, SHA) <span class="meta-nav">&rarr;</span></a></div>
 				</div><!-- #nav-below -->
 
 				
@@ -136,7 +136,7 @@ echo "\\n&lt;br&gt;\\n"; //quebra linha
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/02494a374e9901ce8f43e7561bd805fe?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/02494a374e9901ce8f43e7561bd805fe?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.calepino.com/' rel='external nofollow' class='url'>Rodrigo Machado</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-255">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-255">
 				01/02/2007 at 12:28</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>No PHP 5.2, finalmente melhoraram a implementação desse método:</p>
@@ -157,7 +157,7 @@ echo &#8220;Objeto: &#8220;.$obj; // saída: Objeto: Rodrigo</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://1.gravatar.com/avatar/73745bceffd75a7e5a1203d9f0e9fe44?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/73745bceffd75a7e5a1203d9f0e9fe44?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://lala.com' rel='external nofollow' class='url'>yo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-256">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-256">
 				05/02/2007 at 16:22</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Quer dizer então que arrumaram isso no PHP 5.2 ?<br />
@@ -174,7 +174,7 @@ Bom, agora eu tenho uma piadinha a menos sobre php =(</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/09fa2e1e5279c12d4e7d1d8a1aad915b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/09fa2e1e5279c12d4e7d1d8a1aad915b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.tutoriaisclube.com' rel='external nofollow' class='url'>Allan Schmitt</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-257">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-257">
 				04/09/2007 at 14:59</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Ahhh!!<br />
@@ -194,7 +194,7 @@ shoooowwww&#8230;</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/fb0bda3abb11434d5fbc51d0c9471f6b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/fb0bda3abb11434d5fbc51d0c9471f6b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.quebragalhos.com.br' rel='external nofollow' class='url'>Jonathan</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-258">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-258">
 				19/11/2008 at 21:48</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Paraben pelo post&#8230;. fico feliz em saber&#8230;.</p>
@@ -210,7 +210,7 @@ shoooowwww&#8230;</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://2.gravatar.com/avatar/25e891e8cea7d8ac21598507e759b4f6?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/25e891e8cea7d8ac21598507e759b4f6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Edson Rodrigues</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-259">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-259">
 				09/02/2009 at 14:30</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Boa tarde galera entrei nesse blog estava dando uma nessa OO, a um pequeno problema nessa OO, apenas esta sendo convertido em string o 2º objeto o 1º nao.<br />
@@ -256,7 +256,7 @@ Dei uma corrigida nesssa OO.</p>
 			<div class="comment-author vcard">
 				<img alt='' src='http://0.gravatar.com/avatar/cef2f969f8a54c56a8bd5b64e735b49d?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/cef2f969f8a54c56a8bd5b64e735b49d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Wanderson Moreira</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
 			
-			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-165976">
+			<div class="comment-meta commentmetadata"><a href="http://codare.aurelio.net/2007/02/01/php-utilizando-o-metodo-__tostring/#comment-165976">
 				27/04/2015 at 19:15</a>			</div><!-- .comment-meta .commentmetadata -->
 
 			<div class="comment-body"><p>Olá galera. Gostei do post mas estou com dúvidas.</p>
@@ -308,32 +308,32 @@ echo($this-&gt;religiao); Retorno=Religiao</p>
 "><b>ATENÇÃO: Este site está aposentado.</b><br>
 Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
 		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
-	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
 	Uma Abordagem Divertida</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
 	de Aurelio Marinho Jargas
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
 	de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
 	<br>
 	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
 de Pablo Dall'Oglio
 </p>
 <p>
-	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
 	<br>
 	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
 de Eustáquio Rangel (TaQ)
@@ -350,7 +350,7 @@ de Eustáquio Rangel (TaQ)
 
 
 			<div id="site-info">
-				<a href="http://codare.net/" title="CODARE" rel="home">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
 					CODARE				</a>
 			</div><!-- #site-info -->
 
