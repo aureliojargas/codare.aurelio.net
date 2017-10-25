@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>C: Performance: percorrendo vetores de bytes | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; C: Performance: percorrendo vetores de bytes Comments Feed" href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Javascript: Arrays com valores vazios (undefined)' href='http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/' />
+<link rel='next' title='Javascript: Descobrindo o emissor de um evento' href='http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" />
+<link rel='shortlink' href='http://codare.net/?p=41' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2006%2F09%2F21%2Fc-performance-percorrendo-vetores-de-bytes%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2006%2F09%2F21%2Fc-performance-percorrendo-vetores-de-bytes%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-41 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-41" class="post-41 post type-post status-publish format-standard hentry category-c">
+					<h1 class="entry-title">C: Performance: percorrendo vetores de bytes</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="21:04" rel="bookmark"><span class="entry-date">21/09/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/kojima/" title="View all posts by Alfredo Kojima">Alfredo Kojima</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: C, memória, otimização, arrays, vetores, bitmap, pixmap</p>
+<p>Ao se escrever código para manipulação de strings ou imagens, é comum percorrer grandes vetores de bytes. A maneira óbvia de fazer isto é algo no estilo de:</p>
+<pre>
+char *ptr= buffer;
+for (i= 0; i &lt; fim; i++)
+      *ptr++= 0;
+</pre>
+<p>Mas percorrer memória byte a byte é bastante lento, por questões de alinhamento de memória, o fato dela ser endereçada por palavra. Por exemplo, um <code>int</code> em i386 e <code>long</code> em x86_64.</p>
+<p>O exemplo abaixo inclui código que percorre por byte e por int, mas pode ser facilmente modificado para percorrer por longs:</p>
+<pre>
+#include &lt;sys/types.h&gt;
+int main()
+{
+    char buffer[1000];
+    uint32_t *iptr;
+    char *ptr;
+    int i, j;
+    int max= 973;
+    for (j= 0; j &lt; 100000; j++)
+    {
+#ifdef lento
+        ptr= buffer;
+        for (i= max-1; i&gt;=0; --i)
+            *ptr++= 0;
+#else
+        iptr= (uint32_t*)buffer;
+        // processa o vetor de 4 em 4 bytes,
+        // arredondando o número de elementos
+        for (i= max&gt;&gt;2-1; i&gt;=0; --i)
+            *iptr++= 0;
+        ptr= iptr;
+        // processa os últimos bytes restantes
+        switch (max&amp;((1&lt;&lt;2)-1))
+        {
+            case 3: *ptr++= 0;  // sem break
+            case 2: *ptr++= 0;  // sem break
+            case 1: *ptr++= 0;
+              break;
+        }
+#endif
+    }
+    return 0;
+}
+</pre>
+<p>Os tempos de execução para o código com percorrimento por palavras de 8, 32 e 64bits em uma máquina x86_64, são de: 0.190s, 0.100s e 0.025s, uma melhora de até 800%(!).</p>
+<p>Obviamente, neste caso, um <code>memset()</code> seria mais rápido mas o ponto é que este conceito pode ser estendido para casos em que o <code>memset()</code> não serve. Ainda há espaço para mais otimizações, mas isto é deixado como exercício ;)</p>
+<p>Obs.: lembre-se que o comprimento de <code>long</code> varia de acordo com a arquitetura e é prudente colocar trechos que dependem disso dentro de <code>#ifdefs</code>.</p>
+<p>Leia também um artigo relacionado, sobre o aproveitamento da memória <i>cache</i> <a href="/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/">nesta dica do Eduardo</a>.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>. Bookmark the <a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/" title="Permalink to C: Performance: percorrendo vetores de bytes" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2006/09/21/javascript-arrays-com-valores-vazios-undefined/" rel="prev"><span class="meta-nav">&larr;</span> Javascript: Arrays com valores vazios (undefined)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2006/09/23/javascript-descobrindo-o-emissor-de-um-evento/" rel="next">Javascript: Descobrindo o emissor de um evento <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>C: Performance: percorrendo vetores de bytes</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-49">
+		<div id="comment-49">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e777d15516e1cdbd580ded93bc515db3?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e777d15516e1cdbd580ded93bc515db3?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.wordpress.com/' rel='external nofollow' class='url'>aristeu</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-49">
+				26/09/2006 at 10:05</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Lembrando que para programas que são escritos para serem portáveis (todos deveriam ser) que dependem do tamanho da variável, é recomendado usar os tipos definidos no stdint.h, como por exemplo int32_t, uint32_t: variáveis inteiras de 32 bits, com e sem sinal, respectivamente.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-50">
+		<div id="comment-50">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.wordpress.com/' rel='external nofollow' class='url'>Alfredo Kojima</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-50">
+				27/09/2006 at 11:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bem lembrado!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-51">
+		<div id="comment-51">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Adenilson Cavalcanti</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-51">
+				18/12/2006 at 16:29</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Eu *provavelmente* devo estar fazendo alguma coisa errada, mas se tento executar este código dá:</p>
+<p>//&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+adedasil@axon:~/prog$ ./a.out<br />
+*** stack smashing detected ***:  terminated<br />
+Aborted (core dumped)<br />
+//&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;<br />
+Loaded symbols for /lib/ld-linux.so.2<br />
+Core was generated by `./a.out&#8217;.<br />
+Program terminated with signal 6, Aborted.<br />
+#0  0xffffe410 in __kernel_vsyscall ()<br />
+(gdb) bt<br />
+#0  0xffffe410 in __kernel_vsyscall ()<br />
+#1  0xb7e03770 in raise () from /lib/tls/i686/cmov/libc.so.6<br />
+#2  0xb7e04ef3 in abort () from /lib/tls/i686/cmov/libc.so.6<br />
+#3  0xb7e38d0b in __fsetlocking () from /lib/tls/i686/cmov/libc.so.6<br />
+#4  0xb7ebce41 in __stack_chk_fail () from /lib/tls/i686/cmov/libc.so.6<br />
+#5  0x08048490 in main () at what_heck.c:34<br />
+(gdb)<br />
+//&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</p>
+<p>Alguém confirma?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-52">
+		<div id="comment-52">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fyy</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-52">
+				24/12/2006 at 16:23</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>sim, esse programa esta bem errado.</p>
+<p>Program received signal SIGSEGV, Segmentation fault.<br />
+0x08048411 in main () at 5.c:24<br />
+24                  *iptr++ = 0;<br />
+(gdb) print *iptr<br />
+Cannot access memory at address 0x4</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-53">
+		<div id="comment-53">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ae151a9c1c214b5d4cf58b7efd174d4a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hostname.org' rel='external nofollow' class='url'>Fyy</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-53">
+				24/12/2006 at 17:23</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>e porque tem um outro for?  &#8220;for (i= max&gt;&gt;2-1; i&gt;=0; &#8211;i)&#8221;? e que diabos de for é esse? :)</p>
+<p>swap de 2 para a direita do valor de max.? realmente nao entendi o pq dele. alias&#8230;</p>
+<p>voce ja esta apontando um ponteiro int para o buffer, e somando-o.. ou seja. voce ja esta percorrendo a array de 4 em 4 bytes. nao tem pq ter um for ai.</p>
+<p>Esse for nao faz sentido se o objetivo é apenas zerar a variavel. um *iptr=0 ja seta todos os 4 bytes para 0.</p>
+<p>e o *iptr++ ja aponta para os proximos 4 bytes.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-54">
+		<div id="comment-54">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2c20a71a46def28506d9b85ee9557977?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2c20a71a46def28506d9b85ee9557977?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://marcuscf.wordpress.com/' rel='external nofollow' class='url'>Marcus</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-54">
+				21/07/2007 at 00:28</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito interessante! Dá um pouco mais de trabalho, mas é bom saber disso! Sempre acabo me esquecendo dessas técnicas, parece que elas não &#8220;grudam&#8221; na minha cabeça, hehehe.</p>
+<p>Só não sei por que escrever ((1&lt;&lt;2)-1) quando dava pra escrever simplesmente 3! À primeira vista, pensei que fosse para parametrizar de acordo com o tamanho do int, mas não é o caso&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-55">
+		<div id="comment-55">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-55">
+				27/08/2008 at 17:32</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>pode ser que eu seja louco mas</p>
+<p>uint64_t *lptr;</p>
+<p>lptr = buffer;</p>
+<p>for (i=0; i&lt;1000/sizeof(uint64_t); i++){<br />
+       lptr[i] = (uint64_t)0;<br />
+}<br />
+for (i=(1000/sizeof(uint64_t))*sizeof(uint64_t); i&lt;1000; i++){<br />
+    buffer[i] = (char)0;<br />
+}</p>
+<p>ja resolve. *os casts não são stritamente necessário. **utilizar um inteiro de 64 bits é melhor ainda.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-56">
+		<div id="comment-56">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c7ad5c0ce9ed28f329c608db3f3a76f4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-percorrendo-vetores-de-bytes/#comment-56">
+				27/08/2008 at 18:49</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>além disso, você obviamente esta querendo complicar algo simples</p>
+<p>max&gt;&gt;2 == max/2</p>
+<p>switch (max&amp;((1&lt;&lt;2)-1)) // &lt;== resto da divisão<br />
+        {<br />
+            case 3: *ptr++= 0;  // sem break<br />
+            case 2: *ptr++= 0;  // sem break<br />
+            case 1: *ptr++= 0;<br />
+              break;<br />
+        }</p>
+<p>e eu não consigo pensar em algum caso em que o memset não serve para inicializar um vetor.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.328 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-24 21:04:48 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

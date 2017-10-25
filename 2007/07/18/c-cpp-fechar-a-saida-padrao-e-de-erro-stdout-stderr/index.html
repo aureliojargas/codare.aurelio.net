@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>C, C++: Fechar a saída padrão e de erro (stdout, stderr) | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; C, C++: Fechar a saída padrão e de erro (stdout, stderr) Comments Feed" href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Java: NoClassDefFoundError e ClassNotFoundException' href='http://codare.net/2007/07/16/java-noclassdeffounderror-e-classnotfoundexception/' />
+<link rel='next' title='Ruby: Obter o código-fonte de um método' href='http://codare.net/2007/07/20/ruby-obter-o-codigo-fonte-de-um-metodo/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/" />
+<link rel='shortlink' href='http://codare.net/?p=161' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F07%2F18%2Fc-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F07%2F18%2Fc-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-161 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/07/16/java-noclassdeffounderror-e-classnotfoundexception/" rel="prev"><span class="meta-nav">&larr;</span> Java: NoClassDefFoundError e ClassNotFoundException</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/07/20/ruby-obter-o-codigo-fonte-de-um-metodo/" rel="next">Ruby: Obter o código-fonte de um método <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-161" class="post-161 post type-post status-publish format-standard hentry category-c category-cpp tag-devnull tag-console tag-stderr tag-stdout tag-terminal tag-verbose">
+					<h1 class="entry-title">C, C++: Fechar a saída padrão e de erro (stdout, stderr)</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/" title="09:30" rel="bookmark"><span class="entry-date">18/07/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/tmpsantos/" title="View all posts by Thiago Marcos Santos">Thiago Marcos Santos</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Uma forma de impedir que seu programa imprima na tela, seja por linkar com uma biblioteca que abusa da verbosidade ou para garantir que um daemon não polua seu terminal quando for para background, é fechando a saída padrão (stdout) e a saída de erro (stderr), como mostrado no exemplo seguinte:</p>
+<pre>#include &lt;fcntl.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+
+int main(void)
+{
+        int fd = open("/dev/null", O_WRONLY);
+
+        close(1); // stdout
+        close(2); // stderr
+        dup(fd);  // Duplica o descritor fd que corresponde a /dev/null
+        dup(fd);  // usando o menor numero disponivel, no caso, 1 e 2
+
+        printf("No verbosity anymore!\n"); // Nao imprime nada na tela
+        return 0;
+}</pre>
+<p>Apenas fechar as saídas não é o bastante, senão um <em>printf</em> ou um <em>cout</em> (C++), que por padrão escrevem em stdout, iriam escrever em um descritor inválido. Direcionar a saída para o /dev/null é uma boa opção, já que ele descarta tudo que é escrito nele.  Vale observar que a implementação mostrada nesta dica não é thread-safe.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>, <a href="http://codare.net/category/cpp/" rel="category tag">CPP</a> and tagged <a href="http://codare.net/tag/devnull/" rel="tag">/dev/null</a>, <a href="http://codare.net/tag/console/" rel="tag">console</a>, <a href="http://codare.net/tag/stderr/" rel="tag">stderr</a>, <a href="http://codare.net/tag/stdout/" rel="tag">stdout</a>, <a href="http://codare.net/tag/terminal/" rel="tag">terminal</a>, <a href="http://codare.net/tag/verbose/" rel="tag">verbose</a>. Bookmark the <a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/" title="Permalink to C, C++: Fechar a saída padrão e de erro (stdout, stderr)" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/07/16/java-noclassdeffounderror-e-classnotfoundexception/" rel="prev"><span class="meta-nav">&larr;</span> Java: NoClassDefFoundError e ClassNotFoundException</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/07/20/ruby-obter-o-codigo-fonte-de-um-metodo/" rel="next">Ruby: Obter o código-fonte de um método <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">4 Responses to <em>C, C++: Fechar a saída padrão e de erro (stdout, stderr)</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-398">
+		<div id="comment-398">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.ademar.org' rel='external nofollow' class='url'>Ademar Reis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/#comment-398">
+				18/07/2007 at 19:47</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Falando em daemon, é bom lembrar que pra executar um programa em background o ideal é usar a função daemon(3), que além de redirecionar as saídas e a entrada pra /dev/null, desconecta o programa do terminal atual.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-399">
+		<div id="comment-399">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/d3c5d42b6e3e4c682a8b454fa3c32d7b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d3c5d42b6e3e4c682a8b454fa3c32d7b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Anonymous</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/#comment-399">
+				18/07/2007 at 23:03</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pode-se usar a função dup2 também:</p>
+<p>int fd = open(&#8220;/dev/null&#8221;, O_RDWR);</p>
+<p>dup2(fd, STDOUT_FILENO);<br />
+dup2(fd, STDERR_FILENO);<br />
+dup2(fd, STDIN_FILENO);</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-400">
+		<div id="comment-400">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/55daa4df7b9b274dc619a95ec874a1a8?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/55daa4df7b9b274dc619a95ec874a1a8?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Valentim</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/#comment-400">
+				26/02/2010 at 08:47</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bom dia,<br />
+Estou com um problema, tenho um programa em C que ao executar um outro programa pela linha de comandos queria redireccionar o output para um ficheiro contudo ele imprime sempre para a consola.<br />
+Alguma forma de fazer isto?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-401">
+		<div id="comment-401">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f18bbe6aabfa5cb7451c9491653e79f5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f18bbe6aabfa5cb7451c9491653e79f5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Bruno</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/07/18/c-cpp-fechar-a-saida-padrao-e-de-erro-stdout-stderr/#comment-401">
+				08/03/2010 at 09:17</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Opa Valentim essa eu sei&#8230; =-)</p>
+<p>De uma olhada na system call posix_spawn(3) ela executa um programa, tipo o exec, mas vc pode usar seus parametros 3 e 4 para informar algumas coisas que necessita, como por exemplo na estrutura posix_spawn_file_actions_t pode dizer que quer redirecionar o stdout dele para um arquivo (err |= posix_spawn_file_actions_addopen(&amp;actions, (int)STDOUT_FILENO, destination, O_RDWR | O_CREAT, 755);). Eh um pouco grandinho a utilizaçao destas funçoes mas da para se fazer muita coisa com elas. =)</p>
+<p>OU</p>
+<p>fazer system(&#8220;ls &gt; meuArquivo&#8221;); Tambem resolve system por baixo dos panos usa /bin/sh ai ele faz tudo isso e mais um pouco para vc ta ai 2 formas de fazer isso que precisa, na segunda vc precisa criar seu arquivo ele nao sera criado, na primeira ele cria com a opçao O_CREAT.</p>
+<p>Abraços.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.345 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 20:56:00 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

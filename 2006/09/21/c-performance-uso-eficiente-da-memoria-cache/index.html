@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>C: Performance: uso eficiente da memória cache | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; C: Performance: uso eficiente da memória cache Comments Feed" href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Python: HTTP GET e POST com urllib' href='http://codare.net/2006/09/20/python-http-get-e-post-com-urllib/' />
+<link rel='next' title='C, C++: Transformar macros e identificadores em strings' href='http://codare.net/2006/09/21/c-cpp-transformar-macros-e-identificadores-em-strings/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/" />
+<link rel='shortlink' href='http://codare.net/?p=35' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2006%2F09%2F21%2Fc-performance-uso-eficiente-da-memoria-cache%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2006%2F09%2F21%2Fc-performance-uso-eficiente-da-memoria-cache%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-35 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2006/09/20/python-http-get-e-post-com-urllib/" rel="prev"><span class="meta-nav">&larr;</span> Python: HTTP GET e POST com urllib</a></div>
+					<div class="nav-next"><a href="http://codare.net/2006/09/21/c-cpp-transformar-macros-e-identificadores-em-strings/" rel="next">C, C++: Transformar macros e identificadores em strings <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-35" class="post-35 post type-post status-publish format-standard hentry category-c">
+					<h1 class="entry-title">C: Performance: uso eficiente da memória cache</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/" title="00:56" rel="bookmark"><span class="entry-date">21/09/2006</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/ehabkost/" title="View all posts by Eduardo Habkost">Eduardo Habkost</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: C, memória, cache, performance, velocidade</p>
+<p>Todo processador hoje em dia possui memória <em>cache</em>, que ajuda a melhorar a performance, armazenando os dados mais recentemente acessados, para acesso mais rápido pelo processador.</p>
+<p>O que nós freqüentemente ignoramos é que a organização dos dados e o padrão de acesso à memória podem aproveitar muito bem ou simplesmente estragar a ajuda que a cache nos dá.</p>
+<p>Vamos comparar duas versões de um programa que soma os elementos de uma matriz, e seus tempos de execução:</p>
+<pre>
+/* matriz1 */
+#define N 10000
+#define M 15000
+
+static int m[N][M];
+
+int main()
+{
+    int i, j, soma = 0;
+    <strong>for (j = 0; j &lt; M; j++) /* coluna a coluna */</strong>
+        <strong>for (i = 0; i &lt; N; i++)</strong>
+            soma += m[i][j];
+    return 0;
+}
+</pre>
+<pre>
+/* matriz2 */
+#define N 10000
+#define M 15000
+
+static int m[N][M];
+
+int main()
+{
+    int i, j, soma = 0;
+    <strong>for (i = 0; i &lt; N; i++) /* linha a linha */</strong>
+        <strong>for (j = 0; j &lt; M; j++)</strong>
+            soma += m[i][j];
+    return 0;
+}
+</pre>
+<pre>
+$ time -p ./matriz1
+real 1.44
+user 1.38
+sys 0.05
+</pre>
+<pre>
+$ time -p ./matriz2
+real 0.78
+user 0.72
+sys 0.05
+</pre>
+<p>Conseguimos quase cortar pela metade o tempo de execução (de 1,38 para 0,72 segundos), apenas modificando a ordem em que os elementos da matriz são acessados. No segundo caso, os dados são acessados linha a linha (seqüencialmente na memória), aproveitando que blocos de memória contendo elementos vizinhos já foram carregados na memória cache.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>. Bookmark the <a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/" title="Permalink to C: Performance: uso eficiente da memória cache" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2006/09/20/python-http-get-e-post-com-urllib/" rel="prev"><span class="meta-nav">&larr;</span> Python: HTTP GET e POST com urllib</a></div>
+					<div class="nav-next"><a href="http://codare.net/2006/09/21/c-cpp-transformar-macros-e-identificadores-em-strings/" rel="next">C, C++: Transformar macros e identificadores em strings <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>C: Performance: uso eficiente da memória cache</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-37">
+		<div id="comment-37">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eu</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-37">
+				18/12/2006 at 12:40</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá! :) Gostaria, se você me permite, de comentar 2 coisas:</p>
+<p>1. Não teria um pequeno bug no exemplo 1? Acho que no primeiro for() deveria ser um j  M.</p>
+<p>2. A sua dica é bem interessante, mas normalmente (eu pelo menos faço) já se faz o &#8220;jeito certo&#8221;, isto é, no dia-a-dia da programação, quando temos que percorrer uma matriz NxM já o fazemos &#8220;naturalmente&#8221;, linha a linha.</p>
+<p>Assim, se você tivesse outras sugestões de como podemos explorar melhor o cache dos processadores, seria bem mais interessante.</p>
+<p>Obrigado pela sua atenção e parabéns pela dica! :)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-38">
+		<div id="comment-38">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eu</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-38">
+				18/12/2006 at 12:41</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ops, o wordpress &#8220;comeu&#8221; o sinal. No primeiro comentário, leia:</p>
+<p>&#8220;Acho que no primeiro for() deveria ser um j MENOR que M ao invés de j MAIOR que M.&#8221;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-39">
+		<div id="comment-39">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://ehabkost.wordpress.com/' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-39">
+				18/12/2006 at 17:19</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá,</p>
+<p>1. Sim. Obrigado pela correção</p>
+<p>2. Se você já percorre linha a linha, ótimo.  :)</p>
+<p>Às vezes dependendo da abstração, alguém pode fazer do jeito diferente sem imaginar que a diferença que isso faz. Daí a dica. Suponha que as linhas sejam chamadas de &#8220;coordenada y&#8221; e colunas de &#8220;coordenada x&#8221;. Nesse caso não dá vontade de fazer <code>for (x=0;...) for (y=0;...)</code>? Em mim dá, e já fiz assim, antes de aprender.  :)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-40">
+		<div id="comment-40">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eu</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-40">
+				18/12/2006 at 19:15</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá,</p>
+<p>realmente, sob este aspecto, você está certíssimo. Então fica registrado, mais algum amigo programador estiver lendo estes comentários e tiver mais alguma sugestão de código &#8220;jeito certo&#8221; (que explore melhor o cache dos processadores) que se manifeste! :)</p>
+<p>Obrigado pela atenção e, novamente, obrigado pela dica! :)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-41">
+		<div id="comment-41">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dd1974ae63864701c8546b9ef23bac3e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eu</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-41">
+				19/12/2006 at 22:18</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá!</p>
+<p>Adenilson, não tem como você continuar o seu post? Achei ele bem interessante&#8230;. :~</p>
+<p>[]&#8217;s</p>
+<p>P.S. Como faz pra postar código? Fui postar e meu código também foi &#8220;comido&#8221;&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-42">
+		<div id="comment-42">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e583bca48acb877efd4a29229bf7927f?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e583bca48acb877efd4a29229bf7927f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://aurelio.wordpress.com/' rel='external nofollow' class='url'>Aurélio Jargas</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-42">
+				20/12/2006 at 08:02</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Adenilson, Eu,</p>
+<p>A área de comentários aceita códigos HTML, então ao colocar caracteres especiais é preciso mascará-los. São apenas três, coloquei lá na página &#8220;Sobre&#8221;, mas vou replicar aqui para facilitar:</p>
+<p>&lt; deve ser &amp;lt;<br />
+&gt; deve ser &amp;gt;<br />
+&amp; deve ser &amp;amp;</p>
+<p>Podem mandar os códigos atualizados que eu apago o comentário truncado, se for o caso.</p>
+<p>Abraço e valeu!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-43">
+		<div id="comment-43">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Adenilson Cavalcanti</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-43">
+				20/12/2006 at 08:27</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Aurélio</p>
+<p>Valeu pela dica. Vou tentar novamente:</p>
+<p>Geralmente em processamento de imagens/video, costuma-se utilizar um vetor V[n] onde n = cols * rows * color_channels.</p>
+<p>Pode-se acessar qualquer elemento da matriz usando-se o offset. Com<br />
+isso, é possível fazer uma operacao em todos o elementos em 1 único loop (for) ao invés de n_loops = dimensao_matriz.</p>
+<p>Ficaria algo como:<br />
+int size = N * M * CHANNELS;<br />
+char *vector = malloc(size * sizeof(char));<br />
+for (int i = 0; i &lt; size; ++i)<br />
+   sum += vector[i];</p>
+<p>ao invés de:<br />
+char vector[N][M][CHANNELS];<br />
+for (int i = 0; i &lt; N; ++i)<br />
+  for (int j = 0; j &lt; M; ++j)<br />
+     for (int z = 0; z &lt; CHANNELS; ++z)<br />
+          sum += vector[i][j][z];</p>
+<p>No caso de haver 3 canais de cor (R, G, B), a forma de representar os canais geralmente é com os 3 canais em sequência no vetor: RGB RGB RGB RGB (para uma matrix [2][2][3]). Existem outras maneiras de se representar os canais de cor no vetor, e.g. RRRR GGGG BBBB.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-44">
+		<div id="comment-44">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/47f9efbe574f0de3ee7f9364eaba0a07?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/47f9efbe574f0de3ee7f9364eaba0a07?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.taiar.com.br' rel='external nofollow' class='url'>André Taiar</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2006/09/21/c-performance-uso-eficiente-da-memoria-cache/#comment-44">
+				12/11/2009 at 11:47</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito legal.</p>
+<p>Isso mostra que é relevante SIM analisarmos a localidade de referência nos nossos programas.</p>
+<p>Nesse caso, foi explorada a localidade de referência espacial em uma instância maior. Mais sobre o assunto:</p>
+<p><a href="http://informatica.hsw.uol.com.br/cache6.htm" rel="nofollow">http://informatica.hsw.uol.com.br/cache6.htm</a><br />
+<a href="http://en.wikipedia.org/wiki/Locality_of_reference" rel="nofollow">http://en.wikipedia.org/wiki/Locality_of_reference</a></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.345 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-24 21:04:48 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Java: Gerando códigos hash (MD5, SHA) | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Java: Gerando códigos hash (MD5, SHA) Comments Feed" href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='PHP: Utilizando o método __toString()' href='http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/' />
+<link rel='next' title='Python: Descobrir qual o diretório do usuário' href='http://codare.net/2007/02/05/python-descobrir-qual-o-diretorio-do-usuario/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" />
+<link rel='shortlink' href='http://codare.net/?p=131' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F02%2F02%2Fjava-gerando-codigos-hash-md5-sha%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F02%2F02%2Fjava-gerando-codigos-hash-md5-sha%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-131 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/" rel="prev"><span class="meta-nav">&larr;</span> PHP: Utilizando o método __toString()</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/02/05/python-descobrir-qual-o-diretorio-do-usuario/" rel="next">Python: Descobrir qual o diretório do usuário <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-131" class="post-131 post type-post status-publish format-standard hentry category-java">
+					<h1 class="entry-title">Java: Gerando códigos hash (MD5, SHA)</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" title="08:48" rel="bookmark"><span class="entry-date">02/02/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/joaodelvalle/" title="View all posts by João Del Valle">João Del Valle</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: Java, hash, MD5, SHA-1, SHA-256, MessageDigest</p>
+<p>A maneira mais comum de se gerar um código hash em Java é utilizando a classe java.security.MessageDigest. O método a seguir gera o hash MD5 de uma string:</p>
+<pre>
+MessageDigest md = MessageDigest.getInstance("MD5");
+md.update(frase.getBytes());
+byte[] hashMd5 = md.digest();
+</pre>
+<p>O hash é retornado como um array de bytes, que pode ser impresso utilizando o método citado em um <a href="/2007/01/04/java-impressao-de-bytes-como-hexa/">post anterior</a>:</p>
+<pre>
+private static String stringHexa(byte[] bytes) {
+   StringBuilder s = new StringBuilder();
+   for (int i = 0; i &lt; bytes.length; i++) {
+       int parteAlta = ((bytes[i] &gt;&gt; 4) &amp; 0xf) &lt;&lt; 4;
+       int parteBaixa = bytes[i] &amp; 0xf;
+       if (parteAlta == 0) s.append('0');
+       s.append(Integer.toHexString(parteAlta | parteBaixa));
+   }
+   return s.toString();
+}
+</pre>
+<p>Além do MD5, podemos também usar outros algoritmos de hash normalmente presentes nas distribuições da JVM. O exemplo a seguir gera os códigos MD5, SHA-1 e SHA-256 da mesma mensagem:</p>
+<pre>
+public static byte[] gerarHash(String frase, String algoritmo) {
+  try {
+    MessageDigest md = MessageDigest.getInstance(algoritmo);
+    md.update(frase.getBytes());
+    return md.digest();
+  } catch (NoSuchAlgorithmException e) {
+    return null;
+  }
+}
+</pre>
+<pre>
+public static void main(String[] args) {
+  String frase = "Quero gerar códigos hash desta mensagem.";
+  System.out.println(stringHexa(gerarHash(frase, "MD5")));
+  System.out.println(stringHexa(gerarHash(frase, "SHA-1")));
+  System.out.println(stringHexa(gerarHash(frase, "SHA-256")));
+}
+</pre>
+<p>A saída deste programa será:</p>
+<pre>
+51408e7592917e916b55f8021a0f7ad3
+5907736c4de6fdd70fcdc7517c3aebd257a1addc
+ed40c896d779f946956483d45e9efe08aac6373935d354c2be2136bf05bca42c
+</pre>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/java/" rel="category tag">Java</a>. Bookmark the <a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/" title="Permalink to Java: Gerando códigos hash (MD5, SHA)" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/02/01/php-utilizando-o-metodo-__tostring/" rel="prev"><span class="meta-nav">&larr;</span> PHP: Utilizando o método __toString()</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/02/05/python-descobrir-qual-o-diretorio-do-usuario/" rel="next">Python: Descobrir qual o diretório do usuário <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">26 Responses to <em>Java: Gerando códigos hash (MD5, SHA)</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-260">
+		<div id="comment-260">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/1d5165ce4132b0d53d0ef6552e6c77f1?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1d5165ce4132b0d53d0ef6552e6c77f1?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://hugosantos.caiunateia.com' rel='external nofollow' class='url'>Hugo Santos</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-260">
+				16/10/2007 at 19:40</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Mandou muito bem. Simples e direto ao ponto. Fechou.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-261">
+		<div id="comment-261">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/bba2c30351d40f4eff3e67bdd4e5af41?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bba2c30351d40f4eff3e67bdd4e5af41?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Daniel Naschenweng</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-261">
+				07/11/2007 at 12:16</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Quando o Hexa dá um valor abaixo de 10 ele está perdendo um dígito.<br />
+Ex.: ao invés de:<br />
+d0970714757783e6cf17b26fb8e2298f<br />
+Dá:<br />
+d097714757783e6cf17b26fb8e2298f<br />
+Pois o Hexa fica 7 ao invés de 07.</p>
+<p>Para resolver fiz a adaptação abaixo:</p>
+<p>        StringBuffer s = new StringBuffer(&#8220;&#8221;);<br />
+        String hex = new String();<br />
+        for (int i = 0; i &gt; 4) &amp; 0xf) &lt;&lt; 4)<br />
+            | (bytes[i] &amp; 0xf));<br />
+            if (hex.length()==1){<br />
+                s.append(&#8220;0&#8221;);<br />
+            }<br />
+            s.append(hex);<br />
+        }<br />
+        return s.toString();</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-262">
+		<div id="comment-262">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/486c854ac325fd1f67e3b7db9d7920e1?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/486c854ac325fd1f67e3b7db9d7920e1?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Tiago Silva</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-262">
+				19/11/2007 at 16:46</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Estou com um problema.</p>
+<p>Existe uma aplicação PHP que gera e grava os dados MD5 em uma base de dados mssql.</p>
+<p>Estou desenvolvendo uma aplicação em asp.net(csharp) para substituir esse cancer, porém o md5 gerado no meu código csharp não é igual ao que está na base de dados.</p>
+<p>alguém sabe porque?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-263">
+		<div id="comment-263">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/ac5c37c3b0c36209f8b8b260f80e802b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ac5c37c3b0c36209f8b8b260f80e802b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Gilmar</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-263">
+				05/12/2007 at 13:02</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>sugiro o uso do HexBin pra encode/decode de hex</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-264">
+		<div id="comment-264">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a14cb45b9017054cf7663b33966b728a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a14cb45b9017054cf7663b33966b728a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Luiz Gustavo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-264">
+				07/12/2007 at 11:50</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Daniel, envie esta sua correção por email..<br />
+Eu copiei seu código mas deu erro..<br />
+Abraços!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-265">
+		<div id="comment-265">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/4e0f7c6bf5de29c8ea2689c67c2feaa8?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4e0f7c6bf5de29c8ea2689c67c2feaa8?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.subterfugios.net/blog/' rel='external nofollow' class='url'>João Del Valle</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-265">
+				11/12/2007 at 20:48</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Daniel, obrigado pelo toque. Já corrigi o post. ;-)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-266">
+		<div id="comment-266">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/9106340a33a2407d63d22e6275300d33?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9106340a33a2407d63d22e6275300d33?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">anonymous</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-266">
+				26/02/2008 at 19:30</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá, vc corrigiu a saída do programa também?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-267">
+		<div id="comment-267">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5ca4136a060a2574a936cdf6881f733c?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5ca4136a060a2574a936cdf6881f733c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Lex</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-267">
+				05/03/2008 at 15:48</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>cara valeu&#8230;.você eh o cara !</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-268">
+		<div id="comment-268">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/3706fa46b24dc012c0db4c2de5ec93e6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3706fa46b24dc012c0db4c2de5ec93e6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://muaracaju.servegame.com' rel='external nofollow' class='url'>lucas</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-268">
+				17/03/2008 at 19:31</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>cara to com um probelamao com este MD5,consigo converter as senhas geradas pelos usuarios ,mas nao consigo logar depois , no game</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-269">
+		<div id="comment-269">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/3706fa46b24dc012c0db4c2de5ec93e6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/3706fa46b24dc012c0db4c2de5ec93e6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://muaracaju.servegame.com' rel='external nofollow' class='url'>lucas</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-269">
+				17/03/2008 at 19:33</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>diz q minha senha esta incorreta alguem sabe como remvo o md5 , do banco de dados, acho q se remover o md5 descomplica, mas nao sei fazer isso<br />
+agradeço</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-270">
+		<div id="comment-270">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/310ba31c72c90987e4f07b05202684ff?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/310ba31c72c90987e4f07b05202684ff?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-270">
+				20/03/2008 at 11:07</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Caros,</p>
+<p>O trecho de código</p>
+<p> int parteAlta = ((bytes[i] &gt;&gt; 4) &amp; 0xf) &lt;&lt; 4;<br />
+ int parteBaixa = bytes[i] &amp; 0xf;<br />
+ if (parteAlta == 0) s.append(&#8216;0&#8217;);</p>
+<p>Não poderia ser substituído por um simples if verificando se o valor é menor igual a 15 e nesse caso fazer um append de zero?</p>
+<p>O código ficaria assim:<br />
+for (int i = 0; i &lt; bytes.length; i++) {<br />
+       if (bytes[i] &lt;= 15) s.append(&#8216;0&#8217;);<br />
+       s.append(Integer.toHexString(bytes[i]));<br />
+}</p>
+<p>[]´s<br />
+Renato</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-271">
+		<div id="comment-271">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/310ba31c72c90987e4f07b05202684ff?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/310ba31c72c90987e4f07b05202684ff?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renato</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-271">
+				20/03/2008 at 11:10</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Esquecam o comentário anterior,  estava desconsiderando a parte negativa. :S</p>
+<p>[]´s<br />
+Renato</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-272">
+		<div id="comment-272">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Maria</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-272">
+				22/04/2008 at 10:49</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Estou com problemas no envio de do arquivo da CAPESAÚDE (TISS ELETRÔNICO), sempre dá erro.<br />
+Aparece a informação abaixo:</p>
+<p>** Aguardando comandos&#8230;<br />
+** C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: Mensagem TISS com problemas: &#8220;hash&#8221; MD5 não confere</p>
+<p>Certa de Vossa ajuda! Desde já agradecida.</p>
+<p>Respeitosamente,</p>
+<p>Mª da Conceição</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-273">
+		<div id="comment-273">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Maria</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-273">
+				24/04/2008 at 09:33</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Fico grata se poderem me ajudar quanto o problema de &#8220;rash MD5&#8221; do arquivo que estou tentando enviar. Sempre dá erro conforme abaixo descrito:</p>
+<p>** Aguardando comandos…<br />
+** C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: Mensagem TISS com problemas: “hash” MD5 não confere</p>
+<p> 1155CAAC7BD402F89C820852BFB496D9</p>
+<p>Certo de Vossa atenção.</p>
+<p>Respeitosamente,</p>
+<p>Maria da Conceição.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-274">
+		<div id="comment-274">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://raisama.net/' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-274">
+				24/04/2008 at 10:19</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Maria, os únicos que podem te ajudar são os autores do programa que você está usando.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-275">
+		<div id="comment-275">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Maria</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-275">
+				25/04/2008 at 12:05</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>São Gonçalo/RJ 25 de abril de 2008.</p>
+<p>            O programa que utilizo apenas para digitação das guias do convênio é a PLATAFORMA DA ORIZON, mas nós fazemos a exportação do arquivo em XML e enviamos pelo TISS NET, que é um programa gratuito a qual não conseguimos identificar a causa do erro; no entanto não temos suporte da mesma, pois nem o convênio, nem nossa empresa tem contrato com a ORIZON.</p>
+<p>Será que alguém pode me dá uma dica como resolver esse problema que está abaixo descrito: (Mensagem TISS com problemas: “hash” MD5 não confere)</p>
+<p>** Aguardando comandos…<br />
+** C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: C:\Documents and Settings\est13\Meus documentos\ROSI FREIRE\CAPECONSULTA ENVIO DE LOTE 70183-16-04-08.xml: Mensagem TISS com problemas: “hash” MD5 não confere</p>
+<p>1155CAAC7BD402F89C820852BFB496D9</p>
+<p>Mais uma vez grata pela atenção.</p>
+<p>Respeitosamente,</p>
+<p>Maria da Conceição<br />
+Faturamento CONLAB</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-276">
+		<div id="comment-276">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Maria</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-276">
+				25/04/2008 at 12:13</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>TISS NET é um programa gratuito criado pela ANS, mas é impossível conseguir falar com eles.</p>
+<p>Respeitosamente,</p>
+<p>Maria da Conceição.<br />
+Faturamento</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-277">
+		<div id="comment-277">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b36333a5f61f0e7f91f6090ba99288d4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Maria</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-277">
+				25/04/2008 at 13:38</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>São Gonçalo/RJ</p>
+<p>            Obrigada pela atenção Eduardo Habkost! Se você tiver como me passar alguma informação a respeito do assunto que enviei anteriormente, fico agradecida.</p>
+<p>Respeitosamente,</p>
+<p>Maria da Conceição<br />
+Faturamneto CONLAB</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-278">
+		<div id="comment-278">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5765e1c177de70137a8ccce97977e4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5765e1c177de70137a8ccce97977e4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://evandro.net/tiss/tiss-hash-md5-nao-confere.html' rel='external nofollow' class='url'>MD5 não confere</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-278">
+				27/04/2008 at 17:37</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Maria da Conceição,</p>
+<p>O problema está no sistema que gerou o XML.</p>
+<p>Para resolver o problema desta guia, clique no link ao lago ou no site abaixo:</p>
+<p>evandro.net/tiss/tiss-hash-md5-nao-confere.html</p>
+<p>O Hash MD5 é um epílogo (encerramento) que garante que nenhuma informação do XML foi alterada, seja ela manualmente ou na transmissão dos dados, como uma assinatura eletrônica daquele documento.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-279">
+		<div id="comment-279">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5765e1c177de70137a8ccce97977e4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5765e1c177de70137a8ccce97977e4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://evandro.net/tiss/tiss-hash-md5-nao-confere.html' rel='external nofollow' class='url'>MD5 não confere</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-279">
+				27/04/2008 at 17:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Maria da Conceição,</p>
+<p>O problema está no sistema que gerou o XML.</p>
+<p>Para resolver o problema desta guia, clique no link &#8220;MD5 não confere&#8221; no lado esquerdo ou entre no site abaixo:</p>
+<p>evandro.net/tiss/tiss-hash-md5-nao-confere.html</p>
+<p>O Hash MD5 é um epílogo (encerramento) que garante que nenhuma informação do XML foi alterada, seja ela manualmente ou na transmissão dos dados, como uma assinatura eletrônica daquele documento.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-280">
+		<div id="comment-280">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/65614e82339653f76fc14ff42f7bd440?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/65614e82339653f76fc14ff42f7bd440?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.cassioso.com' rel='external nofollow' class='url'>Cássio Oliveira</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-280">
+				27/10/2008 at 11:16</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Como seria para gerar o arquivo hash de um arquivo?</p>
+<p>Tentei fazer este processo lendo linha a linha do arquivo&#8230; Mas não deu certo por aqui&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-281">
+		<div id="comment-281">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/93f71ec0bb0529a65b4314ab5846f141?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/93f71ec0bb0529a65b4314ab5846f141?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">marcus</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-281">
+				17/03/2009 at 10:01</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>tambem estou com o mesmo problema do hash do cassio<br />
+primeiramente tentei jogar todo o texto dentro da funcao q calcula o hash e n deu certo<br />
+depois li que o calculo do hash eh soh os valores e nao as tags xml<br />
+passei o dia ontem adaptando pra pegar os valores e colocar numa stringona.. mandei calcular o hash e ainda apresenta erro<br />
+estou meio sem saida!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-282">
+		<div id="comment-282">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f3d5b0ec8f57f1174b0dc3ed5804edda?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f3d5b0ec8f57f1174b0dc3ed5804edda?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Ronaldo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-282">
+				13/01/2010 at 14:44</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>João Del Valle, estou com problemas, para emitir nota fiscal feita na impressora laser e que pra ter validade tem decolocar achave md5 na nota e posteriormente todas as notas gravadas mensalmente em imagem iso com o md5 para garantir a integridade.</p>
+<p>meu sistema é em vb voce pode me ajudar a resolver isso.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1775">
+		<div id="comment-1775">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/023d42a398560ac695d892f239aa3ca5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/023d42a398560ac695d892f239aa3ca5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">pedro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-1775">
+				28/02/2011 at 19:07</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>cara&#8230;.</p>
+<p>o SHA tem as seguintes formas&#8230;.</p>
+<p>SHA-1<br />
+SHA-256<br />
+e SHA &#8211; 512.</p>
+<p>se vc substituir o trecho do código acima do POST por SHA-512 ele dá ainda mais segurança.</p>
+<p>irá gerar um código de 512 caracteres.</p>
+<p>enquanto o md5 gera 32 caracteres.</p>
+<p>Especialistas estimam que para<br />
+alguém conseguir quebrar uma criptografia usando chaves de 64 bits na base da tentativa e erro,<br />
+levaria cerca de 100.000 anos usando um PC comum.<br />
+Mas porque é tão seguro? Simples, uma chave de 2 bits terá 4 combinações possíveis.<br />
+Uma chave de 4 bits, terá 16 combinações possíveis e assim por diante. Agora,<br />
+vejamos a grande diferença: uma chave de apenas 8 bits terá 65.356 combinações possíveis e,<br />
+em uma chave de 32 bits existem mais de 4 bilhões de combinações, que para serem decifradas<br />
+levariam mais de 2 meses (levando em conta 1000 tentativas por segundo, por parte do computador).</p>
+<p>AGORA IMAGINA 512 CARACTERS????</p>
+<p>tenta ai galera&#8230; to tentanuh aqui e naum to conseguindo naum&#8230;kkkkk</p>
+<p>vlwsss</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-18726">
+		<div id="comment-18726">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/178517238486d7d0253bc54a66f73aae?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/178517238486d7d0253bc54a66f73aae?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.captamed.com.br' rel='external nofollow' class='url'>César</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-18726">
+				06/04/2012 at 15:52</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Boa tarde galera e Arimateia, tudo bem com vocês?<br />
+Seguinte, como recentemente tive a necessidade de fazer o calculo do hash em arquivos xml padrão tiss, desenvolvi um script em python que pode calcular o hash de qualquer arquivo xml, e publiquei no vivaolinux  , além do calculo do hash onde o sistema entra em todos os nodos do xml de forma recurssiva, ele mostra na tela a estrutura do arquivo xml em formato de arvore, como o conhecimento é para desfruto de todos, espero que ajude pessoas que precisem calcular o hash varias vezes por algum motivo, e o xml seja maior que o padrão da ans (100 guias), ou pessoas que necessitem somente extrair o conteúdo dos seus arquivos e visualizar a estrutura.<br />
+ Vlw galera e um forte agraço<br />
+link: <a href="http://www.vivaolinux.com.br/script/Leitura-de-todos-os-valores-de-qualquer-xml" rel="nofollow">http://www.vivaolinux.com.br/script/Leitura-de-todos-os-valores-de-qualquer-xml</a></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-54091">
+		<div id="comment-54091">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5ed4547bdcedd683d220af8d9f35d259?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5ed4547bdcedd683d220af8d9f35d259?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.tecnopatas.net/blog' rel='external nofollow' class='url'>Lucas Amparo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/02/02/java-gerando-codigos-hash-md5-sha/#comment-54091">
+				22/11/2013 at 12:12</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Valeu, meu brother. Ajudou pacas aqui. Sucesso.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.345 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 17:47:46 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

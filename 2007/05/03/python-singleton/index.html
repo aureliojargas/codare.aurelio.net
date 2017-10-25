@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Python: Singleton | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Python: Singleton Comments Feed" href="http://codare.net/2007/05/03/python-singleton/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Java: classpath com caracteres curinga (wildcards)' href='http://codare.net/2007/05/01/java-classpath-com-caracteres-curinga-wildcards/' />
+<link rel='next' title='Java: Fazer ping em um servidor' href='http://codare.net/2007/05/09/java-fazer-ping-em-um-servidor/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/05/03/python-singleton/" />
+<link rel='shortlink' href='http://codare.net/?p=90' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F03%2Fpython-singleton%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F03%2Fpython-singleton%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-90 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/01/java-classpath-com-caracteres-curinga-wildcards/" rel="prev"><span class="meta-nav">&larr;</span> Java: classpath com caracteres curinga (wildcards)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/05/09/java-fazer-ping-em-um-servidor/" rel="next">Java: Fazer ping em um servidor <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-90" class="post-90 post type-post status-publish format-standard hentry category-python">
+					<h1 class="entry-title">Python: Singleton</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/05/03/python-singleton/" title="09:00" rel="bookmark"><span class="entry-date">03/05/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/osantana/" title="View all posts by Osvaldo Santana">Osvaldo Santana</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: Python, Design Patterns, Padrões de Projeto, OOP, POO</p>
+<p>Um <em>Singleton</em> é um dos padrões de projeto descrito no famoso livro &#8220;Design Patterns&#8221; escrito pela GoF (<em>Gang of Four</em>) e o seu funcionamento é bastante simples: uma classe é chamada de Singleton quando ela permite apenas uma única instância.</p>
+<p>A maneira de se implementar um Singleton descrita no livro consiste em definir um método <tt>get_instance()</tt> na classe que ficará responsável por criar a primeira instância e a partir daí retorná-la sempre que for chamada.</p>
+<p>Mas a natureza dinâmica de Python e seu sistema de meta-classes permitem que se crie uma classe chamada Singleton genérica que podemos usar como super-classe dos nossos próprios Singletons:</p>
+<pre>
+class Singleton(object):
+   def __new__(cls, *args, **kwargs):
+      if '_inst' not in vars(cls):
+         cls._inst = type.__new__(cls, *args, **kwargs)
+      return cls._inst
+</pre>
+<p>Agora, para que a sua classe se transforme em Singleton basta apenas derivá-la desta classe e não é mais necessário implementar o método <tt>get_instance()</tt>. O seu uso ficaria assim:</p>
+<pre>
+class MeuSingleton(Singleton):
+   pass
+
+a = MeuSingleton()
+b = MeuSingleton()
+
+print a is b # imprimirá True, pois trata-se da mesma instância
+</pre>
+<p>Essa dica faz parte do livro Python Cookbook e foi escrita por Jürgen Hermann. No livro você poderá encontrar as explicações detalhadas sobre essa classe e mais uma série de outras dicas interessantes sobre diversos assuntos.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/python/" rel="category tag">Python</a>. Bookmark the <a href="http://codare.net/2007/05/03/python-singleton/" title="Permalink to Python: Singleton" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/01/java-classpath-com-caracteres-curinga-wildcards/" rel="prev"><span class="meta-nav">&larr;</span> Java: classpath com caracteres curinga (wildcards)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/05/09/java-fazer-ping-em-um-servidor/" rel="next">Java: Fazer ping em um servidor <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">6 Responses to <em>Python: Singleton</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-342">
+		<div id="comment-342">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/0ec929f9b2472896c4c8eb97d457a10d?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0ec929f9b2472896c4c8eb97d457a10d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://devlog.waltercruz.com' rel='external nofollow' class='url'>Walter Cruz</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-342">
+				03/05/2007 at 15:14</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Oi Osvaldo! Parece que há um pequenino erro no código!<br />
+Deve ser:<br />
+cls._inst = object.__new__(cls, *args, **kwargs)<br />
+ao invés de:<br />
+cls._inst = type.__new__(cls, *args, **kwargs)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-343">
+		<div id="comment-343">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7c197c9bbfa7e90995b0043a4a045c2d?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7c197c9bbfa7e90995b0043a4a045c2d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.yguarata.org' rel='external nofollow' class='url'>yguaratã</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-343">
+				03/05/2007 at 20:05</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Uma outra maneira de se criar singletons em Python é instaciar as classes(que serão singletons) em um módulo separado. Sempre que se precisar das mesmas é só importar o módulo. Como os módulos são compilados apenas uma vez, quando importados, então temos nassas singletons.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-344">
+		<div id="comment-344">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/6b6a5f2581a8f5dc38695e88ed26a1e5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6b6a5f2581a8f5dc38695e88ed26a1e5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.gustavobarbieri.com.br/' rel='external nofollow' class='url'>Gustavo Sverzut Barbieri</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-344">
+				04/05/2007 at 21:48</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>yguaratã,</p>
+<p>O que faz o seu exemplo funcionar não é o fato do módulo ser __compilado__ apenas uma vez e sim que ele só é __lido/executado__ uma vez, sendo ele mesmo um singleton.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-345">
+		<div id="comment-345">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7c197c9bbfa7e90995b0043a4a045c2d?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7c197c9bbfa7e90995b0043a4a045c2d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.yguarata.org' rel='external nofollow' class='url'>yguaratã</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-345">
+				07/05/2007 at 07:19</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>É o que meu comentário diz: &#8220;&#8230;quando importados&#8230;&#8221;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-346">
+		<div id="comment-346">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/d905986f46f52f2cef7fdc7e057e99aa?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d905986f46f52f2cef7fdc7e057e99aa?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Bruno Tikami</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-346">
+				24/03/2008 at 23:48</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá Osvaldo,</p>
+<p>tomei a liberdade de usar este código que você postou na minha aplicação e hoje me deparei com uma situação interessante:</p>
+<p>quando crio uma nova instância, a parte do método __new___ funciona normalmente mas ainda assim o método __init__ da  classe é chamado&#8230; É possível evitar isso ?</p>
+<p>Obrigado,</p>
+<p>Tkm</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-347">
+		<div id="comment-347">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.ademar.org/' rel='external nofollow' class='url'>Ademar Reis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/03/python-singleton/#comment-347">
+				15/07/2008 at 16:58</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>O melhor exemplo de implementação de singleton que eu encontrei foi no texto sobre meta-classes do GVR: <a href="http://www.python.org/download/releases/2.2.3/descrintro/" rel="nofollow">http://www.python.org/download/releases/2.2.3/descrintro/</a></p>
+<p>Não sei se vai ficar direito no comentário aqui do wordpress, mas aí vai a minha implementação com base no exemplo do texto:</p>
+<p>class Singleton(object):<br />
+    def __new__(cls, *args, **kwds):<br />
+        it = cls.__dict__.get(&#8220;__it__&#8221;)<br />
+        if it is not None:<br />
+            return it<br />
+        cls.__it__ = it = object.__new__(cls)<br />
+        it.__1st_init__(*args, **kwds)<br />
+        return it<br />
+    def __1st_init__(self, *args, **kwds):<br />
+        pass</p>
+<p>class FoobarTon(Singleton):<br />
+    def __1st_init__(self):<br />
+        print &#8220;calling __1st_init__&#8221;<br />
+        self.x = 0<br />
+    def __init__(self):<br />
+        print &#8220;calling __init__&#8221;<br />
+    def inc(self):<br />
+        self.x += 1</p>
+<p>print &#8220;FoobarTon&#8221;<br />
+f1 = FoobarTon()<br />
+f2 = FoobarTon()<br />
+f3 = FoobarTon()<br />
+f1.inc();<br />
+f2.inc();<br />
+f3.inc();</p>
+<p>print &#8220;f1 is fs2: %s&#8221; % str(f1 is f2)<br />
+print &#8220;f1 is fs3: %s&#8221; % str(f1 is f3)<br />
+print &#8220;f3.x: %d&#8221; % f3.x</p>
+<p>Anyway, esse código tá no meu junk-code: <a href="http://svn.ademar.org/code/trunk/junk-code/" rel="nofollow">http://svn.ademar.org/code/trunk/junk-code/</a> (é o último exemplo do singleton_vs_borg.py).</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.502 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-24 09:01:50 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

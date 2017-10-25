@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>C, C++: Funções com número variável de parâmetros (stdargs) | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; C, C++: Funções com número variável de parâmetros (stdargs) Comments Feed" href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='PHP: Cortando strings (substr)' href='http://codare.net/2007/05/22/php-cortando-strings-substr/' />
+<link rel='next' title='PHP: Atribuição condicional (ternário)' href='http://codare.net/2007/06/06/php-atribuicao-condicional-ternario/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/" />
+<link rel='shortlink' href='http://codare.net/?p=154' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F23%2Fc-cpp-funcoes-com-numero-variavel-de-parametros-stdargs%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F23%2Fc-cpp-funcoes-com-numero-variavel-de-parametros-stdargs%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-154 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/" rel="prev"><span class="meta-nav">&larr;</span> PHP: Cortando strings (substr)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/06/06/php-atribuicao-condicional-ternario/" rel="next">PHP: Atribuição condicional (ternário) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-154" class="post-154 post type-post status-publish format-standard hentry category-c category-cpp">
+					<h1 class="entry-title">C, C++: Funções com número variável de parâmetros (stdargs)</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/" title="09:30" rel="bookmark"><span class="entry-date">23/05/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/kojima/" title="View all posts by Alfredo Kojima">Alfredo Kojima</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: C, C++, varargs, argumentos variáveis</p>
+<p>Para escrever funções que aceitam quantidade variável de parâmetros, usa-se o mecanismo de stdargs do C. Para isso coloca-se &#8220;&#8230;&#8221; como último parâmetro na declaração da função e depois usa-se as funções de <i>stdarg.h</i> para acessar os valores passados quando a funcão é chamada.</p>
+<ul>
+<li>
+<p>É obrigatório a inclusão de pelo menos um parâmetro normal antes da parte variável. (ex.: <code>char *concat(<b>const char *s</b>, ...)</code>) </li>
+<li>
+<p>Qualquer tipo de valor pode ser passado como parâmetro, mas é impossível determinar em runtime o tipo dos valores que uma função recebeu. Porém é possível criar formas de o código que chama a funcão comunicar os tipos dos valores passados. Por exemplo, a função printf() determina os tipos dos parâmetros recebidos pela <i>string</i> de formatação (%s para char*, %i para int etc); a função <code>concat()</code> no exemplo espera que todos os parâmetros recebidos sejam strings e assim por diante.
+</li>
+<li>
+<p>O número de parâmetros recebido também não pode ser determinado explicitamente. É necessário usar artifícios adicionais como passar uma variável extra com o número de valores sendo passados, usar o valor NULL como indicador de último  parâmetro ou derivar a quantidade de valores a partir da string de formatação, como no caso do printf() e similares.
+</li>
+</ul>
+<p>Exemplo:</p>
+<pre>
+#include &lt;stdarg.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+char *concat(const char *s, ...)
+{
+  va_list args;
+  char *tmp;
+  char *res;
+  size_t len= strlen(s);
+
+  // pega um handle ao início da lista de parâmetros
+  va_start(args, s);
+
+  // calcula o tamanho total de todas as strings
+  // pega o próximo parâmetro da lista, até chegar no NULL
+  while ((tmp= va_arg(args, char*)))  {
+     len+= strlen(tmp);
+  }
+
+  va_end(args);
+  res= malloc(len+1);
+  if (!res) return NULL;
+
+  // cria a string concatenada
+  strcpy(res, s);
+  va_start(args, s);
+
+  // pega o próximo parâmetro da lista, até chegar no NULL
+  while ((tmp= va_arg(args, char*)))  {
+     strcat(res, tmp);
+  }
+  va_end(args);
+
+  return res;
+}
+
+int main()
+{
+  char *s= concat("hello", " ", "world", "!!!!", NULL);
+  puts(s);
+  free(s);
+  return 0;
+}
+
+</pre>
+<p>Se você quer usar <b>macros</b> com número de parâmetros variável (por exemplo, uma macro que chama uma função com stdargs), veja <a href="/2007/01/03/c-varargs-com-macros-no-gcc/">o post sobre o assunto</a>.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>, <a href="http://codare.net/category/cpp/" rel="category tag">CPP</a>. Bookmark the <a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/" title="Permalink to C, C++: Funções com número variável de parâmetros (stdargs)" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/" rel="prev"><span class="meta-nav">&larr;</span> PHP: Cortando strings (substr)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/06/06/php-atribuicao-condicional-ternario/" rel="next">PHP: Atribuição condicional (ternário) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">6 Responses to <em>C, C++: Funções com número variável de parâmetros (stdargs)</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-370">
+		<div id="comment-370">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.ademar.org' rel='external nofollow' class='url'>Ademar Reis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-370">
+				23/05/2007 at 23:13</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Kojima: s/#include /#include /</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-371">
+		<div id="comment-371">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5d5d11a9da0108bfca46d661095677dd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.ademar.org' rel='external nofollow' class='url'>Ademar Reis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-371">
+				23/05/2007 at 23:14</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Errr, maldito wordpress comendo os &gt; e &lt; dos comentários. Corrigindo:</p>
+<p>Kojima: s/#include &lt;stdargs&gt;/#include &lt;stdarg&gt;/</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-372">
+		<div id="comment-372">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2d84606711342b99b23eb2c02f13ac5d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://codare.wordpress.com/' rel='external nofollow' class='url'>Alfredo Kojima</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-372">
+				24/05/2007 at 09:13</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ops, obrigado pelo toque.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-373">
+		<div id="comment-373">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/1982cecb4af8d5c1bb426f69ce808ffb?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1982cecb4af8d5c1bb426f69ce808ffb?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">cezeiro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-373">
+				29/05/2007 at 08:31</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Morreu novamente ?<br />
+/me Tentando manter esse ótimo site ativo &#8230;. :)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-374">
+		<div id="comment-374">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f031a110cfa3b2605dd5797d7d4015d2?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Adenilson Cavalcanti</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-374">
+				31/05/2007 at 13:27</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Alfredo</p>
+<p>Belo post, acho que complementa o anterior&#8230; agora usar strlen/strcat não é considerado &#8216;herético&#8217;? Heheheheh&#8230;</p>
+<p>Vai uma dica de gcc:<br />
+pragma GCC poison strlen strcpy sprintf</p>
+<p>Abraços</p>
+<p>Adenilson</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-375">
+		<div id="comment-375">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://raisama.net' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/#comment-375">
+				01/06/2007 at 10:14</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Adenilson: não vejo qual seria o problema com o strlen(). E se a gente já sabe que o tamanho do buffer é suficiente (como no código acima), também não vejo problema com strcat() e strcpy().</p>
+<p>sprintf() até entendo, já que é difícil ter certeza que a string resultante realmente vá caber.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.344 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 23:43:29 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

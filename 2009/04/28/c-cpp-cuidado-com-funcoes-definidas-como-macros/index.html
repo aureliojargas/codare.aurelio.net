@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>C, C++: Cuidado com funções definidas como macros | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; C, C++: Cuidado com funções definidas como macros Comments Feed" href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='C, C++: Usando a seção de dados' href='http://codare.net/2009/04/20/c-cpp-usando-a-secao-de-dados/' />
+<link rel='next' title='Shell: Obter o IP da interface de rede' href='http://codare.net/2009/04/29/shell-obter-o-ip-da-interface-de-rede/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/" />
+<link rel='shortlink' href='http://codare.net/?p=302' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2009%2F04%2F28%2Fc-cpp-cuidado-com-funcoes-definidas-como-macros%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2009%2F04%2F28%2Fc-cpp-cuidado-com-funcoes-definidas-como-macros%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-302 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2009/04/20/c-cpp-usando-a-secao-de-dados/" rel="prev"><span class="meta-nav">&larr;</span> C, C++: Usando a seção de dados</a></div>
+					<div class="nav-next"><a href="http://codare.net/2009/04/29/shell-obter-o-ip-da-interface-de-rede/" rel="next">Shell: Obter o IP da interface de rede <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-302" class="post-302 post type-post status-publish format-standard hentry category-c category-cpp tag-c tag-caveats tag-funcoes tag-gotchas tag-inline tag-macro">
+					<h1 class="entry-title">C, C++: Cuidado com funções definidas como macros</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/" title="10:10" rel="bookmark"><span class="entry-date">28/04/2009</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/tmpsantos/" title="View all posts by Thiago Marcos Santos">Thiago Marcos Santos</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Imagine uma função definida em uma macro que faça a potência de dois de um determinado número. Ela poderia ser definida da seguinte forma:</p>
+<pre>#define quadrado(n) \
+    n * n</pre>
+<p>Acontece que o comportamento, dependendo dos parâmetros, nem sempre é o esperado. Veja o que acontece no exemplo a seguir:</p>
+<pre>int main(void)
+{
+    int a = 2;
+
+    printf("%d\n", quadrado(a)); // Imprime 4
+
+    printf("%d\n", quadrado(a + 1)); // Imprime 5
+
+    return 0;
+}</pre>
+<p>A expansão da macro quadrado(a + 1), resultou a seguinte expressão:</p>
+<pre>a + 1 * a + 1
+2 + 1 * 2 + 1 // Substituindo os valores de a
+2 + 2 + 1 // Obedecendo a precedência dos operadores
+5</pre>
+<p>Neste caso, para resolver o problema a sugestão seria usar uma função inline, que assim como a macro, poupa uma chamada de função mas se comporta como uma função convencional.</p>
+<pre>inline int quadrado(int n) {
+    return n * n;
+}</pre>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/c/" rel="category tag">C</a>, <a href="http://codare.net/category/cpp/" rel="category tag">CPP</a> and tagged <a href="http://codare.net/tag/c/" rel="tag">C</a>, <a href="http://codare.net/tag/caveats/" rel="tag">caveats</a>, <a href="http://codare.net/tag/funcoes/" rel="tag">funções</a>, <a href="http://codare.net/tag/gotchas/" rel="tag">gotchas</a>, <a href="http://codare.net/tag/inline/" rel="tag">inline</a>, <a href="http://codare.net/tag/macro/" rel="tag">macro</a>. Bookmark the <a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/" title="Permalink to C, C++: Cuidado com funções definidas como macros" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2009/04/20/c-cpp-usando-a-secao-de-dados/" rel="prev"><span class="meta-nav">&larr;</span> C, C++: Usando a seção de dados</a></div>
+					<div class="nav-next"><a href="http://codare.net/2009/04/29/shell-obter-o-ip-da-interface-de-rede/" rel="next">Shell: Obter o IP da interface de rede <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>C, C++: Cuidado com funções definidas como macros</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-486">
+		<div id="comment-486">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/bb21b27fe43fac2f302cdf3bfc59a6e9?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bb21b27fe43fac2f302cdf3bfc59a6e9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://pacman.blog.br' rel='external nofollow' class='url'>Tiago Peczenyj</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-486">
+				28/04/2009 at 10:37</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Isso se deve ao fato das macros em C serem &#8220;meras&#8221; substituições textuais.</p>
+<p>Agora, alguns compiladores, como o gcc, otimizam as funções de forma a usar inline sempre que possivel. Vc pode observar compilando 2 arquivos com as mesmas funções e um deles usando inline explicito &#8211; geram codigo executavel igual (mesmo tamanho, md5, etc). Agora o g++ gera codigo diferente sim.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-487">
+		<div id="comment-487">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dfd7b9492f5c5e49dca373bfdd7a3b1a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.inf.ufsm.br/~eljunior' rel='external nofollow' class='url'>eljunior</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-487">
+				28/04/2009 at 11:03</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>por isso que o adequado é botar os códigos das macros entre parênteses:</p>
+<p>#define quadrado(n) ((n) * (n))</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2" id="li-comment-488">
+		<div id="comment-488">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b0cc38b3fd34093be7be0818d07c37ac?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b0cc38b3fd34093be7be0818d07c37ac?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.tmpsantos.com.br' rel='external nofollow' class='url'>Thiago Marcos P. Santos</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-488">
+				28/04/2009 at 11:45</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Não resolveria completamente o problema, caso a função fosse chamada como: quadrado(n&#8211;). Neste caso, n seria decrementado duas vezes.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3" id="li-comment-491">
+		<div id="comment-491">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/57cd99746126aa0518136a4271f1f9c1?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/57cd99746126aa0518136a4271f1f9c1?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://twitter.com/_Felipe' rel='external nofollow' class='url'>_Felipe</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-491">
+				28/04/2009 at 22:29</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pois é ;-)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-489">
+		<div id="comment-489">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/64390c78d6a5eb8b591ed80e5b1c78fc?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/64390c78d6a5eb8b591ed80e5b1c78fc?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.gustavobarbieri.com.br' rel='external nofollow' class='url'>Gustavo Sverzut Barbieri</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-489">
+				28/04/2009 at 19:54</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Como foi bem escrito pelo kernel hacker &#8220;Rusty&#8221; Russel em seu post &#8220;Valid Uses of Macros&#8221;, elas tem alguma função, mas em geral é bem menor do que a maioria dos usuários costuma pensar.</p>
+<p>Uma função como a do exemplo deveria ser &#8220;static inline&#8221;. Isto evitaria todos os problemas citados anteriormente, como avaliação parcial e reavaliação dos argumentos.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-490">
+		<div id="comment-490">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/64390c78d6a5eb8b591ed80e5b1c78fc?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/64390c78d6a5eb8b591ed80e5b1c78fc?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://blog.gustavobarbieri.com.br' rel='external nofollow' class='url'>Gustavo Sverzut Barbieri</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-490">
+				28/04/2009 at 19:55</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p><a href="http://ozlabs.org/~rusty/index.cgi/tech/2009-03-13.html" rel="nofollow">http://ozlabs.org/~rusty/index.cgi/tech/2009-03-13.html</a> faltou o link pro post do Rusty.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-492">
+		<div id="comment-492">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/26488a105af7db00ea8e870aebed57b5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://murilo.wordpress.com' rel='external nofollow' class='url'>Murilo Adriano</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-492">
+				24/05/2009 at 22:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Esse negócio de funções por macro nunca deram muito certo.<br />
+O que rola é usar inline mesmo.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-493">
+		<div id="comment-493">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/fb54e32b963aa37674bd95d9d1b5d334?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/fb54e32b963aa37674bd95d9d1b5d334?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://coster.wait4.org/' rel='external nofollow' class='url'>Coster</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2009/04/28/c-cpp-cuidado-com-funcoes-definidas-como-macros/#comment-493">
+				26/05/2009 at 22:17</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>É bom lembrar que inline é apenas um hint pro compilador, e que sua presença não garante que a função será &#8220;inlinezinada&#8221;.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.564 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-24 10:02:11 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Javascript: Executando scripts após o carregamento da página | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Javascript: Executando scripts após o carregamento da página Comments Feed" href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='C, C++: Obter macros definidas pelo pré-processador' href='http://codare.net/2007/09/06/c-cpp-obter-macros-definidas-pelo-pre-processador/' />
+<link rel='next' title='PHP: Interceptar métodos inexistentes (__call)' href='http://codare.net/2007/09/28/php-interceptar-metodos-inexistentes-__call/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/" />
+<link rel='shortlink' href='http://codare.net/?p=170' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F09%2F15%2Fjavascript-executando-scripts-apos-o-carregamento-da-pagina%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F09%2F15%2Fjavascript-executando-scripts-apos-o-carregamento-da-pagina%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-170 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/09/06/c-cpp-obter-macros-definidas-pelo-pre-processador/" rel="prev"><span class="meta-nav">&larr;</span> C, C++: Obter macros definidas pelo pré-processador</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/09/28/php-interceptar-metodos-inexistentes-__call/" rel="next">PHP: Interceptar métodos inexistentes (__call) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-170" class="post-170 post type-post status-publish format-standard hentry category-javascript">
+					<h1 class="entry-title">Javascript: Executando scripts após o carregamento da página</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/" title="09:50" rel="bookmark"><span class="entry-date">15/09/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/mhoshi/" title="View all posts by Masaru Hoshi">Masaru Hoshi</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: DEFER, onLoad, body, carregamento</p>
+<p>O problema é clássico. Você tem uma função/método e deseja que ele seja chamado apenas após o carregamento da página pois esse script interage com algum elemento da página que precisa estar completamente renderizado para poder ser manipulado. Vejamos o exemplo a seguir que muda um objeto do tipo input text para apenas leitura:</p>
+<pre>&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+function setDisabled() {
+  document.getElementById("foo").disabled = true;
+}
+// Chamada da função
+setDisabled();
+&lt;/script&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+    &lt;form method="post"&gt;
+      &lt;input type="text" name="foo" id="foo" size="20"&gt;
+      &lt;input type="submit"&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+<p>Inicialmente esse exemplo deveria ser o suficiente para funcionar. Contudo, não podemos considerar que toda a página será carregada de uma única vez. Caso isso aconteça, quando a função for chamada campo o input pode não ter sido carregado. Resultado: você terá um erro de script.</p>
+<p>Existem várias saídas para esse tipo de situação. A mais conhecida é incluir a chamada da função pelo método onLoad da tag body ao invés de executá-lo dentro do bloco &lt;script&gt;:</p>
+<pre>&lt;body onLoad="setDisabled()"&gt;</pre>
+<p>Mas pode não ser suficiente caso você tenha muitos mais funções a serem chamadas. Outra saída seria incluir o bloco <code>&lt;script&gt;</code> no final do código, mas isso foge um pouco do padrão do W3C de incluir todos os <code>&lt;scripts&gt;</code> entre as tags <code>&lt;head&gt;</code>. A saída para esse problema é a utilização de um atributo pouco conhecido da tag <code>&lt;script&gt;</code>, o <strong><code>DEFER</code></strong>.</p>
+<p>O <strong><code>DEFER</code></strong> indica que o bloco script só será carregado após todo o carregamento da página. Dessa forma, para que o primeiro exemplo apresentado funcione bastaria alterá-lo para incluir o atributo:</p>
+<pre>&lt;script type="text/javascript" <strong>DEFER="DEFER"</strong>&gt;
+function setDisabled() {
+  document.getElementById("foo").disabled = true;
+}
+
+// Chamada da função
+setDisabled();
+&lt;/script&gt;</pre>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/javascript/" rel="category tag">JavaScript</a>. Bookmark the <a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/" title="Permalink to Javascript: Executando scripts após o carregamento da página" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/09/06/c-cpp-obter-macros-definidas-pelo-pre-processador/" rel="prev"><span class="meta-nav">&larr;</span> C, C++: Obter macros definidas pelo pré-processador</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/09/28/php-interceptar-metodos-inexistentes-__call/" rel="next">PHP: Interceptar métodos inexistentes (__call) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">32 Responses to <em>Javascript: Executando scripts após o carregamento da página</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-414">
+		<div id="comment-414">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://raisama.net' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-414">
+				15/09/2007 at 13:51</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Fiquei curioso: que padrão do W3C recomenda incluir os scripts entre as tags head?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-145583">
+		<div id="comment-145583">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dbfc8cc9e608126bf68fb295c25655a0?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dbfc8cc9e608126bf68fb295c25655a0?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Tiago</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-145583">
+				21/01/2015 at 01:41</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Isso se deve ao fato que após o  o HTML deveria de ser apenas um arquivo XML por milhares de razões.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-145584">
+		<div id="comment-145584">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dbfc8cc9e608126bf68fb295c25655a0?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dbfc8cc9e608126bf68fb295c25655a0?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Tiago</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-145584">
+				21/01/2015 at 01:42</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>&#8230;. entre dos dois &#8220;ós&#8221; do comentário, existia uma tag [body].</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2" id="li-comment-174385">
+		<div id="comment-174385">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/73999f056af01f896923a71a259e4c35?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/73999f056af01f896923a71a259e4c35?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Daniel</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-174385">
+				13/08/2015 at 16:18</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Se ta com vontade de ensinar cria um blog pra você e para de encher no dos outros&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-415">
+		<div id="comment-415">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/22930bd77cd33dc653894e77c0fd28c4?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/22930bd77cd33dc653894e77c0fd28c4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://mailson.wordpress.com/' rel='external nofollow' class='url'>Mailson</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-415">
+				15/09/2007 at 21:55</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bastante interessante isso e muito melhor que colocar a definição do script no final da página. Principalmente se você costuma separar o Java Script do código.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-416">
+		<div id="comment-416">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/8e87db536597b01a4a3c95def4ad1c8f?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/8e87db536597b01a4a3c95def4ad1c8f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hoshi.com.br' rel='external nofollow' class='url'>Masaru Hoshi</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-416">
+				16/09/2007 at 21:30</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá Eduardo.</p>
+<p>Pelo menos é o que eu entendi até hoje. Pelo que pude ler na especificação do HTML 4.01, o W3C recomenda que, caso seja necessário incluir tags &lt;SCRIPT&gt; que elas sejam incluídas como nodos filhos do HEAD.</p>
+<p><a href="http://www.w3.org/TR/html401/struct/global.html#h-7.4" rel="nofollow">http://www.w3.org/TR/html401/struct/global.html#h-7.4</a></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-417">
+		<div id="comment-417">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/41f66d0289b4f1317755527ba432fd38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://raisama.net' rel='external nofollow' class='url'>Eduardo Habkost</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-417">
+				16/09/2007 at 21:52</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Não consegui encontrar na especificação onde está a recomendação de que os scripts estejam no head e não no body.</p>
+<p>Vi que o body também pode ter tags script dentro dele (<a href="http://www.w3.org/TR/html401/struct/global.html#h-7.5.1" rel="nofollow">http://www.w3.org/TR/html401/struct/global.html#h-7.5.1</a>). Só não encontrei nada que recomendasse usar o head e não o body, ou que comparasse as duas possibilidades.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-30835">
+		<div id="comment-30835">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/df6a74d81a969e455fa6e1eb7c610946?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/df6a74d81a969e455fa6e1eb7c610946?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Anisio</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-30835">
+				20/12/2012 at 12:06</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Cara se você não tem o que fazer, então não enche o saco, quem é você para querer criticar? </p>
+<p>MUITO AJUDA QUEM NÃO ATRAPALHA!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-41083">
+		<div id="comment-41083">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/cb00132c9d5e00ae1172e187f69c094b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/cb00132c9d5e00ae1172e187f69c094b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fernando</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-41083">
+				13/05/2013 at 20:29</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>rs,<br />
+de acordo..<br />
+o pessoal viaja feio..</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-4" id="li-comment-50611">
+		<div id="comment-50611">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/4c937661dc06b46b541d3e6ccdc19687?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4c937661dc06b46b541d3e6ccdc19687?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">guilherme nascimento (BrContainer)</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-50611">
+				04/10/2013 at 10:50</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Resposta de 2007 e 2012, você usou o delorean?</p>
+<p>Sobre o comentário do &#8220;Eduardo Habkost&#8221; eu só vi uma critica construtiva, não tem nada de maldade nisso.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-5" id="li-comment-50612">
+		<div id="comment-50612">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/4c937661dc06b46b541d3e6ccdc19687?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4c937661dc06b46b541d3e6ccdc19687?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">guilherme nascimento (BrContainer)</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-50612">
+				04/10/2013 at 10:50</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>ps.: defer não é a melhor pratica atualmente, existem técnicas melhores.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2" id="li-comment-174384">
+		<div id="comment-174384">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/73999f056af01f896923a71a259e4c35?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/73999f056af01f896923a71a259e4c35?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Daniel</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-174384">
+				13/08/2015 at 16:15</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Velho todo mundo que tem um pingo de bom senso, sabe que deve ser assim, mas os gambiarreros diram que não tem nada a ver&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-2" id="li-comment-192458">
+		<div id="comment-192458">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/0ede6a3a4274628535c3f74c4552922b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0ede6a3a4274628535c3f74c4552922b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fabio</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-192458">
+				04/12/2016 at 12:43</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Se vc colocar o script dentro da head, é executado antes de carregar a pág, e se colocar na body executa durante o carregamento, fica a seu critério e necessidade.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-418">
+		<div id="comment-418">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/cb1a5f524864e4866b7c60899b2a3be5?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/cb1a5f524864e4866b7c60899b2a3be5?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.xandrix.com.br' rel='external nofollow' class='url'>Alexandro</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-418">
+				17/09/2007 at 11:24</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito boa esta dica!!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-419">
+		<div id="comment-419">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/6cc88f868173288ea0f15e7f41cdfd05?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6cc88f868173288ea0f15e7f41cdfd05?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://willianfernandes.com.br' rel='external nofollow' class='url'>Willian Fernandes</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-419">
+				18/09/2007 at 14:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pessoal,<br />
+não é mais recomendado utilizar o atributo onload da tag body. Para realmente funcionar, façam assim (em qualquer lugar da página).</p>
+<p>window.onload = function () {<br />
+    nomeDaFuncao1();<br />
+    nomeDaFuncao2();<br />
+    nomeDaFuncao3();<br />
+}</p>
+<p>Ow, se quiser melhorar mais ainda utilizar a função addEvent (<a href="http://www.metzen.com.br/freedom/" rel="nofollow">http://www.metzen.com.br/freedom/</a>):<br />
+addEvent(window, &#8220;load&#8221;, &#8220;nomeDaFuncao1&#8221;);<br />
+addEvent(window, &#8220;load&#8221;, &#8220;nomeDaFuncao2&#8221;);<br />
+addEvent(window, &#8220;load&#8221;, &#8220;nomeDaFuncao3&#8221;);</p>
+<p>E lembre-se, todos os nomes de atributos de tags devem ser escritos em minúsculo:<br />
+onClick = ERRADO<br />
+onclick = CORRETO</p>
+<p>Abraços,</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-28320">
+		<div id="comment-28320">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/65badc443549abe20d9153ecb841d60a?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/65badc443549abe20d9153ecb841d60a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Marcos Costa Junior</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-28320">
+				18/11/2012 at 11:13</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>deu certo, com o comando nativo javascript indicado<br />
+<code><br />
+window.onload = function () {<br />
+	atualiza_calculos();<br />
+}<br />
+</code><br />
+Estava usando o jquery,  talvez por não  conhecer a opção para fazer algo  no jquery<br />
+<code><br />
+// DOM READY<br />
+$(function() {<br />
+atualiza_calculos();<br />
+}<br />
+</code></p>
+<p>Obrigado.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-420">
+		<div id="comment-420">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e226035657886399593fda061876222a?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e226035657886399593fda061876222a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Chan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-420">
+				19/09/2007 at 14:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bem não conhecia o atributo&#8230;.<br />
+Teste aqui e não funcionou&#8230;.. nem no IE nem no FF<br />
+Alguém ae testou ????</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-421">
+		<div id="comment-421">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/522008a16f639210ca80d5253d0ab6cd?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/522008a16f639210ca80d5253d0ab6cd?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://nerdson.com/' rel='external nofollow' class='url'>Karlisson</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-421">
+				27/09/2007 at 19:23</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Não tenho certeza, mas esse atributo não funciona no FF nem no Opera.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-422">
+		<div id="comment-422">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a96dfaf4b5e9d2b8b9af9c2bad79786e?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a96dfaf4b5e9d2b8b9af9c2bad79786e?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eric</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-422">
+				03/10/2007 at 18:54</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>O Dreamweaver &#8216;conhece&#8217; o atributo, mas parece que não funciona não&#8230;</p>
+<p>Tentei usar no meu problema mas não mudou nada&#8230;</p>
+<p>Depois farei uns testes isolados pra ver qual é a dessa defer&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-423">
+		<div id="comment-423">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/ac750591ef742772e8b46abb77d369ad?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ac750591ef742772e8b46abb77d369ad?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Anonimo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-423">
+				19/10/2007 at 21:18</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Testei e não funcionou no FF.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-424">
+		<div id="comment-424">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7a38ed60ae07839b8555438a898abd7b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://matheuseduardo.com/blog' rel='external nofollow' class='url'>matheuseduardo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-424">
+				25/10/2007 at 13:47</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Esse atributo (infelizmente) só funciona no Internet ExploDer!.. Digo.. não funciona no FF&#8230; e acho q no Safari também não.</p>
+<p>Há poucos dei uma pesquisada na internet&#8230; Tem até uma página que verifica, mostrando a ordem de execução com scripts em vários locais.</p>
+<p>Abraço!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-426">
+		<div id="comment-426">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2293470f2b62f05ea0fb04a6be06bd53?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2293470f2b62f05ea0fb04a6be06bd53?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.felipeuchoa.com/' rel='external nofollow' class='url'>Felipe Uchôa</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-426">
+				13/01/2008 at 01:41</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá! Obrigado! Funcionou aqui, nos IE&#8217;s antigos! Obrigado!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-427">
+		<div id="comment-427">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/b7af22ea4759787278fa9a1020347592?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/b7af22ea4759787278fa9a1020347592?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.investmax.com.br' rel='external nofollow' class='url'>InvestMax</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-427">
+				25/09/2009 at 12:55</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>simples e funcional,<br />
+resolveu numa boa. Como o problema era só no ie mesmo, resolveu<br />
+grato</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-428">
+		<div id="comment-428">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/05ac766b76189e3057f70387d7814898?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/05ac766b76189e3057f70387d7814898?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.trudelmer.com.br' rel='external nofollow' class='url'>Trudelmer</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-428">
+				25/02/2010 at 08:59</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá a todos, estou com o seguinte problema:<br />
+Tenho um  function teste(texto)<br />
+{alert(texto);return true;} dentro de uma arquivo carregado<br />
+na página via ajax, no fim desse mesmo arquivo eu tenho <a href="#" rel="nofollow">AQUI</a> mas isso não funciona. Ao clicar<br />
+da o seguinte erro (firebug) &#8220;teste is not defined&#8221;, isso é evidente,<br />
+o objeto chamado não existe, so funciona se eu colocar no ,<br />
+existe solução para isso? ou seja, é possível manter um<br />
+dentro de um arquivo carregado via ajax e &#8220;??declarar ou definir??&#8221;<br />
+ele (seus objetos) para que fique disponível para toda a página? Já<br />
+procurei de tudo na internet e já testei muita coisa mas nada<br />
+funcionou.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-429">
+		<div id="comment-429">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/198124ce55642c5abe3fca852a7fc612?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/198124ce55642c5abe3fca852a7fc612?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://adorilson.wordpress.com' rel='external nofollow' class='url'>adorilson</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-429">
+				31/03/2010 at 14:38</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Só funciona no IE, mesmo: <a href="http://www.w3schools.com/tags/att_script_defer.asp" rel="nofollow">http://www.w3schools.com/tags/att_script_defer.asp</a></p>
+<p>Ou sejam, não usem. ;)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-430">
+		<div id="comment-430">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e703a41d6ed925b6f5cf44e64d3cdfd1?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e703a41d6ed925b6f5cf44e64d3cdfd1?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.osnysantos.com.br' rel='external nofollow' class='url'>Osny Santos Netto</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-430">
+				05/05/2010 at 16:24</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Not work in FF: <a href="http://developer.yahoo.com/performance/rules.html#js_bottom" rel="nofollow">http://developer.yahoo.com/performance/rules.html#js_bottom</a></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-431">
+		<div id="comment-431">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/6c66a9d7d247a5ccf18386d9c5ac13ff?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6c66a9d7d247a5ccf18386d9c5ac13ff?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.szdesign.com.br' rel='external nofollow' class='url'>Rodrigo Scrideli de Oliveira</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-431">
+				04/07/2010 at 11:16</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Se for fugir dos padrões da W3C, acho melhor mesmo continuar entre a tag head os códigos JS</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1620">
+		<div id="comment-1620">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5bb45b99d67024f46f7beb67ba99c321?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5bb45b99d67024f46f7beb67ba99c321?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.claitonwd.com.br' rel='external nofollow' class='url'>Claiton</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-1620">
+				20/02/2011 at 02:42</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Só para constar. A recomendação colocar Javascript dentro da tag é antiga mas ainda é valida. O motivo é que em navegadores sem suporte a Javascript o código apareceria na tela.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-50183">
+		<div id="comment-50183">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/8d91dbb7569ad0f223fa9667ee957941?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/8d91dbb7569ad0f223fa9667ee957941?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.curtiaqui.com.br/' rel='external nofollow' class='url'>Daniel Cofres</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-50183">
+				27/09/2013 at 20:38</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Esse scripts ele execulta automático  tipo ele abre um link automaticamente ?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-52217">
+		<div id="comment-52217">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/59d39da06f4d2bad3f10a42dc816bf38?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/59d39da06f4d2bad3f10a42dc816bf38?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">sergio</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-52217">
+				28/10/2013 at 17:34</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p><a href="http://www.w3schools.com/tags/att_script_defer.asp" rel="nofollow">http://www.w3schools.com/tags/att_script_defer.asp</a><br />
+Note: The defer attribute is only for external scripts (should only be used if the src attribute is present).</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-192785">
+		<div id="comment-192785">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7183f96d9ae8723c4e67f5d256d18391?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7183f96d9ae8723c4e67f5d256d18391?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='https://www.facebook.com/manckenna' rel='external nofollow' class='url'>Antonio Carlos Gomes</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-192785">
+				02/01/2017 at 21:57</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Sugiro , pesadamente , que todos leiam  JavaScript a Bíblia (Português), página 45 , início do capítulo 5 , &#8220;Onde os scripts entram no documento HTML&#8221;, pra quem não tem o livro aqui vai uma colher de chá ..em inglês&#8230;<br />
+file:///C:/Users/acgen/MeusEstudosTecnologia30.12.2016/JavaSdcriptBilblia/javascript_bible.pdf</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-192786">
+		<div id="comment-192786">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7183f96d9ae8723c4e67f5d256d18391?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7183f96d9ae8723c4e67f5d256d18391?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='https://www.facebook.com/manckenna' rel='external nofollow' class='url'>Antonio Carlos Gomes</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/09/15/javascript-executando-scripts-apos-o-carregamento-da-pagina/#comment-192786">
+				02/01/2017 at 22:16</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Sei que é difícil isso , mas quem sabe se alguém de BOM CORAÇÃO, não tem o CD do livro JavaScript a Bíblia , para me enviar&#8230;pois comprei o livro, e eles não enviaram o CD &#8230;&#8230;<br />
+<a href="https://www.facebook.com/manckenna" rel="nofollow">https://www.facebook.com/manckenna</a></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.425 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 21:16:41 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

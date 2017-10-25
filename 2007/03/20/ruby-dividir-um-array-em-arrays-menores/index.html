@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Ruby: Dividir um array em arrays menores | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Ruby: Dividir um array em arrays menores Comments Feed" href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Python: Listagem com cores alternadas (zebra)' href='http://codare.net/2007/03/16/python-listagem-com-cores-alternadas-zebra/' />
+<link rel='next' title='Python: Fazer switch/case com dicionários' href='http://codare.net/2007/03/22/python-fazer-switch-case-com-dicionarios/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/" />
+<link rel='shortlink' href='http://codare.net/?p=136' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F03%2F20%2Fruby-dividir-um-array-em-arrays-menores%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F03%2F20%2Fruby-dividir-um-array-em-arrays-menores%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-136 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/03/16/python-listagem-com-cores-alternadas-zebra/" rel="prev"><span class="meta-nav">&larr;</span> Python: Listagem com cores alternadas (zebra)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/03/22/python-fazer-switch-case-com-dicionarios/" rel="next">Python: Fazer switch/case com dicionários <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-136" class="post-136 post type-post status-publish format-standard hentry category-ruby">
+					<h1 class="entry-title">Ruby: Dividir um array em arrays menores</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/" title="09:00" rel="bookmark"><span class="entry-date">20/03/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/taq/" title="View all posts by Eustáquio Rangel (TaQ)">Eustáquio Rangel (TaQ)</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: Ruby, array, divide</p>
+<p>
+Suponha que você tenha um array de X elementos e precise dividi-lo em arrays com Y elementos cada. A flexibilidade de Ruby nos permite definir operadores novos para as classes, então vamos criar um operador de dividir (<tt>/</tt>) para a classe <tt>Array</tt>:
+</p>
+<pre>
+class Array
+   def / len
+     inject([]) do |ary, x|
+       ary &lt;&lt; [] if [*ary.last].nitems % len == 0
+       ary.last &lt;&lt; x
+       ary
+     end
+   end
+end
+</pre>
+<p>
+Vamos rodar agora com alguns arrays para ver o que aconteceu:
+</p>
+<pre>
+p (1..10).to_a / 2
+=&gt; [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
+p %w(hiro ando nikki jessica sylar) / 2
+=&gt; [["hiro", "ando"], ["nikki", "jessica"], ["sylar"]]
+p (1..10).to_a / 4
+=&gt; [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
+</pre>
+<p>
+Vamos analisar cada caso:
+</p>
+<ol>
+<li>Aqui temos um array de 10 elementos e dividimos por 2, retornando vários arrays com 2 elementos.</li>
+<li>Aqui temos um array ímpar de 5 elementos que dividimos por 2, retornando dois arrays com 2 elementos e um último com apenas um elemento (deixa aquele cara longe!).</li>
+<li>Aqui temos um array de 10 elementos que é dividido por 4, retornando dois arrays com 4 elementos e um último array com 2 elementos.</li>
+</ol>
+<p>Ou seja, sempre que o resultado da divisão não for exata, temos o resto no último elemento retornado. As expressões que usei acima do tipo <tt>(1..10).to_a</tt> nada mais fazem do que converter uma <tt>Range</tt> em um <tt>Array</tt>.</p>
+<p>O código do método &#8220;<tt>/</tt>&#8221; é meio críptico, mas se eu tentar explicar aqui vai ficar meio comprido e vou levar uma bronca, então dêem uma queimada nos neurônios aí. ;-)</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/ruby/" rel="category tag">Ruby</a>. Bookmark the <a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/" title="Permalink to Ruby: Dividir um array em arrays menores" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/03/16/python-listagem-com-cores-alternadas-zebra/" rel="prev"><span class="meta-nav">&larr;</span> Python: Listagem com cores alternadas (zebra)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/03/22/python-fazer-switch-case-com-dicionarios/" rel="next">Python: Fazer switch/case com dicionários <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">8 Responses to <em>Ruby: Dividir um array em arrays menores</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-322">
+		<div id="comment-322">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hashcode.eti.br' rel='external nofollow' class='url'>shairon</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-322">
+				20/03/2007 at 12:19</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Afi! Elegantíssimo!! So não gostei do teu array  :( cadê a Claire e o Peter Petrelli ??</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-323">
+		<div id="comment-323">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hashcode.eti.br' rel='external nofollow' class='url'>shairon</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-323">
+				10/05/2007 at 10:06</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>require &#8216;enumerator&#8217;</p>
+<p>(1..10).to_a.enum_cons(2).to_a</p>
+<p>=&gt; [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]]</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-324">
+		<div id="comment-324">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://eustaquiorangel.com/' rel='external nofollow' class='url'>TaQ</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-324">
+				10/05/2007 at 13:44</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Shairon,</p>
+<p>Fica um pouquinho diferente, pois o último elemento do subarray é o primeiro elemento do próximo subarray (como no seu próprio exemplo), olha só aplicado no meu exemplo:</p>
+<p>%w(hiro ando nikki jessica sylar).enum_cons(2).to_a<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;ando&#8221;, &#8220;nikki&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;jessica&#8221;, &#8220;sylar&#8221;]]</p>
+<p>A não ser que alguém ali tenha o poder de duplicar o outro não daria certo. E se você souber de algum spoiler que tenha alguém assim não conta (e olha, só sobraram o Hiro e o Sylar que não foram duplicados) !!! :-)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-325">
+		<div id="comment-325">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://eustaquiorangel.com/' rel='external nofollow' class='url'>TaQ</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-325">
+				10/05/2007 at 15:26</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Só para complementar: o Rails insere um método chamado in_groups_of que nos permite fazer algo do tipo:</p>
+<p>%w(hiro ando nikki jessica sylar).in_groups_of(2)<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;, nil]]<br />
+&gt;&gt; (1..10).to_a.in_groups_of(4)<br />
+=&gt; [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, nil, nil]]</p>
+<p>Uma pequena diferença ali é que ele completa o array com nil, *se não for passado um segundo parâmetro que especifica como serão completados os elementos faltantes*. Para ter um comportamento similar ao original, seria:</p>
+<p>&gt;&gt; %w(hiro ando nikki jessica sylar).in_groups_of(2,false)<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;]]<br />
+&gt;&gt; %w(hiro ando nikki jessica sylar).in_groups_of(2,false)<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;]]</p>
+<p>Dá para usar outros preenchimentos também:</p>
+<p>&gt;&gt; %w(hiro ando nikki jessica sylar).in_groups_of(2,&#8221;who?&#8221;)<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;, &#8220;who?&#8221;]]<br />
+&gt;&gt; (1..10).to_a.in_groups_of(4,0)<br />
+=&gt; [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 0, 0]]</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-326">
+		<div id="comment-326">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/651ca6c34d9228f68cd35841c4604212?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.hashcode.eti.br' rel='external nofollow' class='url'>shairon</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-326">
+				10/05/2007 at 16:27</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ops um erro meu</p>
+<p>(1..10).to_a.enum_slice(2).to_a<br />
+=&gt; [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-327">
+		<div id="comment-327">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/36a7207dc8c3974a330919128af15cc9?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://eustaquiorangel.com/' rel='external nofollow' class='url'>TaQ</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-327">
+				10/05/2007 at 16:33</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Uia, agora ficou melhor de bom!  Muito legal!<br />
+Menor que isso não dá!  :-)</p>
+<p>&gt;&gt; require &#8220;enumerator&#8221;<br />
+=&gt; true<br />
+&gt;&gt; %w(hiro ando nikki jessica sylar).to_a.enum_slice(2).to_a<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;]]</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-328">
+		<div id="comment-328">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2cf75fcbbc03f54e8955396b791c0e73?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2cf75fcbbc03f54e8955396b791c0e73?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Ivan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-328">
+				26/09/2007 at 14:58</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Acho que até dá TaQ ;D~</p>
+<p>Tem só uma redundância nos códigos&#8230; testei isso no irb:</p>
+<p>&gt;&gt; require &#8216;enumerator&#8217;<br />
+=&gt; true<br />
+&gt;&gt; %w(hiro ando nikki jessica sylar).enum_slice(2).to_a<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;]]<br />
+&gt;&gt; (1..10).enum_slice(2).to_a<br />
+=&gt; [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]</p>
+<p>espero que esteja certo ;]</p>
+<p>abração!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-329">
+		<div id="comment-329">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2cf75fcbbc03f54e8955396b791c0e73?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2cf75fcbbc03f54e8955396b791c0e73?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Ivan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/03/20/ruby-dividir-um-array-em-arrays-menores/#comment-329">
+				26/09/2007 at 15:26</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>E testando um pouco mais… podemos fazer assim:</p>
+<p>&gt;&gt; require &#8216;enumerator&#8217;<br />
+=&gt; true<br />
+&gt;&gt; class Array<br />
+&gt;&gt; def / len<br />
+&gt;&gt; enum_slice(len).to_a<br />
+&gt;&gt; end<br />
+&gt;&gt; end<br />
+=&gt; nil<br />
+&gt;&gt; class Range<br />
+&gt;&gt; def / len<br />
+&gt;&gt; enum_slice(len).to_a<br />
+&gt;&gt; end<br />
+&gt;&gt; end<br />
+=&gt; nil<br />
+&gt;&gt; %w(hiro ando nikki jessica sylar) / 2<br />
+=&gt; [[&#8220;hiro&#8221;, &#8220;ando&#8221;], [&#8220;nikki&#8221;, &#8220;jessica&#8221;], [&#8220;sylar&#8221;]]<br />
+&gt;&gt; (1..10) / 2<br />
+=&gt; [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]</p>
+<p>;]</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.262 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-24 21:05:00 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

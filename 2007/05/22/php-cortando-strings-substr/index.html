@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>PHP: Cortando strings (substr) | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; PHP: Cortando strings (substr) Comments Feed" href="http://codare.net/2007/05/22/php-cortando-strings-substr/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Java: Enviar emails com autenticação (SMTP)' href='http://codare.net/2007/05/21/java-enviar-emails-com-autenticacao-smtp-ok/' />
+<link rel='next' title='C, C++: Funções com número variável de parâmetros (stdargs)' href='http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2007/05/22/php-cortando-strings-substr/" />
+<link rel='shortlink' href='http://codare.net/?p=152' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F22%2Fphp-cortando-strings-substr%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2007%2F05%2F22%2Fphp-cortando-strings-substr%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-152 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/21/java-enviar-emails-com-autenticacao-smtp-ok/" rel="prev"><span class="meta-nav">&larr;</span> Java: Enviar emails com autenticação (SMTP)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/" rel="next">C, C++: Funções com número variável de parâmetros (stdargs) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-152" class="post-152 post type-post status-publish format-standard hentry category-php">
+					<h1 class="entry-title">PHP: Cortando strings (substr)</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2007/05/22/php-cortando-strings-substr/" title="09:30" rel="bookmark"><span class="entry-date">22/05/2007</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/pablodalloglio/" title="View all posts by Pablo DallOglio">Pablo DallOglio</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Palavras-chave: PHP, strings, substr, strpos</p>
+<p>Um dos tipos de dados com mais recursos na linguagem PHP é sem dúvida as strings. A linguagem PHP possui inúmeras funções para manipulação de strings e uma das mais utilizadas é o substr.</p>
+<p>O <strong>substr</strong> é responsável por retornar um pedaço da string. Para isto ele se utiliza de três parâmetros: a própria string, o índice inicial e a quantidade de caracteres a ser retornada.</p>
+<p>Acontece que podemos utilizar também um índice negativo, desta forma o PHP analisa a string contando N caracteres a partir do final, e não a partir do início. Veja a seguir alguns exemplos:</p>
+<pre>
+&lt;?php
+$texto = "eu não sou besta pra tirar onda de herói";
+
+echo substr($texto, 0, 16);  // eu não sou besta
+echo "&lt;br&gt;\\n";
+echo substr($texto, 11);     // besta pra tirar onda de herói
+echo "&lt;br&gt;\\n";
+echo substr($texto, 11, 9);  // besta pra
+echo "&lt;br&gt;\\n";
+echo substr($texto, -5);     // herói
+echo "&lt;br&gt;\\n";
+?&gt;
+</pre>
+<p>Também podemos utilizar a substr() em combinação com a strpos(). A <strong>strpos</strong> detecta a posição que uma string ocorre dentro de uma expressão.</p>
+<p>No exemplo seguinte, detectamos onde ocorre a palavra &#8220;http://&#8221; para retornar somente o domínio presente no texto:</p>
+<pre>
+&lt;?php
+$texto = "retornarei somente o domínio de http://www.pablo.blog.br";
+$posicao = strpos($texto, 'http://');
+echo substr($texto, $posicao+11); // pablo.blog.br
+echo "\\n&lt;br&gt;";
+?&gt;
+</pre>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/php/" rel="category tag">PHP</a>. Bookmark the <a href="http://codare.net/2007/05/22/php-cortando-strings-substr/" title="Permalink to PHP: Cortando strings (substr)" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2007/05/21/java-enviar-emails-com-autenticacao-smtp-ok/" rel="prev"><span class="meta-nav">&larr;</span> Java: Enviar emails com autenticação (SMTP)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2007/05/23/c-cpp-funcoes-com-numero-variavel-de-parametros-stdargs/" rel="next">C, C++: Funções com número variável de parâmetros (stdargs) <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">27 Responses to <em>PHP: Cortando strings (substr)</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-365">
+		<div id="comment-365">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/9444a02d92979cbf3b090ca18efb91cf?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9444a02d92979cbf3b090ca18efb91cf?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://orgutus.wordpress.com/' rel='external nofollow' class='url'>orgutus</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-365">
+				22/05/2007 at 12:08</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>No caso de strings (acentuadas) em UTF-8, é melhor usar o mb_substr.</p>
+<p>Usando só o substr, a string resultante aprensenta erros de codificação. No mais, é a mesma sintaxe.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-49026">
+		<div id="comment-49026">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/222696388c402be60cfc9a1dfbcc9b19?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/222696388c402be60cfc9a1dfbcc9b19?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Jerônimo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-49026">
+				10/09/2013 at 14:26</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Quebrei a cabeça com isso e essa mb_substr funcionou perfeitamente. Valeu!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-366">
+		<div id="comment-366">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2f273194c8cf76b852ca664efd460423?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2f273194c8cf76b852ca664efd460423?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.buscarletras.com.br/tropa-de-elite.html' rel='external nofollow' class='url'>Tropa de Elite</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-366">
+				30/11/2007 at 15:40</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Valeu, obrigado pela diga&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-367">
+		<div id="comment-367">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/0d28fe57dc2708d5f2e5503c31b2d83f?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0d28fe57dc2708d5f2e5503c31b2d83f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.heigler.com' rel='external nofollow' class='url'>Heigler</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-367">
+				04/12/2007 at 13:30</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Simples e objetivo.<br />
+Parabéns.</p>
+<p>Apenas uma dúvida: Há como obter a posição final através do strpos? Seguindo o exemplo temos<br />
+ $texto = &#8220;retornarei somente o domínio de <a href="http://www.pablo.blog.br" rel="nofollow">http://www.pablo.blog.br</a>&#8220;;<br />
+mas e caso eu quisesse resgatar a string de um formulário por exemplo onde eu jamais saberia a posição final exata para usar o substr.<br />
+Exemplificando:<br />
+$texto = &#8220;retornarei somente o domínio de <a href="http://www.pablo.blog.br" rel="nofollow">http://www.pablo.blog.br</a> mais conteúdo etc etc&#8221;;<br />
+Quero usar parâmetros que retornem a string partindo de http até .br mas não sei a localização exata do final.</p>
+<p>Abraços,</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2" id="li-comment-5853">
+		<div id="comment-5853">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/abc6ca550a2843c25cbaf394a4200c1b?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/abc6ca550a2843c25cbaf394a4200c1b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">David</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-5853">
+				28/05/2011 at 11:36</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Nesse caso, é melhor você usar a função que pega a URL.</p>
+<p>$url = $_SERVER[&#8216;REQUEST_URI&#8217;]; </p>
+<p>echo $url;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-368">
+		<div id="comment-368">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/715782ef2211ab2c6b943936bb5ff348?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/715782ef2211ab2c6b943936bb5ff348?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.djeison.eti.br' rel='external nofollow' class='url'>Djeison</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-368">
+				30/11/2008 at 22:40</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito bom, me ajudou muito essa dica;</p>
+<p>Abraço.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-369">
+		<div id="comment-369">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e646875a697708014fab7577de1d8c2d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e646875a697708014fab7577de1d8c2d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.viconcursos.com' rel='external nofollow' class='url'>Dhuankles Castro</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-369">
+				26/07/2010 at 17:07</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>muito boa a sua dica.. parabens</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-20272">
+		<div id="comment-20272">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/32b29181b8eb5eb4ed60ac722277a701?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/32b29181b8eb5eb4ed60ac722277a701?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.orasystems.com.br/' rel='external nofollow' class='url'>Marcio</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-20272">
+				16/05/2012 at 09:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito bom post, resolvi meu problema.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-27625">
+		<div id="comment-27625">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/6f6ebb4594e32b5e314982826a521ccc?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/6f6ebb4594e32b5e314982826a521ccc?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Henrique Golinelli</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-27625">
+				06/11/2012 at 09:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Outra excelente dica é usar o explode onde vc pode separar os campos por um delimitador<br />
+linha=&#8217;3ALFA,3 &#8211; ALFA ANDROSTANEDIOL GLUCORONIDE,Androstenediol, 3 alfa diol,543,,28.05.006.1,2/9/2011 9:07,N&#8217;<br />
+$array=explode(&#8220;,&#8221;,$linha);<br />
+echo &#8220;Codigo $array[0] ,Nome $array[1], Sinonimo $array[2], Material $array[3] ,DadoObrigatorio $array[4],CodigoAMB$array[5],exaDtUltAlt$array[6],EhCurva$array[7] &#8220;;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-33301">
+		<div id="comment-33301">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/db6cd37d1d87dd2130e095aed4c6f609?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/db6cd37d1d87dd2130e095aed4c6f609?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Alessandro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-33301">
+				18/01/2013 at 14:38</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Obrigado pela dica</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-35886">
+		<div id="comment-35886">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5e684ead7f45ce6be0f5edc93296be07?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5e684ead7f45ce6be0f5edc93296be07?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Sergio Porssionatto</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-35886">
+				17/02/2013 at 22:14</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Meu senário é o seguinte, tenho uma tabela de logradouros, com os seguintes dados: </p>
+<p>rua , leopoldo<br />
+avenida , trindade<br />
+praça , barnabé </p>
+<p>a pergunta é: Como no PHP eu pego somente o que esta depois da VIRGULA ????? </p>
+<p>Não consigo achar resposta em lugar nenhum, me ajudem . </p>
+<p>Abraços !!!!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-37223">
+		<div id="comment-37223">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/30ba76045b1b37e52dfc0f3a6026e8e7?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/30ba76045b1b37e52dfc0f3a6026e8e7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://targetinfo.com.br' rel='external nofollow' class='url'>Thiago</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-37223">
+				08/03/2013 at 13:22</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Na boa, a resposta está no tópico acima do seu. leia-o com atenção, que você terá a resposta que pediu.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even depth-2" id="li-comment-44225">
+		<div id="comment-44225">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/972f3abaa49f46abe7d663d267cdf13b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/972f3abaa49f46abe7d663d267cdf13b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Hugo Mendes</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-44225">
+				28/06/2013 at 11:47</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Função:<br />
+<code></p>
+<p></code><br />
+Espero ajuda, até a próxima!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2" id="li-comment-44226">
+		<div id="comment-44226">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/972f3abaa49f46abe7d663d267cdf13b?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/972f3abaa49f46abe7d663d267cdf13b?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Hugo Mendes</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-44226">
+				28/06/2013 at 11:49</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Função:<br />
+&lt;?php<br />
+function virgula($texto){<br />
+	$texto = substr($texto, (strpos($texto, &#039;,&#039;)) + 1);<br />
+	echo $texto;<br />
+}<br />
+virgula(&quot;Rua , Leopoldo&quot;); // Leopoldo<br />
+virgula(&quot;Avenida , Trindade&quot;); // Trindade<br />
+virgula(&quot;Praça , Barnabé&quot;); // Barnabé</p>
+<p>Espero ajuda, até a próxima!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-188547">
+		<div id="comment-188547">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/0eed9f43723d347db544a5e7a9c002e7?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0eed9f43723d347db544a5e7a9c002e7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://zeux.com.br' rel='external nofollow' class='url'>Cristiano</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-188547">
+				07/06/2016 at 16:45</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Hugo Mendes,<br />
+Sua função me ajudou e muito, obrigado pela contribuição.</p>
+<p>Abraço!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-3" id="li-comment-193715">
+		<div id="comment-193715">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/93fed4861ba0bb73037fd341d66cbc87?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/93fed4861ba0bb73037fd341d66cbc87?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Artur</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-193715">
+				28/03/2017 at 10:02</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ajudou bastante.. Obrigado</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-37978">
+		<div id="comment-37978">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Roberto Vieira</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-37978">
+				19/03/2013 at 16:54</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Galera,<br />
+Tenho o seguinte cenário:</p>
+<p>Tenho um arquivo .txt que está com vários emails, mas tudo bagunçado:<br />
+Ex: ; diecles ;</p>
+<p>Estou precisando ler este arquivo e listar apenas os emails:<br />
+Ex: <a href="mailto:dfarcoverde@gmail.com">dfarcoverde@gmail.com</a>;<br />
+       <a href="mailto:diecles@supermercados-arcoiris.com.br">diecles@supermercados-arcoiris.com.br</a>;</p>
+<p>Tenho os &#8220;&#8221; para poder pegar os e-mails, mas ainda não achei uma solução.<br />
+Grato pela ajuda de todos e ótimo post.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-37979">
+		<div id="comment-37979">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Roberto Vieira</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-37979">
+				19/03/2013 at 17:00</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>*Tenho os &#8220;colchetes&#8221; para&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2" id="li-comment-37980">
+		<div id="comment-37980">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c93d727dbb07822eeaba593ee27423e6?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Roberto Vieira</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-37980">
+				19/03/2013 at 17:01</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>** &#8220;Maior que&#8221; e &#8220;Menor que&#8221; e não colchetes, perdão.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-47493">
+		<div id="comment-47493">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/832569313fff680576e7f35e27c7cb4f?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/832569313fff680576e7f35e27c7cb4f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Temóteo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-47493">
+				18/08/2013 at 06:59</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito bom!<br />
+Estou fascinado com PHP.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-135457">
+		<div id="comment-135457">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7359d09c30a66fd0b72cc095fb47d224?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7359d09c30a66fd0b72cc095fb47d224?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Jose Antonio</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-135457">
+				19/12/2014 at 23:59</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Tenho este cenário um texto corrido:</p>
+<p>Processo 1051964-21.2xx4.8.26.0100 &#8211; Alimentos &#8211; Lei Especial No 5.478/68 &#8211; Oferta &#8211; C.F.C.C. &#8211; J.V.P.C. e outros &#8211; Vistos. Fls. 259/263: a par do pedido extrapolar os limites desta lide alimentar, manifestem-se os réus, no prazo de 48 horas. Após, com ou sem manifestação, ao Ministério Público. Int. &#8211; ADV: KATIA  (OAB 111/SP), RODRIGO GASP (OAB 111/SP)<br />
+Processo 24432-38.12338.26.0100 &#8211; Inventário &#8211; Inventário e Partilha &#8211; LÍaS MARLY DE  e outros &#8211; *Folhas 64/69-Ciência da pesquisa do Bacenjud* &#8211; ADV: JOEL  CUNHA (OAB 12313/SP)<br />
+Processo 111220-45.111.8.26.0100 &#8211; Procedimento Ordinário &#8211; Investigação de Paternidade &#8211; A.A.R. &#8211; Folhas 41/44- Ciência da pesquisa do Bacenjud* &#8211; ADV: DEFENSORIA PÚBLICA DO ESTADO DE SÃO PAULO (OAB 999999/DP)</p>
+<p>Precisaria sparar cada um dos registros que começa com Processo Até o fim dele. Termina com &#8220;)&#8221; mas pode existir outras &#8220;)&#8221; no meio do texto (então penso que seria o espaco o delimitador ou o outro Processo). Assim preciso separar cada ocorrência e jogar em uma variável para depois inserir em um banco de dados&#8230;(tabela processos Processo, texto, advogados) </p>
+<p>Como seleciono o texto neste cenário? Entre dois caracteres?<br />
+Grato pela ajuda..</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-162363">
+		<div id="comment-162363">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/015ec19aaaad9c06752df4d60600017c?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/015ec19aaaad9c06752df4d60600017c?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.risistemas.net.br' rel='external nofollow' class='url'>Roberto Apolinario</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-162363">
+				07/04/2015 at 00:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>José Antônio, poderia me enviar um arquivo contendo esse conteúdo para analisar e poder te dar uma força, pois, em casos como o seu, primeiramente precisamos analisar se existem padrões na montagem dos dados para depois partimos para uma programação efetiva. No aguardo, abs.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-161368">
+		<div id="comment-161368">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5cb01790621b231d3b8bf9db8fa2b86d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5cb01790621b231d3b8bf9db8fa2b86d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Wellerson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-161368">
+				02/04/2015 at 14:27</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>to com uma atividade de php pedindo pra efetuar um algorítmo php que receba uma string e um caracter de busca e descubra o numero de ocorrencias deste caracter dentro da string. Para isso utilize laço de repetição , e as funções de string &#8220;strlen&#8221; e &#8220;substr&#8221;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-182126">
+		<div id="comment-182126">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/ca683245ca6627ea77b814fd8f5ff605?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/ca683245ca6627ea77b814fd8f5ff605?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">paulo robson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-182126">
+				13/11/2015 at 16:45</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bom post, valeu mesmo codare.net</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-183235">
+		<div id="comment-183235">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/4fada716b40b6b2d0e22319b6ccf8fd7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4fada716b40b6b2d0e22319b6ccf8fd7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://figuraweb.com' rel='external nofollow' class='url'>Elias</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-183235">
+				07/12/2015 at 20:45</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Eu tenho o seguinte código:</p>
+<p>$nome = &#8216;Joana de Angelis&#8217;;<br />
+// quero pegar apenas o &#8216;DE&#8217;<br />
+echo substr($nome,strpos($nome,&#8217; &#8216;),strrpos($nome,&#8217; &#8216;)-4);</p>
+<p>dessa forma funciona, no entanto gostaria de saber qual a outra forma fazer</p>
+<p>alguém sabe?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-187664">
+		<div id="comment-187664">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/ca683245ca6627ea77b814fd8f5ff605?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/ca683245ca6627ea77b814fd8f5ff605?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://dentista24horasbrasil.com' rel='external nofollow' class='url'>robson</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-187664">
+				23/04/2016 at 23:22</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>muito bom artigo, tirou uma dúvida que eu tinha </p>
+<p>vlw</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-188548">
+		<div id="comment-188548">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/0eed9f43723d347db544a5e7a9c002e7?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0eed9f43723d347db544a5e7a9c002e7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://zeux.com.br' rel='external nofollow' class='url'>Cristiano</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2007/05/22/php-cortando-strings-substr/#comment-188548">
+				07/06/2016 at 16:52</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Charlles ,</p>
+<p>Conseguiu encontrar a solução? Se não, me envia um email que te ajudo ok?</p>
+<p>Email: <a href="mailto:cristiano.mcon@gmail.com">cristiano.mcon@gmail.com</a></p>
+<p>Abraço.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.340 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 17:23:56 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

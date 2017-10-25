@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>MySQL: INSERT com SELECT na mesma query | CODARE</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.net/wp-content/themes/twentyten/style.css" />
+<link rel="pingback" href="http://codare.net/xmlrpc.php" />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Feed" href="http://codare.net/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; Comments Feed" href="http://codare.net/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="CODARE &raquo; MySQL: INSERT com SELECT na mesma query Comments Feed" href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/codare.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://codare.net/wp-content/plugins/google-analyticator/external-tracking.min.js?ver=6.5.2'></script>
+<link rel='https://api.w.org/' href='http://codare.net/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://codare.net/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://codare.net/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='LaTeX: Incluir imagens PNG e JPG (bounding box)' href='http://codare.net/2008/05/12/latex-incluir-imagens-png-e-jpg-bounding-box/' />
+<link rel='next' title='C++: Ponteiro para métodos/funções sobrecarregadas' href='http://codare.net/2008/05/20/cpp-ponteiro-para-metodos-funcoes-sobrecarregadas/' />
+<meta name="generator" content="WordPress 4.7.6" />
+<link rel="canonical" href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/" />
+<link rel='shortlink' href='http://codare.net/?p=188' />
+<link rel="alternate" type="application/json+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2008%2F05%2F17%2Fmysql-insert-com-select-na-mesma-query%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://codare.net/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fcodare.net%2F2008%2F05%2F17%2Fmysql-insert-com-select-na-mesma-query%2F&#038;format=xml" />
+<!-- All in one Favicon 4.5 --><link rel="icon" href="http://codare.net/wp-content/uploads/2010/12/favicon.png" type="image/png"/>
+<!-- Google Analytics Tracking by Google Analyticator 6.5.2: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-280222-15']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</head>
+
+<body class="post-template-default single single-post postid-188 single-format-standard custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li id="menu-item-545" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-545"><a href="http://codare.net/category/applescript/">AppleScript</a></li>
+<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-547"><a href="http://codare.net/category/c/">C</a></li>
+<li id="menu-item-548" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-548"><a href="http://codare.net/category/cpp/">CPP</a></li>
+<li id="menu-item-549" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-549"><a href="http://codare.net/category/csharp/">CSharp</a></li>
+<li id="menu-item-550" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-550"><a href="http://codare.net/category/java/">Java</a></li>
+<li id="menu-item-551" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-551"><a href="http://codare.net/category/javascript/">JavaScript</a></li>
+<li id="menu-item-552" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-552"><a href="http://codare.net/category/latex/">LaTeX</a></li>
+<li id="menu-item-557" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-557"><a href="http://codare.net/category/mysql/">MySQL</a></li>
+<li id="menu-item-560" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-560"><a href="http://codare.net/category/php/">PHP</a></li>
+<li id="menu-item-561" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-561"><a href="http://codare.net/category/python/">Python</a></li>
+<li id="menu-item-562" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-562"><a href="http://codare.net/category/ruby/">Ruby</a></li>
+<li id="menu-item-563" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-563"><a href="http://codare.net/category/shell/">Shell</a></li>
+<li id="menu-item-565" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-565"><a href="http://codare.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li id="menu-item-556" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-556"><a href="http://codare.net/category/misc/">Misc</a></li>
+<li id="menu-item-555" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-555"><a href="http://codare.net/category/mac/">Mac</a></li>
+<li id="menu-item-553" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-553"><a href="http://codare.net/category/linux/">Linux</a></li>
+<li id="menu-item-567" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-567"><a href="http://codare.net/category/windows/">Windows</a></li>
+<li id="menu-item-568" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-568"><a href="http://codare.net/category/__codare/">__codare</a></li>
+<li id="menu-item-543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-543"><a href="http://codare.net/sobre/">Sobre</a></li>
+<li id="menu-item-544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-544"><a href="http://codare.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+			
+
+				<div id="nav-above" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2008/05/12/latex-incluir-imagens-png-e-jpg-bounding-box/" rel="prev"><span class="meta-nav">&larr;</span> LaTeX: Incluir imagens PNG e JPG (bounding box)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2008/05/20/cpp-ponteiro-para-metodos-funcoes-sobrecarregadas/" rel="next">C++: Ponteiro para métodos/funções sobrecarregadas <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-above -->
+
+				<div id="post-188" class="post-188 post type-post status-publish format-standard hentry category-mysql tag-declaracao tag-insert tag-mysql tag-select tag-tabelas">
+					<h1 class="entry-title">MySQL: INSERT com SELECT na mesma query</h1>
+
+					<div class="entry-meta">
+						<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/" title="09:00" rel="bookmark"><span class="entry-date">17/05/2008</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="http://codare.net/author/pmichelazzo/" title="View all posts by Paulino Michelazzo">Paulino Michelazzo</a></span>					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<p>Muitas vezes é necessário fazer um insert de dados em uma tabela trazendo resultados de outra na mesma base ou em bases diferentes. Como fazer? Simples:</p>
+<pre>INSERT INTO banco.tabela-destino (campo1, campo2, campo3...)
+SELECT campo1,campo2,campo3... FROM banco.tabela-origem;</pre>
+<p>Atente-se para que os campos estejam na mesma seqüência tanto na instrução INSERT quanto na instrução SELECT pois é seguida a seqüência de campos em ambas as instruções. Também não se esqueça do ponto e vírgula no final da última instrução. Imprescindível.</p>
+											</div><!-- .entry-content -->
+
+
+					<div class="entry-utility">
+						This entry was posted in <a href="http://codare.net/category/mysql/" rel="category tag">MySQL</a> and tagged <a href="http://codare.net/tag/declaracao/" rel="tag">declaração</a>, <a href="http://codare.net/tag/insert/" rel="tag">insert</a>, <a href="http://codare.net/tag/mysql/" rel="tag">MySQL</a>, <a href="http://codare.net/tag/select/" rel="tag">select</a>, <a href="http://codare.net/tag/tabelas/" rel="tag">tabelas</a>. Bookmark the <a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/" title="Permalink to MySQL: INSERT com SELECT na mesma query" rel="bookmark">permalink</a>.											</div><!-- .entry-utility -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="http://codare.net/2008/05/12/latex-incluir-imagens-png-e-jpg-bounding-box/" rel="prev"><span class="meta-nav">&larr;</span> LaTeX: Incluir imagens PNG e JPG (bounding box)</a></div>
+					<div class="nav-next"><a href="http://codare.net/2008/05/20/cpp-ponteiro-para-metodos-funcoes-sobrecarregadas/" rel="next">C++: Ponteiro para métodos/funções sobrecarregadas <span class="meta-nav">&rarr;</span></a></div>
+				</div><!-- #nav-below -->
+
+				
+			<div id="comments">
+
+
+			<h3 id="comments-title">38 Responses to <em>MySQL: INSERT com SELECT na mesma query</em></h3>
+
+
+			<ol class="commentlist">
+					<li class="comment even thread-even depth-1" id="li-comment-456">
+		<div id="comment-456">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/bfc95d63949c6638adc213774e31d7e3?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/bfc95d63949c6638adc213774e31d7e3?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Fabiano Monteiro</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-456">
+				17/05/2008 at 17:24</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>CODARE de parabéns! Está no meu leitor de feeds&#8230;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-457">
+		<div id="comment-457">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/9bd729977abc5fb4bc6d0184bde09ba4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9bd729977abc5fb4bc6d0184bde09ba4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.manifesto.blog.br' rel='external nofollow' class='url'>Diogo Souza</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-457">
+				19/05/2008 at 21:49</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Só para acrescentar que o mesmo pode ser feito com UPDATE, desde que não da mesma tabela. ;)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-458">
+		<div id="comment-458">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.michelazzo.com.br' rel='external nofollow' class='url'>Paulino Michelazzo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-458">
+				22/05/2008 at 10:07</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Esta é a idéia Diogo, a sequência de INSERT e SELECT pode ser feita dentro da mesma, o que não é possível com o UPDATE.</p>
+<p>Obrigado pela visita.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-459">
+		<div id="comment-459">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/68dc1efdea71600db1a04cb8eb635b84?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/68dc1efdea71600db1a04cb8eb635b84?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Silvana</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-459">
+				09/09/2008 at 19:32</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Achei muito bom o insert com select, mas como faço para habilitar o connect em dois db&#8217;s diferentes ao mesmo? Pois no meu caso preciso mover dados entre duas tabelas de bancos diferentes.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-460">
+		<div id="comment-460">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/d14a5a25152dc84e17f3e43f15090ca7?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d14a5a25152dc84e17f3e43f15090ca7?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.vitorgga.com' rel='external nofollow' class='url'>VitorGGA</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-460">
+				20/03/2009 at 11:21</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Rápido e rasteiro uhsuhsuh</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-461">
+		<div id="comment-461">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c7be042b8c5ea7cb29faac512e75ec9a?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c7be042b8c5ea7cb29faac512e75ec9a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://quartapessoa.blogspot.com' rel='external nofollow' class='url'>Tarilonte</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-461">
+				27/07/2010 at 11:41</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Obrigado pela dica!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-1532">
+		<div id="comment-1532">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a822b158bae3983f06d3d744e212b4fc?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a822b158bae3983f06d3d744e212b4fc?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">GIOVANNI CRUZ</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-1532">
+				14/02/2011 at 10:49</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Silvana, </p>
+<p>Temos dois bancos, sendo eles representados por &#8220;A&#8221; e &#8220;B&#8221;, o banco &#8220;A&#8221; será especificado na cláusula &#8220;Insert&#8221; o banco &#8220;B&#8221; na cláusula &#8220;Select&#8221;, conforme código descrito abaixo:</p>
+<p>INSERT INTO banco_A.tabela-destino (campo1, campo2, campo3&#8230;)<br />
+SELECT campo1,campo2,campo3&#8230; FROM banco_B.tabela-origem;</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-2637">
+		<div id="comment-2637">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e646875a697708014fab7577de1d8c2d?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e646875a697708014fab7577de1d8c2d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.frentis.com/' rel='external nofollow' class='url'>frentis</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-2637">
+				22/03/2011 at 09:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>sera que assim nao funciona?</p>
+<p>INSERT INTO visitas (<br />
+`idvisitas` ,<br />
+`iddmeu` ,<br />
+`iddamigo` ,<br />
+`ddatehora` ,<br />
+`ip`<br />
+)<br />
+VALUES (<br />
+NULL , ’7′, ’90′, ’2011-03-22 08:22:39′, ’1′<br />
+)<br />
+WHERE ip !=&#8217;1&#8242;);</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-2" id="li-comment-7726">
+		<div id="comment-7726">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/fea662934d388e83dc06bda6542b1795?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/fea662934d388e83dc06bda6542b1795?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">victor</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-7726">
+				12/07/2011 at 15:11</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Não, não funciona frentis, insert não aceita WHERE clause</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-10208">
+		<div id="comment-10208">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2d1dcb7d75083d40cc46dda5c360c096?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2d1dcb7d75083d40cc46dda5c360c096?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://uemersonweb;blogspot.com' rel='external nofollow' class='url'>Uêmerson Alves</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-10208">
+				03/09/2011 at 19:09</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá pessoal, eu tenho uma dúvida, toda vez presciso fazer duas consultas uma para verificar se a registros, se tiver eu coloco um if no php e se caso der zero dou um insert ou dou um update. Tem com colocar tudo em uma query?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-10723">
+		<div id="comment-10723">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">arilson piovezan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-10723">
+				23/09/2011 at 16:03</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá </p>
+<p>Preciso selecionar todos os dados de uma tabela e inserir todos estes dados noutra tabela, no memso banco. Só consegui  inserir uma linha com os dados.</p>
+<p>Se algúem poder me ajudar !</p>
+<p>Obrigado,</p>
+<p>Arilson</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-10724">
+		<div id="comment-10724">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">arilson piovezan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-10724">
+				23/09/2011 at 16:04</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Seguem os códigos.</p>
+<p><code><br />
+$query="SELECT limpas.* FROM limpas WHERE lrg ='$tombo_rg' ";<br />
+$resultado = mysql_query($query) or die(mysql_error());<br />
+$cont= mysql_num_rows($resultado) or die (mysql_error());<br />
+   while($row = mysql_fetch_array($resultado))<br />
+   {<br />
+   $lrg= $row["lrg"];<br />
+   $ocodata =$row["ocodata"];<br />
+   $assunto =$row["assunto"];<br />
+   $historico= $row["historico"];<br />
+   }<br />
+   	$sql = "INSERT INTO tombolimpas (lrg, ocodata, assunto,historico<br />
+                 )<br />
+             VALUES ('$lrg', '$ocodata', '$assunto', '$historico' )";<br />
+	$result = mysql_query($sql) or die(mysql_error());<br />
+</code><code></code></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-11041">
+		<div id="comment-11041">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/adf8a89b1214593d5bcbfec4fb27172f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">arilson piovezan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-11041">
+				06/10/2011 at 16:03</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Boa Tarde</p>
+<p>Utilizei a idéia do post e deu certo.<br />
+Troquei todo alquele código já postado por este:<br />
+<code><br />
+$sql = "INSERT INTO tombolimpas (lrg, ocodata, assunto, historico) SELECT lrg, ocodata, assunto, historico FROM limpas WHERE lrg = '$tombo_rg'";<br />
+$result = mysql_query($sql) or die(mysql_error());<br />
+</code></p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-17665">
+		<div id="comment-17665">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/daca0fab6f5fde30c071ee130245dd8a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/daca0fab6f5fde30c071ee130245dd8a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Jairo Junior</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-17665">
+				12/03/2012 at 15:24</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Boa Tarde, estou iniciando em PHP e estou com um problema&#8230;<br />
+Exemplo:<br />
+tabela entrada;<br />
+id_codigo<br />
+valor1</p>
+<p>tabela saida;<br />
+id_codigo_saida<br />
+valor2</p>
+<p>tabela situacao;<br />
+total</p>
+<p>preciso fazer o total ser a subtração do valor1 &#8211; valor2<br />
+nao sei como fazer.<br />
+alguem pode me ajudar?</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-17689">
+		<div id="comment-17689">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-17689">
+				13/03/2012 at 03:15</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Se está fazendo com PHP, basta trazer os valores dos campos, subtraí-los e depois inserir na tabela nova. Simples assim.</p>
+<p>Abraços</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-18094">
+		<div id="comment-18094">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/780660fded589936b30467c54c99d51a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/780660fded589936b30467c54c99d51a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.kadunew.com/blog' rel='external nofollow' class='url'>Carlos Eduardo - Kadu</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-18094">
+				20/03/2012 at 16:39</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>ótima dica, testei usando o Heidi e funcionou perfeitamente. Acredito que rodando dentro do PHPMYADMIN também funcione&#8230; mas como vou fazer isso no código PHP, pois pelo que sei posso conectar apenas em um banco de cada vez.</p>
+<p>Me compreende?<br />
+Abraço!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-18158">
+		<div id="comment-18158">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-18158">
+				21/03/2012 at 20:33</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá Carlos,</p>
+<p>Você pode se conectar via PHP a quantos DB&#8217;s quiser ao mesmo tempo. Se você observar a função <code>mysql_connect</code> do PHP, poderá ver que o primeiro parâmetro é o servidor. Trocando este parâmetro poderá fazer a conexão.</p>
+<p>Alguns exemplos podem ser vistos em:</p>
+<p><a href="http://bytes.com/topic/php/answers/721490-connecting-two-mysql-tables-different-databases" rel="nofollow">http://bytes.com/topic/php/answers/721490-connecting-two-mysql-tables-different-databases</a></p>
+<p>Abs<br />
+Paulino</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-18194">
+		<div id="comment-18194">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/780660fded589936b30467c54c99d51a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/780660fded589936b30467c54c99d51a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.kadunew.com/blog' rel='external nofollow' class='url'>Carlos Eduardo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-18194">
+				22/03/2012 at 11:00</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olhei o link que me mandou e achei que iria dar certo, mas não deu não.</p>
+<p>Quero selecionar os dados de uma tabela e passar para outra tabela, porém elas não estão na mesma base de dados, são dois bancos mysql.</p>
+<p>tenho no meu PHP a query abaixo, sendo que a tabelaA esta em um banco chamado &#8220;dados&#8221; a tabelaB está em um banco chamado de &#8220;antigo&#8221;<br />
+<b>$query=&#8221;INSERT INTO tabelaA (campo1, campo2, campo3&#8230;)<br />
+SELECT campo1,campo2,campo3&#8230; FROM tabelaB&#8221;</b><br />
+mysql_query($query, ?) <i>// passo quais das conexões aqui a que conecta no primeiro ou no segundo banco.</i> Qualquer uma que passo da erro.</p>
+<p>Grato amigo</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-18338">
+		<div id="comment-18338">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-18338">
+				25/03/2012 at 23:10</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Acho que vc esqueceu de dizer os nomes dos bancos antes das tabelas.</p>
+<p>tabelaA.bancoX</p>
+<p>Verifique</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-23246">
+		<div id="comment-23246">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/7ab9cefa4178cb6d50f517f1e7c0af3d?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/7ab9cefa4178cb6d50f517f1e7c0af3d?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.i9diretodafabrica.com.br' rel='external nofollow' class='url'>Luciano H</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-23246">
+				23/07/2012 at 10:44</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Como faço a leitura de tres tabelas<br />
+para inserir e uma diferente<br />
+exemplo:<br />
+select produto id,( listagem de produtos)<br />
+select bem id,(aqui seria teria a opçao 0 =RMA e 1 = RMB )<br />
+setect recurso id, (0 =FAT e 1 =tesouro)<br />
+isso seria inserido em outras duas tabelas para gerar 2 relatorios distintos RMA e RMB com opçoes de FAT e Tesouro</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-23628">
+		<div id="comment-23628">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c08e939d6879991eb8049b7d2299b250?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c08e939d6879991eb8049b7d2299b250?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Eric</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-23628">
+				30/07/2012 at 20:00</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Como faço para fazer um insert em uma tabela utilizando um valor fixo e um select?<br />
+Exemplificando, eu preciso inserir valores de duas tabelas, sendo que teria de ser um determinado valor de uma das tabelas e vários valores de outra tabela, para que ficasse assim:<br />
+Tabela X<br />
+Coluna A    Coluna B<br />
+555              115<br />
+555              135<br />
+555              138<br />
+555              139<br />
+555              142</p>
+<p>Neste caso, a tabela teria de ter a coluna A com um valor da tabela Y e este valor seria sempre igual. A coluna B receberia os dados de um campo da tabela Z de acordo com um select.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-30287">
+		<div id="comment-30287">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c50f0f3b6ffd8a0cee96fbb12ae1d662?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c50f0f3b6ffd8a0cee96fbb12ae1d662?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Renan</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-30287">
+				12/12/2012 at 16:56</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Do mesmo jeito.<br />
+INSERT INTO Tabela X (Coluna A, Coluna B)<br />
+(SELECT 555, Valor_Do_Select FROM Tabela Y)</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-24580">
+		<div id="comment-24580">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/31500c81b220d565213909aec5327d70?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/31500c81b220d565213909aec5327d70?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Ghaleon</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-24580">
+				20/08/2012 at 08:22</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>No meu caso, uso gerenciador MySql e C#<br />
+Posso também iniciar 2 MySqlCommand e 2 MySqlConnection<br />
+um para cada banco&#8230; 1 para o INSERT e outro para o SELECT</p>
+<p>certo?</p>
+<p>Preciso selecionar dados de uma tabela e por na outra,  nome dos campos são diferentes também&#8230; Alguma dica de como fazer isso ?! :D</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1" id="li-comment-25070">
+		<div id="comment-25070">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/ac4be88ad72a08d8d4d7c0746ae840f4?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ac4be88ad72a08d8d4d7c0746ae840f4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Hermes Siqueira</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-25070">
+				04/09/2012 at 11:59</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pessoal, tenho a necessidade de fazer um select que gere comando &#8220;instert into&#8221; para cada linha de select, porem que nao insira em nenhuma tabela. Que me gere somente o comando em texto.<br />
+Tenho 2 bancos de daod iguais, mas em servidores que nao tem nenhuma ligacao entre si. O objetivo é fazer o select na origem e o insert no destino.<br />
+Tem como?<br />
+Grato</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-34877">
+		<div id="comment-34877">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/f8be4a838c92d5ad8f2b7667563cf1c8?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f8be4a838c92d5ad8f2b7667563cf1c8?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Douglas Metheus</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-34877">
+				04/02/2013 at 21:21</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Boa noite, eu preciso de uma ajuda, estou tentando inserir o registro mas precisava gerar um id de acordo com o último registro na minha tabela é possível ?<br />
+Obrigado desde já.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-34902">
+		<div id="comment-34902">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e59648ebbe168bfdb8da43da0705f904?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.michelazzo.com.br' rel='external nofollow' class='url'>Paulino Michelazzo</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-34902">
+				05/02/2013 at 05:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Tente o uso da função LAST_INSERT_ID() que sempre traz o último ID gerado.</p>
+<p><a href="http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_last-insert-id" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_last-insert-id</a></p>
+<p>Abs</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-46534">
+		<div id="comment-46534">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/54d2052209028c0a92e4a1b1c5dd1d13?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/54d2052209028c0a92e4a1b1c5dd1d13?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://none' rel='external nofollow' class='url'>Pedro HEnrique</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-46534">
+				03/08/2013 at 20:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pessoal estou tentando fazer isso no meu banco mas não estou conseguindo o que estou errando???</p>
+<p>NSERT INTO `adm`.`tb_operador_historico`<br />
+(`USERNAME`,<br />
+`HORA`,<br />
+`DATA`,<br />
+`NM_OPERADOR`)<br />
+VALUES<br />
+(<br />
+&#8216;pedrod&#8217;,<br />
+&#8217;12&#8217;,<br />
+&#8216;2013-08-03&#8217;,<br />
+select NM_OPERADOR,username from TB_OPERADOR where username like &#8216;pedrod&#8217;<br />
+);</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2" id="li-comment-47313">
+		<div id="comment-47313">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/d97c553f4cf4f408609d128e1e2b4a55?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d97c553f4cf4f408609d128e1e2b4a55?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">olo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-47313">
+				15/08/2013 at 18:26</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>lol</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment even depth-3" id="li-comment-55769">
+		<div id="comment-55769">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/d10ca8d11301c2f4993ac2279ce4b930?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d10ca8d11301c2f4993ac2279ce4b930?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">robson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-55769">
+				13/12/2013 at 13:02</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Primeiro esta faltando o I no INSERT<br />
+INSERT INTO `adm`.`tb_operador_historico`<br />
+(`USERNAME`,`HORA`,`DATA`,`NM_OPERADOR`)<br />
+VALUES (‘pedrod’,&#8217;12&#8217;,’2013-08-03′, (select NM_OPERADOR,username from TB_OPERADOR where username like ‘pedrod’)<br />
+);</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-50418">
+		<div id="comment-50418">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2b4e2c6f7b8a2e6a435884fb3887553f?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2b4e2c6f7b8a2e6a435884fb3887553f?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Sergius</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-50418">
+				01/10/2013 at 13:02</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Como faço um insert numa tabela, trazendo somente um registro de outra tabela?</p>
+<p>Estou tributando uma série de produtos. Na tabela de tributação tenho além das colunas dos tributos, tenho a coluna codigo do produto que puxa da tabela de produtos. Tenho que ir inserindo cada produto com sua tributação.</p>
+<p>Agradeço desde já pela ajuda.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-58050">
+		<div id="comment-58050">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/064259267756bd89a9f9fd9e193b0995?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/064259267756bd89a9f9fd9e193b0995?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Rodrigo Dini Jorge</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-58050">
+				21/01/2014 at 17:15</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Até que em fim alguém que soube explicar esta situação de maneira didática e clara.</p>
+<p>Parabéns pelo post!!!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-59891">
+		<div id="comment-59891">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5f5e80aa3863452d0ebe617d6fdb3898?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5f5e80aa3863452d0ebe617d6fdb3898?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Pedro B Amaral</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-59891">
+				05/03/2014 at 14:50</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Reativando o post, pois foi o melhor que encontrei&#8230;<br />
+Preciso duplicar registros de uma tabela, conforme uma condicional aplicada em um determinado campo. Exemplo:<br />
+Tabela site_rodape com os campos:<br />
+ ID, edicao, idioma, rodape_texto<br />
+1       13        portugues     texto<br />
+1       14        portugues     texto<br />
+2       14        ingles            texto<br />
+3       14        espanhol       texto<br />
+4       14        frances         texto<br />
+&#8230;<br />
+preciso duplicar todos os registros da tabela onde &#8216;edicao&#8217; = 14 &#8230; trocando para 15 (edição +1), incrementando o ID.<br />
+Se utilizo a setença no phpMyAdmin:<br />
+INSERT INTO site_rodape (edicao, idioma, rodape_texto)<br />
+   SELECT 15, idioma, rodape_texto FROM site_rodape<br />
+      WHERE edicao=&#8217;14&#8217;<br />
+&#8230;.  funiona perfeitamente&#8230; são criados os IDs 5,6,7 e 8 com os mesmos conteúdos, trocando a edição para 15.<br />
+Mas como fazer para que funcione num script PHP (por exemplo: criar_edicoes.php)?<br />
+Efetuei várias tentativas, que não retornam nenhum erro, mas não processam.</p>
+<p>Grato a quem puder ajudar.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment byuser comment-author-pmichelazzo bypostauthor even depth-2" id="li-comment-59893">
+		<div id="comment-59893">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/a0735d361564f30dbfcf7e3cf5b32cad?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Paulino Michelazzo</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-59893">
+				05/03/2014 at 15:00</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Pedro,</p>
+<p>Certamente você está usando a função mysql_query() do PHP. Se é isso, uma má notícia para você. Esta função não permite a execução de queries simultâneas e por isso deve estar tendo problemas.</p>
+<p>Dê uma olhada nesta URL. Ela pode lhe ajudar:<br />
+<a href="http://www.dev-explorer.com/articles/multiple-mysql-queries" rel="nofollow">http://www.dev-explorer.com/articles/multiple-mysql-queries</a></p>
+<p>Saudações</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-3" id="li-comment-59965">
+		<div id="comment-59965">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/5f5e80aa3863452d0ebe617d6fdb3898?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5f5e80aa3863452d0ebe617d6fdb3898?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Pedro B Amaral</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-59965">
+				06/03/2014 at 02:32</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Olá Paulimo,</p>
+<p>Primeiramente, obrigado pela presteza. Acessei o link, mas não se trata de nossa necessidade. Apesar de usarmos mysql_query(), não processamos simultâneas. </p>
+<p>Conseguimos processar, utilizando o código abaixo (trecho):<br />
+==============<br />
+$checa_edicao = mysql_query(&#8220;SELECT * FROM `configuracoes` WHERE `descricao`=&#8217;edicao_atual&#8217; and `valor`=&#8217;$atual[valor]'&#8221;) or die (&#8220;Erro ao buscar edicao atual.&#8221;);<br />
+	$busca_edicao = mysql_fetch_array($checa_edicao);<br />
+	$atual = $busca_edicao[&#8216;valor&#8217;];</p>
+<p>$query2 = &#8220;SELECT * FROM site_rodape where edicao=&#8217;$atual'&#8221;;<br />
+$result2 = mysql_query($query2) or die(mysql_error());<br />
+$cont= mysql_num_rows($result2) or die(mysql_error());</p>
+<p>while($row = mysql_fetch_array($result2))<br />
+{<br />
+                $idioma = $row[&#8220;idioma&#8221;];<br />
+                $rodape_texto = $row[&#8220;rodape_texto&#8221;];<br />
+                $edicao = $row[&#8220;edicao&#8221;];<br />
+                $edicao_trabalho = $edicao + 1;<br />
+$insere = &#8220;INSERT INTO `site_rodape` (`edicao`, `idioma`, `rodape_texto`) VALUES (&#8216;$edicao_trabalho&#8217;, &#8216;$idioma&#8217;, &#8216;$rodape_texto&#8217;)&#8221;;<br />
+$result = mysql_query($insere) or die(mysql_error());<br />
+}<br />
+===============<br />
+Saudações.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-74587">
+		<div id="comment-74587">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/18cb79b273427760fc90cd80dad40981?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/18cb79b273427760fc90cd80dad40981?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Irc Miguel</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-74587">
+				14/08/2014 at 16:19</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Ótima dica! </p>
+<p>Obrigado.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-159187">
+		<div id="comment-159187">
+			<div class="comment-author vcard">
+				<img alt='' src='http://1.gravatar.com/avatar/dea4b09e74b07daf9c61f970ab64393a?s=40&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/dea4b09e74b07daf9c61f970ab64393a?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn"><a href='http://www.piocom.com.br' rel='external nofollow' class='url'>Alexandre Mendonça</a></cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-159187">
+				25/03/2015 at 10:24</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Bom dia, poderiam me ajudar neste caso, de um insert de dados de uma tabela temporaria ?</p>
+<p>	CREATE TEMPORARY TABLE qproe  AS (SELECT loja, probarx, MAX(proano) as proano, MAX(promes) as promes from dbft_vcaproe where proano&lt;=xanoa AND promes&lt;=xmesa group by loja, probarx);<br />
+	CREATE TEMPORARY TABLE qproe1 AS (SELECT dbft_vcaproe.* from dbft_vcaproe,qproe where dbft_vcaproe.proano=qproe.proano AND dbft_vcaproe.promes=qproe.promes);</p>
+<p>	insert into dbft_vcaproe (loja, probarx, procod, proano, promes, proqan, procan, proqat, procat, prodcp, proded, prodeo, prodvd, prodsd, prodso) values (&#039;qproe1.loja&#039;, &#039;qproe1.probarx&#039;, &#039;qproe1.procod&#039;, &#039;qproe1.proano&#039;, &#039;qproe1.promes&#039;, &#039;qproe1.proqat&#039;, &#039;qproe1.procat&#039;, &#039;qproe1.proqat&#039;, &#039;qproe1.procat&#039;, &#039;0000-00-00&#039;, &#039;0000-00-00&#039;, &#039;0000-00-00&#039;, &#039;0000-00-00&#039;, &#039;0000-00-00&#039;, &#039;0000-00-00&#039;) ;</p>
+<p>isso está em uma procedure no mysql, porem como deve ser colocado os dados no &quot;value&quot; ?, pq se eu deixar sem as aspas simples ou duplas, da erro de coluna nao existe.</p>
+<p>Abs,.</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-173217">
+		<div id="comment-173217">
+			<div class="comment-author vcard">
+				<img alt='' src='http://2.gravatar.com/avatar/2e79dc8fd275633b463b011ba7aea910?s=40&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2e79dc8fd275633b463b011ba7aea910?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Igor Wanderley</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-173217">
+				22/07/2015 at 15:20</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Muito bom o post, esta de parabéns&#8230;<br />
+Gostaria de compartilhar com todos a seguinte instrução que encontrei na internet a algum tempo atrás, que insere na tabela caso não exista na tabela:</p>
+<p>INSERT INTO nome_da_tabela (campo_um, campo_dois, campo_tres, campo_n)<br />
+    SELECT &#8220;valor_campo_um&#8221;,&#8221;valor_campo_dois&#8221;, &#8220;valor_campo_tres&#8221;, &#8220;valor_campo_n&#8221;<br />
+    FROM DUAL WHERE NOT EXISTS (SELECT * FROM nome_da_tabela WHERE campo_um = &#8220;valor_campo_um_a_verificar&#8221;);</p>
+<p>Bom espero ter ajudado!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-179890">
+		<div id="comment-179890">
+			<div class="comment-author vcard">
+				<img alt='' src='http://0.gravatar.com/avatar/c8a96c00d811cf52c664003130ad51b4?s=40&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/c8a96c00d811cf52c664003130ad51b4?s=80&amp;d=mm&amp;r=g 2x' class='avatar avatar-40 photo' height='40' width='40' />				<cite class="fn">Jefferson</cite> <span class="says">says:</span>			</div><!-- .comment-author .vcard -->
+			
+			<div class="comment-meta commentmetadata"><a href="http://codare.net/2008/05/17/mysql-insert-com-select-na-mesma-query/#comment-179890">
+				14/10/2015 at 17:37</a>			</div><!-- .comment-meta .commentmetadata -->
+
+			<div class="comment-body"><p>Senhores,<br />
+Será que eu conseguiria um inner join no select?</p>
+<p>exemplo:<br />
+INSERT INTO tabela_destino(campo1,campo2,campo3&#8230;)<br />
+SELECT c.codigo_cidade,o.campo2,o.campo3&#8230; FROM tabela_origem o<br />
+INNER JOIN cidades c ON o.campo1 = c.nome_cidade;</p>
+<p>Explico:<br />
+A tabela de origem foi criada há muitos anos, quando ainda não se falava em banco de dados relacional. Então, nela foi armazenado o nome da cidade, e não o código, como preciso fazer na tabela destino. Assim, pego o nome da cidade na tabela origem e verifico na tabela cidades qual o seu respectivo código para inserir na tabela destino.</p>
+<p>Acho que é isso, valeu a quem puder me ajudar!!</p>
+</div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</div><!-- #comment-##  -->
+
+	</li><!-- #comment-## -->
+			</ol>
+
+
+			<p class="nocomments">Comments are closed.</p>
+	
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2010/12/livro-regex3.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/112273206/livro-expressoes-regulares-uma-abordagem-divertida?franq=AFL-03-43980">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6653866/livro-shell-script-profissional?franq=AFL-03-43980">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/111677292/php-gtk-criando-aplicacoes-graficas-com-php?franq=AFL-03-43980">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="http://www.submarino.com.br/produto/6871690/livro-php-programando-com-orientacao-a-objetos?franq=AFL-03-43980">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980"><img src='http://codare.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="http://busca.submarino.com.br/busca.php?q=ruby+brasport&amp;franq=AFL-03-43980">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+								<a href="https://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress.</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='http://codare.net/wp-includes/js/comment-reply.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='http://codare.net/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.310 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2017-10-23 18:33:56 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->
