@@ -1284,11 +1284,9 @@ h3#reply-title {
 }
 #site-generator a {
 	display: inline-block;
+	font-size: 15px;
 	line-height: 16px;
 	padding-left: 20px;
-}
-#site-generator a:hover {
-	text-decoration: underline;
 }
 img#wpstats {
 	display: block;
