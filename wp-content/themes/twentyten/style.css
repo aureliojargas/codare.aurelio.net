@@ -4,7 +4,7 @@ Theme URI: https://wordpress.org/themes/twentyten/
 Description: The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the "Asides" and "Gallery" categories, and has an optional one-column page template that removes the sidebar.
 Author: the WordPress team
 Author URI: https://wordpress.org/
-Version: 2.3
+Version: 2.3-aurelio
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, two-columns, custom-header, custom-background, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style, custom-menu, flexible-header, featured-images, footer-widgets, featured-image-header
@@ -75,38 +75,15 @@ DESCRIPTION: Two-column fixed layout with one sidebar right of content
 #content {
 	margin: 0 280px 0 20px;
 }
-#primary,
-#secondary {
+#primary {
 	float: right;
 	overflow: hidden;
 	width: 220px;
 }
-#secondary {
-	clear: right;
 }
 #footer {
 	clear: both;
 	width: 100%;
-}
-
-/*
-LAYOUT: One column, no sidebar
-DESCRIPTION: One centered column with no sidebar
-*/
-
-.one-column #content {
-	margin: 0 auto;
-	width: 640px;
-}
-
-/*
-LAYOUT: Full width, no sidebar
-DESCRIPTION: Full width content with no sidebar; used for attachment pages
-*/
-
-.single-attachment #content {
-	margin: 0 auto;
-	width: 900px;
 }
 
 
@@ -115,19 +92,14 @@ DESCRIPTION: Full width content with no sidebar; used for attachment pages
 body,
 input,
 textarea,
-.page-title span,
-.pingback a.url {
+.page-title span {
 	font-family: Georgia, "Bitstream Charter", serif;
 }
 h3#comments-title,
-h3#reply-title,
 #access .menu,
 #access div.menu ul,
-#cancel-comment-reply-link,
-.form-allowed-tags,
 #site-info,
 #site-title,
-#wp-calendar,
 .comment-meta,
 .comment-body tr th,
 .comment-body thead th,
@@ -137,10 +109,8 @@ h3#reply-title,
 .entry-meta,
 .entry-title,
 .entry-utility,
-#respond label,
 .navigation,
 .page-title,
-.pingback p,
 .reply,
 .widget-title,
 .wp-caption-text {
@@ -177,17 +147,6 @@ div.menu,
 }
 
 /* Structure the footer area */
-#footer-widget-area {
-	overflow: hidden;
-}
-#footer-widget-area .widget-area {
-	float: left;
-	margin-right: 20px;
-	width: 220px;
-}
-#footer-widget-area #fourth {
-	margin-right: 0;
-}
 #site-info {
 	float: left;
 	font-size: 14px;
@@ -679,10 +638,6 @@ div.menu li {
 .page-link a:hover {
 	color: #ff4b33;
 }
-body.page .edit-link {
-	clear: both;
-	display: block;
-}
 #entry-author-info {
 	background: #f2f7fc;
 	border-top: 4px solid #000;
@@ -725,70 +680,6 @@ body.page .edit-link {
 .entry-utility a:hover {
 	color: #ff4b33;
 }
-#content .video-player {
-	padding: 0;
-}
-.format-standard .wp-video,
-.format-standard .wp-audio-shortcode,
-.format-audio .wp-audio-shortcode,
-.format-standard .video-player {
-	margin-bottom: 24px;
-}
-
-/* =Asides
--------------------------------------------------------------- */
-
-.home #content .format-aside p,
-.home #content .category-asides p {
-	font-size: 14px;
-	line-height: 20px;
-	margin-bottom: 10px;
-	margin-top: 0;
-}
-.home .hentry.format-aside,
-.home .hentry.category-asides {
-	padding: 0;
-}
-.home #content .format-aside .entry-content,
-.home #content .category-asides .entry-content {
-	padding-top: 0;
-}
-
-
-/* =Gallery listing
--------------------------------------------------------------- */
-
-.format-gallery .size-thumbnail img,
-.category-gallery .size-thumbnail img {
-	border: 10px solid #f1f1f1;
-	margin-bottom: 0;
-}
-.format-gallery .gallery-thumb,
-.category-gallery .gallery-thumb {
-	float: left;
-	margin-right: 20px;
-	margin-top: -4px;
-}
-.home #content .format-gallery .entry-utility,
-.home #content .category-gallery .entry-utility {
-	padding-top: 4px;
-}
-
-
-/* =Attachment pages
--------------------------------------------------------------- */
-
-.attachment .entry-content .entry-caption {
-	font-size: 140%;
-	margin-top: 24px;
-}
-.attachment .entry-content .nav-previous a:before {
-	content: '\2190\00a0';
-}
-.attachment .entry-content .nav-next a:after {
-	content: '\00a0\2192';
-}
-
 
 /* =Images
 -------------------------------------------------------------- */
@@ -802,7 +693,6 @@ img.size-auto,
 img.size-full,
 img.size-large,
 img.size-medium,
-.attachment img,
 .widget-container img {
 	max-width: 100%; /* When images are too wide for containing element, force them to fit. */
 	height: auto; /* Override height to match resized width for correct aspect ratio. */
@@ -852,53 +742,6 @@ img.aligncenter {
 	color: #777;
 	font-size: 12px;
 	margin: 5px;
-}
-.wp-smiley {
-	margin: 0;
-}
-.gallery {
-	margin: 0 auto 18px;
-}
-.gallery .gallery-item {
-	float: left;
-	margin-top: 0;
-	text-align: center;
-	width: 33%;
-}
-.gallery-columns-2 .gallery-item {
-	width: 50%;
-}
-.gallery-columns-4 .gallery-item {
-	width: 25%;
-}
-.gallery img {
-	border: 2px solid #cfcfcf;
-}
-.gallery-columns-2 .attachment-medium {
-	max-width: 92%;
-	height: auto;
-}
-.gallery-columns-4 .attachment-thumbnail {
-	max-width: 84%;
-	height: auto;
-}
-.gallery .gallery-caption {
-	color: #777;
-	font-size: 12px;
-	margin: 0 0 12px;
-}
-.gallery dl {
-	margin: 0;
-}
-.gallery img {
-	border: 10px solid #f1f1f1;
-}
-.gallery br+br {
-	display: none;
-}
-#content .attachment img {/* single attachment images should be centered */
-	display: block;
-	margin: 0 auto;
 }
 
 
@@ -952,8 +795,7 @@ img.aligncenter {
 #comments .navigation {
 	padding: 0 0 18px 0;
 }
-h3#comments-title,
-h3#reply-title {
+h3#comments-title {
 	color: #000;
 	font-size: 20px;
 	font-weight: bold;
@@ -1026,12 +868,10 @@ h3#comments-title {
 	font-size: 12px;
 	padding: 0 0 24px 0;
 }
-.reply a,
-a.comment-edit-link {
+.reply a {
 	color: #777;
 }
-.reply a:hover,
-a.comment-edit-link:hover {
+.reply a:hover {
 	color: #ff4b33;
 }
 .commentlist .children {
@@ -1046,91 +886,10 @@ a.comment-edit-link:hover {
 .nocomments {
 	display: none;
 }
-#comments .pingback {
-	border-bottom: 1px solid #e7e7e7;
-	margin-bottom: 18px;
-	padding-bottom: 18px;
-}
-.commentlist li.comment+li.pingback {
-	margin-top: -6px;
-}
-#comments .pingback p {
-	color: #777;
-	display: block;
-	font-size: 12px;
-	line-height: 18px;
-	margin: 0;
-}
-#comments .pingback .url {
-	font-size: 13px;
-	font-style: italic;
-}
 
 /* Comments form */
 input[type="submit"] {
 	color: #333;
-}
-#respond {
-	border-top: 1px solid #e7e7e7;
-	margin: 24px 0;
-	overflow: hidden;
-	position: relative;
-}
-#respond p {
-	margin: 0;
-}
-#respond .comment-notes {
-	margin-bottom: 1em;
-}
-.form-allowed-tags {
-	line-height: 1em;
-}
-.children #respond {
-	margin: 0 48px 0 0;
-}
-h3#reply-title {
-	margin: 18px 0;
-}
-#comments-list #respond {
-	margin: 0 0 18px 0;
-}
-#comments-list ul #respond {
-	margin: 0;
-}
-#cancel-comment-reply-link {
-	font-size: 12px;
-	font-weight: normal;
-	line-height: 18px;
-}
-#respond .required {
-	color: #ff4b33;
-	font-weight: bold;
-}
-#respond label {
-	color: #777;
-	font-size: 12px;
-}
-#respond input {
-	margin: 0 0 9px;
-	width: 98%;
-}
-#respond textarea {
-	width: 98%;
-}
-#respond .form-allowed-tags {
-	color: #777;
-	font-size: 12px;
-	line-height: 18px;
-}
-#respond .form-allowed-tags code {
-	font-size: 11px;
-}
-#respond .form-submit {
-	margin: 12px 0;
-}
-#respond .form-submit input {
-	font-size: 14px;
-	width: auto;
 }
 
 
@@ -1147,12 +906,6 @@ h3#reply-title {
 }
 .widget-area select {
 	max-width: 100%;
-}
-.widget_search #s {/* This keeps the search inputs in line */
-	width: 60%;
-}
-.widget_search label {
-	display: none;
 }
 .widget-container {
 	word-wrap: break-word;
@@ -1179,49 +932,6 @@ h3#reply-title {
 .widget-area .entry-meta {
 	font-size: 11px;
 }
-#wp_tag_cloud div {
-	line-height: 1.6em;
-}
-#wp-calendar {
-	width: 100%;
-}
-#wp-calendar caption {
-	color: #222;
-	font-size: 14px;
-	font-weight: bold;
-	padding-bottom: 4px;
-	text-align: left;
-}
-#wp-calendar thead {
-	font-size: 11px;
-}
-#wp-calendar thead th {
-}
-#wp-calendar tbody {
-	color: #aaa;
-}
-#wp-calendar tbody td {
-	background: #f5f5f5;
-	border: 1px solid #fff;
-	padding: 3px 0 2px;
-	text-align: center;
-}
-#wp-calendar tbody .pad {
-	background: none;
-}
-#wp-calendar tfoot #next {
-	text-align: right;
-}
-.widget_rss a.rsswidget {
-	color: #000;
-}
-.widget_rss a.rsswidget:hover {
-	color: #ff4b33;
-}
-.widget_rss .widget-title img {
-	width: 11px;
-	height: 11px;
-}
 .widget_text ul,
 .widget_text ol {
 	margin-bottom: 1.5em;
@@ -1235,9 +945,6 @@ h3#reply-title {
 .widget_text ol ul {
 	margin-bottom: 0;
 }
-.widget_media_video video {
-	max-width: 100%;
-}
 
 /* Main sidebars */
 #main .widget-area ul {
@@ -1250,12 +957,6 @@ h3#reply-title {
 	padding: 0;
 }
 #primary {
-}
-#secondary {
-}
-
-/* Footer widget areas */
-#footer-widget-area {
 }
 
 
@@ -1287,10 +988,6 @@ h3#reply-title {
 	font-size: 15px;
 	line-height: 16px;
 	padding-left: 20px;
-}
-img#wpstats {
-	display: block;
-	margin: 0 auto 10px;
 }
 
 
@@ -1354,9 +1051,6 @@ code {
 	}
 	#access,
 	#branding img,
-	#respond,
-	.comment-edit-link,
-	.edit-link,
 	.navigation,
 	.page-link,
 	.widget-area {
@@ -1368,8 +1062,7 @@ code {
 		margin: 0;
 		width: 100%;
 	}
-	#content,
-	.one-column #content {
+	#content {
 		margin: 24pt 0 0;
 		width: 100%;
 	}
@@ -1383,9 +1076,6 @@ code {
 	}
 	#colophon {
 		width: auto;
-	}
-	img#wpstats {
-		display: none;
 	}
 	#site-generator a {
 		margin: 0;
