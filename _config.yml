@@ -1,3 +1,9 @@
+# Do not serve auxiliary files
+exclude:
+  - README.md
+  - CNAME
+
 # Show /category/__codare on the site
 include:
   - __codare
+
