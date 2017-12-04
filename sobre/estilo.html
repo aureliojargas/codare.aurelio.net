@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Guia de Estilo | CODARE</title>
+<link rel="stylesheet" type="text/css" media="all" href="http://codare.aurelio.net/wp-content/themes/twentyten/style.css" />
+<link rel="icon" href="http://codare.aurelio.net/wp-content/uploads/2010/12/favicon.png" type="image/png" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-280222-15"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-280222-15');
+</script>
+
+</head>
+
+<body class="page-template-default page custom-background">
+<div id="wrapper" class="hfeed">
+	<div id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+								<div id="site-title">
+					<span>
+						<a href="http://codare.aurelio.net/" title="CODARE" rel="home">CODARE</a>
+					</span>
+				</div>
+				<div id="site-description">Programadores, uni-vos!</div>
+
+										<img src="http://codare.aurelio.net/wp-content/uploads/2010/12/cropped-codare-oficial-22.jpg" width="940" height="198" alt="" />
+								</div><!-- #branding -->
+
+			<div id="access" role="navigation">
+			  				<div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
+								<div class="menu-header"><ul id="menu-categorias" class="menu"><li><a href="http://codare.aurelio.net/category/applescript/">AppleScript</a></li>
+<li><a href="http://codare.aurelio.net/category/c/">C</a></li>
+<li><a href="http://codare.aurelio.net/category/cpp/">CPP</a></li>
+<li><a href="http://codare.aurelio.net/category/csharp/">CSharp</a></li>
+<li><a href="http://codare.aurelio.net/category/java/">Java</a></li>
+<li><a href="http://codare.aurelio.net/category/javascript/">JavaScript</a></li>
+<li><a href="http://codare.aurelio.net/category/latex/">LaTeX</a></li>
+<li><a href="http://codare.aurelio.net/category/mysql/">MySQL</a></li>
+<li><a href="http://codare.aurelio.net/category/php/">PHP</a></li>
+<li><a href="http://codare.aurelio.net/category/python/">Python</a></li>
+<li><a href="http://codare.aurelio.net/category/ruby/">Ruby</a></li>
+<li><a href="http://codare.aurelio.net/category/shell/">Shell</a></li>
+<li><a href="http://codare.aurelio.net/category/tcl-tk/">Tcl-Tk</a></li>
+<li><a href="http://codare.aurelio.net/category/misc/">Misc</a></li>
+<li><a href="http://codare.aurelio.net/category/mac/">Mac</a></li>
+<li><a href="http://codare.aurelio.net/category/linux/">Linux</a></li>
+<li><a href="http://codare.aurelio.net/category/windows/">Windows</a></li>
+<li><a href="http://codare.aurelio.net/category/__codare/">__codare</a></li>
+<li><a href="http://codare.aurelio.net/sobre/">Sobre</a></li>
+<li class="current-menu-item current_page_item"><a href="http://codare.aurelio.net/equipe/">Equipe</a></li>
+</ul></div>			</div><!-- #access -->
+		</div><!-- #masthead -->
+	</div><!-- #header -->
+
+	<div id="main">
+
+		<div id="container">
+			<div id="content" role="main">
+
+
+
+				<div class="page type-page status-publish hentry">
+											<h1 class="entry-title">Guia de Estilo</h1>
+
+					<div class="entry-content">
+
+<nav>
+  <ul>
+    <li>
+      <a href="#toc1">Exemplo de Post</a>
+    </li>
+    <li>
+      <a href="#toc2">Formato do Post</a>
+    </li>
+    <li>
+      <a href="#toc3">Detalhes do Post</a>
+      <ul>
+        <li>
+          <a href="#toc4">Título</a>
+        </li>
+        <li>
+          <a href="#toc5">Tags</a>
+        </li>
+        <li>
+          <a href="#toc6">Texto</a>
+        </li>
+        <li>
+          <a href="#toc7">Trechos de código</a>
+        </li>
+        <li>
+          <a href="#toc8">Dicas de Português</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#toc9">Detalhes do WordPress</a>
+    </li>
+    <li>
+      <a href="#toc10">Procedimento de postagem</a>
+    </li>
+  </ul>
+</nav>
+
+<h2 id="toc1">Exemplo de Post</h2>
+
+<blockquote>
+<hr class="light">
+
+<p><strong>Python: Declarar a codificação dos fontes (encoding)</strong></p>
+
+<p>Tags: Python, encoding, latin-1, warning</p>
+
+<p>Quando você coloca algum caractere acentuado no seu programa, por exemplo "á", um aviso é mostrado na execução:</p>
+
+<p>sys:1: DeprecationWarning: Non-ASCII character '\xe1' in file foo.py on line 3, but no encoding declared; see <a href="http://www.python.org/peps/pep-0263.html">http://www.python.org/peps/pep-0263.html</a> for details</p>
+
+<p>A codificação ASCII é o padrão para códigos fonte, então é preciso avisar o Python que seus fontes usam outra. Para o português é ISO-8859-1, ou seu similar mais curto latin-1. Basta colocar um comentário especial na primeira ou segunda linha do código:</p>
+
+<pre>
+# -*- coding: latin-1 -*-
+</pre>
+
+<p>Apesar de encorajado seu uso pela documentação, os -*- são desnecessários. Exemplo funcional:</p>
+
+<pre>
+# coding: latin-1
+print "á"
+</pre>
+
+<hr class="light">
+</blockquote>
+
+<h2 id="toc2">Formato do Post</h2>
+
+<ul>
+  <li>Título descritivo e Google-friendly, com o nome da linguagem no início</li>
+  <li>Linha com as tags da dica</li>
+  <li>Conteúdo da dica
+    <ul>
+      <li>Introdução (se julgar necessária)</li>
+      <li>Dica em si
+        <ul>
+          <li>Colocar trechos de código</li>
+          <li>Colocar o resultado dos comandos para facilitar o entendimento</li>
+        </ul>
+      </li>
+      <li>Conclusão ou aviso (se julgar necessário)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="toc3">Detalhes do Post</h2>
+
+<h3 id="toc4">Título</h3>
+
+<ul>
+  <li>Uma das partes MAIS importantes, que garante bom ranking nas pesquisas.</li>
+  <li>Tem que ser rico em palavras-chave que o usuário procuraria no Google para cair no seu post.</li>
+  <li>Sempre pense: se eu enfrentasse esse problema que meu post resolve, como eu procuraria a solução no Google? Quais palavras eu usaria?</li>
+  <li>Coloque o nome da linguagem no início, no formato "Linguagem: Título do post".</li>
+  <li>Quando o post falar de um único método/biblioteca/comando, é interessante ter seu nome no fim do título, entre parênteses, para ajudar nas pesquisas. Exemplo: "Java: Como ler, editar e salvar imagens (ImageIO)</li>
+  <li>Use capitalização de frase (como esta, somente a primeira letra em maiúscula). Não Use Title Caps. Exceções para palavras que normalmente são maiúsculas como Linux e OpenGL.</li>
+  <li>Prefira o infinitivo ao gerúndio. Ao invés de "Lendo linhas de um arquivo", use "Ler as linhas de um arquivo".</li>
+  <li>Lembre-se que é uma DICA e não um ARTIGO.</li>
+  <li>Seja técnico e prático, não poético.</li>
+</ul>
+
+<table class="tableborder">
+  <tr>
+    <th>Ruim</th>
+    <th>Bom</th>
+  </tr>
+  <tr>
+    <td>Pau no OpenGL</td>
+    <td>Segmentation fault em programas OpenGL com multi-threading</td>
+  </tr>
+  <tr>
+    <td>Errando no lugar certo</td>
+    <td>Imprimindo mensagens de erro (stderr)</td>
+  </tr>
+  <tr>
+    <td>Deixando o código Javascript válido</td>
+    <td>Validar Javascript dentro do XHTML com CDATA</td>
+  </tr>
+  <tr>
+    <td>Erro na linha de comando do shell</td>
+    <td>Erro: Argument list too long</td>
+  </tr>
+  <tr>
+    <td>Formatando strings de um jeito esperto</td>
+    <td>Formatar strings com dicionários (template)</td>
+  </tr>
+</table>
+
+<h3 id="toc5">Tags</h3>
+
+<ul>
+  <li>O título pode não conseguir englobar tudo o que a dica fala. Use o campo Tags (logo abaixo da caixa de texto do post) para listar as palavras-chave relacionadas com a dica.</li>
+  <li>Pense quais palavras o leitor digitaria no Google.</li>
+  <li>Pode ter termos em inglês e português, o que for mais comum o uso.</li>
+  <li>Sempre coloque o nome da linguagem também nesta lista.</li>
+  <li>Não use formatação (negrito, itálico).</li>
+  <li>Capitalize as palavras normalmente: Python, PHP, string.</li>
+  <li><strong>Exemplo:</strong> Tags: HTML, escape, escapar, html_escape, htmlspecialchars, htmlentities</li>
+</ul>
+
+<h3 id="toc6">Texto</h3>
+
+<ul>
+  <li>Texto rápido e sem muita firula.</li>
+  <li>Sua vida pessoal não importa, tipo "Eu estava lavando o carro quando lembrei que a panela estava no fogo, e na corrida, lembrei do encoding do Python."</li>
+  <li>O texto deve passar profissionalismo. Não use gírias e regionalismos. Seja sóbrio, porém não necessariamente chato :)</li>
+  <li>Sempre que possível, mostre as mensagens de erro/warning no post. Quantas vezes você já não procurou no Google pela solução do problema copiando e colando a mensagem de warning? Então.</li>
+  <li>Sempre escreva pensando no Google. Que outras palavras você poderia colocar no meio do texto, que ajudariam o leitor a encontrar seu texto na Internet?</li>
+  <li>Se não for necessário, não explore TODOS os detalhes da dica. Deixe espaço para que os leitores também possam participar comentando! Neste exemplo, eu poderia ter dito que o espaço em branco depois dos dois-pontos é opcional, ou que é possível ter textos antes de depois da string mágica. Note que isso não significa deixar a dica pobre, mas sim KISS. Eventualmente algum leitor experiente vai adicionar essas informações.</li>
+  <li>Já tem uma dica complementar ou parecida no CODARE? Faça um link para ela!</li>
+  <li>Uma introdução ao problema (como neste caso explicar a origem e mostrar a mensagem de warning) é sempre bem-vinda para o leitor não cair de pára-quedas na tua dica. Você sabe bem do que ela se trata, mas o leitor não.</li>
+  <li>Evite parágrafos muito loooooooongos (chato de ler) e vários mini-parágrafos de meia linha (IRC kids). Use o bom senso.</li>
+  <li>O blog é em português, então sempre escreva os termos em português quando seu uso for comum. Coloque o termo em inglês entre parênteses para ajudar o Google a encontrar seu post. Como já temos os parênteses, não precisa usar itálico também. Exemplo: Para ligar a depuração (debug) você deve...</li>
+  <li>Evite o abuso de formatação. Dê destaques (negrito, itálico) apenas quando estritamente necessário para melhorar o entendimento da dica.</li>
+  <li>Não é necessário deixar em itálico palavras técnicas que todo programador está careca de saber: string, array, hash, ...</li>
+</ul>
+
+<h3 id="toc7">Trechos de código</h3>
+
+<ul>
+  <li>Marque trechos de código com a tag &lt;pre&gt;&lt;/pre&gt;.</li>
+  <li>Pode deixar a tag PRE em uma linha só dela, para ficar mais legível:
+    <pre>
+Blablabla, veja o exemplo:
+
+&lt;pre&gt;
+foo = bar
+print foo
+&lt;/pre&gt;
+
+Blablabla...
+</pre>
+  </li>
+  <li><strong>Não ultrapasse 65 colunas.</strong> Tanto no blog quanto em revistas, livros e outras mídias, a largura não é generosa. Quebre linhas, faça funções, use atalhos (foo = FuncaoComNomeGigantesco).</li>
+  <li>Ao identar um trecho (sempre idente, sempre), <strong>use ESPAÇOS e não TABs</strong>, pois o tamanho do TAB varia nos navegadores :/ Use 3 ou 4 espaços para cada nível, o que preferir.</li>
+  <li>Use nomes curtos porém descritivos para variáveis e funções.</li>
+  <li>O trecho deve ser copiável &amp; colável, pois é exatamente isso que o leitor vai fazer: colar e tentar rodar. <strong>Teste se o código funciona!</strong></li>
+  <li>Se for mostrar uma linha de comando do Shell, use como prompt o $. Exemplo: $ ls /etc</li>
+</ul>
+
+<h3 id="toc8">Dicas de Português</h3>
+
+<ul>
+  <li><strong>Faça verificação ortográfica!</strong></li>
+  <li>Numerais até nove são escritos por extenso: um, dois, três... De 10 em diante, coloca-se o número: 10, 11, 12...</li>
+  <li>Não use "veja exemplo <span class="underline">abaixo</span>", mas sim "veja o exemplo <span class="underline">seguinte</span>".</li>
+  <li><strong>Faça verificação ortográfica!</strong></li>
+</ul>
+
+<h2 id="toc9">Detalhes do WordPress</h2>
+
+<ul>
+  <li>Ao mudar o título de um post, lembre-se de mudar também o "post slug".</li>
+  <li>Não é preciso usar as tags &lt;P&gt; para cada parágrafo, elas são inseridas automaticamente.</li>
+  <li>Não use o botão CODE para formatar trechos de código. Ao invés disso, englobe o trecho com as tags &lt;pre&gt; e &lt;/pre&gt; "na mão".</li>
+  <li>Se precisar colocar &amp;, &lt; e &gt; literais, use as entidades &amp;amp; &amp;lt; e &amp;gt;.</li>
+  <li>Às vezes é preciso escapar a \ para que ela apareça, por exemplo use "\\n" para aparecer "\n". Mas confira nos Preview, parece que eles arrumaram esse bug.</li>
+  <li>Se for colocar um link para outro post do CODARE, use links relativos e não absolutos. Ao invés linkar o: <a href="http://codare.wordpress.com/2006/09/20/ler-linhas-de-um-arquivo-texto/">http://codare.wordpress.com/2006/09/20/ler-linhas-de-um-arquivo-texto/</a> Use: /2006/09/20/ler-linhas-de-um-arquivo-texto/
+  </li>
+</ul>
+
+<h2 id="toc10">Procedimento de postagem</h2>
+
+<ol>
+  <li>Entre com seu usuário e senha no WordPress.com.</li>
+  <li>Entre no CODARE.</li>
+  <li>Clique em "Write" ou "New Post".</li>
+  <li>Escreva sua dica, seguindo as recomendações deste documento.</li>
+  <li>Vá clicando em "Save and Continue Editing" para ver como o post está ficando.</li>
+  <li>Deixe o "Post Status" como Draft mesmo.</li>
+  <li>Ao terminar, aperte "Submit for Review".</li>
+  <li>Então seu post entrará na fila e será publicado nos próximos dias.</li>
+</ol>
+
+
+																	</div><!-- .entry-content -->
+				</div><!-- #post-## -->
+
+
+			<div id="comments">
+
+
+
+
+</div><!-- #comments -->
+
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+
+		<div id="primary" class="widget-area" role="complementary">
+			<ul class="xoxo">
+
+<li id="text-4" class="widget-container widget_text">			<div class="textwidget"><div style="
+    background: yellow;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 125%;
+    line-height: 150%;
+"><b>ATENÇÃO: Este site está aposentado.</b><br>
+Não receberá posts nem comentários novos. Para ler dicas mais recentes, vá no <a href="https://pt.stackoverflow.com/">Stack Overflow</a>.</div></div>
+		</li><li id="text-3" class="widget-container widget_text"><h3 class="widget-title">Livros da equipe do CODARE</h3>			<div class="textwidget"><p>
+	<a href="http://piazinho.com.br"><img src='http://codare.aurelio.net/wp-content/uploads/livro-regex5.jpg' alt='Livro Regex' /></a>
+	<br>
+	<a href="http://piazinho.com.br">Expressões Regulares<br>
+	Uma Abordagem Divertida</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="http://shellscript.com.br"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-shell.jpg' alt='Livro Shell' /></a>
+	<br>
+	<a href="http://shellscript.com.br">Shell Script Profissional</a><br>
+	de Aurelio Marinho Jargas
+</p>
+<p>
+	<a href="https://novatec.com.br/livros/php-gtk-3ed/"><img src='http://codare.aurelio.net/wp-content/uploads/2007/05/livro-phpgtk.jpg' alt='Livro PHP GTK' /></a>
+	<br>
+	<a href="https://novatec.com.br/livros/php-gtk-3ed/">PHP-GTK</a><br>
+	de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="https://novatec.com.br/livros/php-orientacao-objetos-3ed/"><img src='http://codare.aurelio.net/wp-content/uploads/2008/06/livro-phpoo.jpg' alt='Livro PHP POO' /></a>
+	<br>
+	<a href="https://novatec.com.br/livros/php-orientacao-objetos-3ed/">PHP Programando com Orientação a Objetos</a><br>
+de Pablo Dall'Oglio
+</p>
+<p>
+	<a href="https://books.google.com.br/books/about/Ruby.html?id=rimKvq_oOpkC"><img src='http://codare.aurelio.net/wp-content/uploads/2007/04/livro-ruby.jpg' alt='Livro Ruby' /></a>
+	<br>
+	<a href="https://books.google.com.br/books/about/Ruby.html?id=rimKvq_oOpkC">Ruby: Conhecendo a Linguagem</a><br>
+de Eustáquio Rangel (TaQ)
+</p>
+</div>
+		</li>			</ul>
+		</div><!-- #primary .widget-area -->
+
+	</div><!-- #main -->
+
+	<div id="footer" role="contentinfo">
+		<div id="colophon">
+
+
+
+			<div id="site-info">
+				<a href="http://codare.aurelio.net/" title="CODARE" rel="home">
+					CODARE				</a>
+			</div><!-- #site-info -->
+
+			<div id="site-generator">
+				<a href="https://github.com/aureliojargas/codare.aurelio.net">Fontes do site no GitHub</a>
+			</div><!-- #site-generator -->
+
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+
+</div><!-- #wrapper -->
+
+</body>
+</html>
