@@ -1,0 +1,3 @@
+# Show /category/__codare on the site
+include:
+  - __codare
