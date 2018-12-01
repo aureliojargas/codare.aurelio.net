@@ -1,6 +1,6 @@
 # codare.aurelio.net
 
-Sources for the http://codare.aurelio.net website, hosted in GitHub Pages.
+Sources for the https://codare.aurelio.net website, hosted in GitHub Pages.
 
 ## Context
 
